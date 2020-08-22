@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { auth } from '@/firebase';
+import router from '@/router/index';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         user: null,
+        alert: null,
     },
     getters: {
         isAuthenticated(state) {
@@ -17,13 +19,43 @@ export default new Vuex.Store({
         setUser(state, user) {
             state.user = user;
         },
+        setAlert(state, alert) {
+            state.alert = {
+                type: 'error',
+                ...alert,
+            };
+        },
     },
     actions: {
-        login({ email, password }) {
-            return auth.signInWithEmailAndPassword(email, password);
+        async login({ commit }, { email, password }) {
+            try {
+                const { user } = await auth.signInWithEmailAndPassword(email, password);
+                commit('setUser', user);
+                router.push(router.currentRoute.query.redirect || { name: 'home' });
+            } catch (error) {
+                console.error(error.message);
+                commit('setAlert', error);
+            }
         },
-        signup({ email, password }) {
-            return auth.createUserWithEmailAndPassword(email, password);
+        async signup({ commit }, { name, email, password }) {
+            try {
+                const { user } = await auth.createUserWithEmailAndPassword(email, password);
+                await user.updateProfile({ displayName: name });
+                commit('setUser', user);
+                router.push(router.currentRoute.query.redirect || { name: 'home' });
+            } catch (error) {
+                console.error(error.message);
+                commit('setAlert', error);
+            }
+        },
+        async logout({ commit }) {
+            try {
+                await auth.signOut();
+                commit('setUser', null);
+            } catch (error) {
+                console.error(error.message);
+                commit('setAlert', error);
+            }
         },
     },
     modules: {

@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import {
     required, maxLength, email, minLength, sameAs,
@@ -123,23 +123,17 @@ export default {
         };
     },
     methods: {
-        ...mapMutations(['setUser']),
-        ...mapActions(['login']),
+        ...mapActions(['login', 'signup']),
 
-        async onSubmit() {
+        onSubmit() {
             this.$v.$touch();
             if (this.$v.$invalid) return;
 
-            try {
-                const data = { email: this.email, password: this.password };
-                const { user } = this.isSignup ? await this.signup(data) : await this.login(data);
-                if (this.isSignup) {
-                    await user.updateProfile({ displayName: this.name });
-                }
-                this.setUser(user);
-                this.$router.push({ name: 'login' });
-            } catch (error) {
-                console.error(error.message);
+            const data = { name: this.name, email: this.email, password: this.password };
+            if (this.isSignup) {
+                this.signup(data);
+            } else {
+                this.login(data);
             }
         },
         reset() {
