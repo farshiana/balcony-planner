@@ -1,15 +1,15 @@
 <template>
     <v-container fluid>
-        <produce-form />
+        <family-form />
     </v-container>
 </template>
 
 <script>
-import ProduceForm from './ProduceForm.vue';
+import FamilyForm from './FamilyForm.vue';
 
 export default {
     components: {
-        ProduceForm,
+        FamilyForm,
     },
 };
 </script>
