@@ -1,15 +1,15 @@
 <template>
     <v-container fluid>
-        <genus-form />
+        <variety-form />
     </v-container>
 </template>
 
 <script>
-import GenusForm from './GenusForm.vue';
+import VarietyForm from './VarietyForm.vue';
 
 export default {
     components: {
-        GenusForm,
+        VarietyForm,
     },
 };
 </script>

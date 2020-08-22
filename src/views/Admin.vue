@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import Genera from '@/components/Admin/Genera/Genera.vue';
+import Varieties from '@/components/Admin/Varieties/Varieties.vue';
 import Users from '@/components/Admin/Users/Users.vue';
 
 export default {
     components: {
-        Genera,
+        Varieties,
         Users,
     },
     data() {
         const tabs = [
-            { label: this.$t('admin.genera'), component: 'genera', icon: 'mdi-sprout' },
+            { label: this.$t('admin.varieties'), component: 'Varieties', icon: 'mdi-sprout' },
             { label: this.$t('admin.users'), component: 'users', icon: 'mdi-account-group' },
         ];
         return {
