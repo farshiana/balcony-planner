@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-if="isAuthenticated" app bottom :mobile-breakpoint="960">
+    <v-navigation-drawer v-if="isAuthenticated" app>
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="title">
