@@ -33,13 +33,13 @@
                         hint="example of persistent helper text"
                         persistent-hint
                         required
-                        >
+                    />
                     </v-col>
                     <v-col cols="12">
                         <v-text-field label="Email*" required />
                     </v-col>
                     <v-col cols="12">
-                        <v-text-field label="Password*" type="password" required>
+                        <v-text-field label="Password*" type="password" required />
                     </v-col>
                     <v-col cols="12" sm="6">
                         <v-select
