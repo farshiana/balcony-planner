@@ -9,6 +9,6 @@
 	"authentication.withAccount": "Already have an account?",
 	"authentication.withoutAccount": "Don't have an account?",
 	"authentication.logout": "Logout",
-	"admin.families": "Plant families",
+	"admin.genera": "Plant genera",
 	"admin.users": "Users"
 }

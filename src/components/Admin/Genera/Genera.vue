@@ -1,15 +1,15 @@
 <template>
     <v-container fluid>
-        <family-form />
+        <genus-form />
     </v-container>
 </template>
 
 <script>
-import FamilyForm from './FamilyForm.vue';
+import GenusForm from './GenusForm.vue';
 
 export default {
     components: {
-        FamilyForm,
+        GenusForm,
     },
 };
 </script>
