@@ -16,64 +16,117 @@
         </template>
         <v-card>
             <v-card-title>
-                <span class="headline">New Edibale</span>
+                <span class="headline">{{ $t('admin.varieties.newVariety') }}</span>
             </v-card-title>
             <v-card-text>
                 <v-container>
                     <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                        <v-text-field label="Legal first name*" required />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                        <v-text-field label="Legal middle name" hint="example of helper text only on focus" />
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                        label="Legal last name*"
-                        hint="example of persistent helper text"
-                        persistent-hint
-                        required
-                    />
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field label="Email*" required />
-                    </v-col>
-                    <v-col cols="12">
-                        <v-text-field label="Password*" type="password" required />
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                        <v-select
-                        :items="['0-17', '18-29', '30-54', '54+']"
-                        label="Age*"
-                        required
-                        ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                        <v-autocomplete
-                        :items="['Skiing', 'Ice hockey', 'Soccer']"
-                        label="Interests"
-                        multiple
-                        ></v-autocomplete>
-                    </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-select
+                                v-model="category"
+                                :items="categories"
+                                :label="$t('admin.varieties.category')"
+                                clearable
+                                required
+                                @input="onCategorySelect"
+                            />
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                            <v-autocomplete
+                                v-model="genus"
+                                :items="genera"
+                                :label="$t('admin.varieties.genus')"
+                                clearable
+                                required
+                                @input="onGenusSelect"
+                            />
+                        </v-col>
+                        <v-col cols="12">
+                            <v-text-field
+                                v-model="name"
+                                :error-messages="nameErrors"
+                                :label="$t('admin.varieties.name')"
+                                required
+                                @input="$v.name.$touch()"
+                                @blur="$v.name.$touch()"
+                            />
+                        </v-col>
                     </v-row>
                 </v-container>
-                <small>*indicates required field</small>
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="primary" text @click="dialog = false;">Close</v-btn>
-                <v-btn color="info" text @click="dialog = false;">Save</v-btn>
+                <v-btn color="info" text @click="dialog = false;">{{ $t('cancel') }}</v-btn>
+                <v-btn color="primary" text @click="dialog = false;">{{ $t('save') }}</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate';
+import { required, maxLength } from 'vuelidate/lib/validators';
+
+const fruits = ['Apple', 'Strawberry'];
+const herbs = ['Basil', 'Thym'];
+const vegetables = ['Beans', 'Tomatoes'];
+
 export default {
+    mixins: [validationMixin],
+    validations: {
+        name: { required, maxLength: maxLength(30) },
+    },
     data() {
         return {
             dialog: false,
+            categories: [
+                { value: 'fruits', text: this.$t('fruits'), genera: fruits },
+                { value: 'herbs', text: this.$t('herbs'), genera: herbs },
+                { value: 'vegetables', text: this.$t('vegetables'), genera: vegetables },
+            ],
+            category: '',
+            genus: '',
+            name: '',
         };
+    },
+    computed: {
+        genera() {
+            const category = this.categories.find((cat) => cat.value === this.category);
+            if (category) return category.genera;
+
+            return [
+                { header: this.$t('fruits') },
+                ...fruits,
+                { divider: true },
+                { header: this.$t('herbs') },
+                ...herbs,
+                { divider: true },
+                { header: this.$t('vegetables') },
+                ...vegetables,
+            ];
+        },
+        nameErrors() {
+            const errors = [];
+            if (!this.$v.name.$dirty) return errors;
+            if (!this.$v.name.maxLength) errors.push(this.$t('auth.nameMaxLength'));
+            if (!this.$v.name.required) errors.push(this.$t('auth.nameRequired'));
+            return errors;
+        },
+    },
+    methods: {
+        onCategorySelect(categoryValue) {
+            if (!categoryValue || !this.genus) return;
+
+            const category = this.categories.find((cat) => cat.value === categoryValue);
+            if (!category.genera.includes(this.genus)) {
+                this.genus = '';
+            }
+        },
+        onGenusSelect(genus) {
+            if (!genus || this.category) return;
+
+            this.category = this.categories.find((cat) => cat.genera.includes(genus));
+        },
     },
 };
 </script>

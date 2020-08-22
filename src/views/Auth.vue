@@ -8,7 +8,7 @@
                     flat
                 >
                     <v-toolbar-title>
-                        {{ isRegister ? $t('authentication.registerForm') : $t('authentication.loginForm') }}
+                        {{ isRegister ? $t('auth.registerForm') : $t('auth.loginForm') }}
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-form lazy-validation @submit.prevent="onSubmit">
@@ -18,7 +18,7 @@
                             v-model="name"
                             prepend-icon="mdi-account"
                             :error-messages="nameErrors"
-                            label="Name"
+                            :label="$t('auth.name')"
                             required
                             @blur="$v.name.$touch()"
                         />
@@ -26,7 +26,7 @@
                             v-model="email"
                             prepend-icon="mdi-email"
                             :error-messages="emailErrors"
-                            label="E-mail"
+                            :label="$t('auth.email')"
                             required
                             @blur="$v.email.$touch()"
                         />
@@ -34,7 +34,7 @@
                             v-model="password"
                             prepend-icon="mdi-lock"
                             :error-messages="passwordErrors"
-                            label="Password"
+                            :label="$t('auth.password')"
                             type="password"
                             :counter="isRegister ? 12 : false"
                             password
@@ -46,7 +46,7 @@
                             v-model="repeatPassword"
                             prepend-icon="mdi-lock"
                             :error-messages="repeatPasswordErrors"
-                            label="Repeat password"
+                            :label="$t('auth.repeatPassword')"
                             type="password"
                             password
                             required
@@ -57,15 +57,15 @@
                     <v-card-actions>
                         <v-spacer />
                         <v-btn color="primary" type="submit">
-                            {{ isRegister ? $t('authentication.register') : $t('authentication.login') }}
+                            {{ isRegister ? $t('auth.register') : $t('auth.login') }}
                         </v-btn>
                     </v-card-actions>
                 </v-form>
             </v-card>
             <div class="my-3">
-                {{ isRegister ? $t('authentication.withAccount') : $t('authentication.withoutAccount')  }}
+                {{ isRegister ? $t('auth.withAccount') : $t('auth.withoutAccount')  }}
                 <v-btn text @click="onSwitch">
-                    {{ isRegister ? $t('authentication.login') : $t('authentication.register') }}
+                    {{ isRegister ? $t('auth.login') : $t('auth.register') }}
                 </v-btn>
             </div>
         </v-col>
@@ -87,8 +87,8 @@ export default {
             password: { required, minLength: minLength(12) },
         };
         if (this.isRegister) {
-            validations.name = { required, maxLength: maxLength(10) };
-            validations.repeatPassword = { sameAsPassword: sameAs('password') };
+            validations.name = { required, maxLength: maxLength(30) };
+            validations.repeatPassword = { required, sameAsPassword: sameAs('password') };
         }
         return validations;
     },
@@ -96,28 +96,29 @@ export default {
         nameErrors() {
             const errors = [];
             if (!this.$v.name.$dirty) return errors;
-            if (!this.$v.name.maxLength) errors.push('Name must be at most 10 characters long');
-            if (!this.$v.name.required) errors.push('Name is required');
+            if (!this.$v.name.maxLength) errors.push(this.$t('auth.nameMaxLength'));
+            if (!this.$v.name.required) errors.push(this.$t('auth.nameRequired'));
             return errors;
         },
         emailErrors() {
             const errors = [];
             if (!this.$v.email.$dirty) return errors;
-            if (!this.$v.email.required) errors.push('Email is required');
-            if (!this.$v.email.email) errors.push('Email must be valid');
+            if (!this.$v.email.required) errors.push(this.$t('auth.emailRequired'));
+            if (!this.$v.email.email) errors.push(this.$t('auth.emailValid'));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.password.$dirty) return errors;
-            if (!this.$v.password.required) errors.push('Password is required');
-            if (!this.$v.password.minLength) errors.push('Password must be at least 12 characters long');
+            if (!this.$v.password.required) errors.push(this.$t('auth.passwordRequired'));
+            if (!this.$v.password.minLength) errors.push(this.$t('auth.passwordMinLength'));
             return errors;
         },
         repeatPasswordErrors() {
             const errors = [];
             if (!this.$v.repeatPassword.$dirty) return errors;
-            if (!this.$v.repeatPassword.sameAsPassword) errors.push('Passwords must match');
+            if (!this.$v.repeatPassword.required) errors.push(this.$t('auth.repeatPasswordRequired'));
+            if (!this.$v.repeatPassword.sameAsPassword) errors.push(this.$t('auth.repeatPasswordSameAs'));
             return errors;
         },
     },

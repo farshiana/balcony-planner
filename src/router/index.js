@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
-import Authentication from '@/views/Authentication.vue';
+import Auth from '@/views/Auth.vue';
 import { auth } from '@/firebase';
 
 Vue.use(VueRouter);
@@ -18,7 +18,7 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: Authentication,
+        component: Auth,
     },
     {
         path: '/admin',

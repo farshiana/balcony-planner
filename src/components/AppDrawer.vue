@@ -25,7 +25,7 @@
         </v-list>
         <template v-slot:append v-if="isAuthenticated">
             <div class="pa-2">
-                <v-btn block @click="logout">{{ $t('authentication.logout') }}</v-btn>
+                <v-btn block @click="logout">{{ $t('auth.logout') }}</v-btn>
             </div>
         </template>
     </v-navigation-drawer>
