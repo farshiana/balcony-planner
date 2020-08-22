@@ -9,7 +9,7 @@ import { auth } from './firebase';
 Vue.config.productionTip = false;
 
 let app;
-auth.onAuthStateChanged(() => {
+auth.onAuthStateChanged((user) => {
     if (app) return;
 
     app = new Vue({
@@ -17,5 +17,11 @@ auth.onAuthStateChanged(() => {
         store,
         vuetify,
         render: (h) => h(App),
+        created() {
+            if (user) {
+                // Auto sign-in
+                store.commit('setUser', user);
+            }
+        },
     }).$mount('#app');
 });
