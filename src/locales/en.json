@@ -4,6 +4,9 @@
 	"herbs": "Aromatic herbs",
 	"cancel": "Cancel",
 	"save": "Save",
+	"name": "Name",
+	"nameRequired": "Name is required",
+	"nameMaxLength": "Name must be at most 30 characters long",
 	"app.title": "Balcony Planner",
 	"app.home": "Home",
 	"app.admin": "Admin",
@@ -14,12 +17,9 @@
 	"auth.withAccount": "Already have an account?",
 	"auth.withoutAccount": "Don't have an account?",
 	"auth.logout": "Logout",
-	"auth.name": "Name",
 	"auth.email": "E-mail",
 	"auth.password": "Password",
 	"auth.repeatPassword": "Repeat password",
-	"auth.nameRequired": "Name is required",
-	"auth.nameMaxLength": "Name must be at most 30 characters long",
 	"auth.emailRequired": "E-mail is required",
 	"auth.emailValid": "E-mail must be valid",
 	"auth.passwordRequired": "Password is required",
@@ -31,5 +31,8 @@
 	"admin.varieties.newVariety": "New variety",
 	"admin.varieties.category": "Category",
 	"admin.varieties.genus": "Genus",
-	"admin.varieties.name": "Name"
+	"admin.varieties.exposure": "Exposure",
+	"admin.varieties.watering": "Watering",
+	"admin.varieties.categoryRequired": "Category is required",
+	"admin.varieties.genusRequired": "Genus is required"
 }

@@ -20,7 +20,7 @@ auth.onAuthStateChanged((user) => {
         render: (h) => h(App),
         i18n,
         created() {
-            store.commit('setUser', user);
+            store.commit('auth/setUser', user);
         },
     }).$mount('#app');
 });

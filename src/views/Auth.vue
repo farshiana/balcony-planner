@@ -18,7 +18,7 @@
                             v-model="name"
                             prepend-icon="mdi-account"
                             :error-messages="nameErrors"
-                            :label="$t('auth.name')"
+                            :label="$t('name')"
                             required
                             @blur="$v.name.$touch()"
                         />
@@ -50,7 +50,6 @@
                             type="password"
                             password
                             required
-                            @input="$v.repeatPassword.$touch()"
                             @blur="$v.repeatPassword.$touch()"
                         />
                     </v-card-text>
@@ -96,8 +95,8 @@ export default {
         nameErrors() {
             const errors = [];
             if (!this.$v.name.$dirty) return errors;
-            if (!this.$v.name.maxLength) errors.push(this.$t('auth.nameMaxLength'));
-            if (!this.$v.name.required) errors.push(this.$t('auth.nameRequired'));
+            if (!this.$v.name.maxLength) errors.push(this.$t('nameMaxLength'));
+            if (!this.$v.name.required) errors.push(this.$t('nameRequired'));
             return errors;
         },
         emailErrors() {
@@ -132,7 +131,7 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['login', 'register']),
+        ...mapActions('auth', ['login', 'register']),
 
         onSubmit() {
             this.$v.$touch();
@@ -145,11 +144,8 @@ export default {
                 this.login(data);
             }
         },
-        reset() {
-            this.$v.$reset();
-        },
         onSwitch() {
-            this.reset();
+            this.$v.$reset();
             this.isRegister = !this.isRegister;
         },
     },

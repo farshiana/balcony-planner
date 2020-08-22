@@ -44,10 +44,10 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(['isAuthenticated']),
+        ...mapGetters('auth', ['isAuthenticated']),
     },
     methods: {
-        ...mapActions(['logout']),
+        ...mapActions('auth', ['logout']),
     },
 };
 </script>

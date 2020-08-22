@@ -17,4 +17,5 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 export const auth = firebase.auth();
 
-export const users = db.collection('users');
+export const genera = db.collection('genera');
+export const varieties = db.collection('varieties');
