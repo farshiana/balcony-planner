@@ -37,7 +37,7 @@ export default new Vuex.Store({
                 commit('setAlert', error);
             }
         },
-        async signup({ commit }, { name, email, password }) {
+        async register({ commit }, { name, email, password }) {
             try {
                 const { user } = await auth.createUserWithEmailAndPassword(email, password);
                 await user.updateProfile({ displayName: name });

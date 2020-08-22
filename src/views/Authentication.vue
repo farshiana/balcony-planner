@@ -7,12 +7,14 @@
                     dark
                     flat
                 >
-                    <v-toolbar-title>{{ isSignup ? 'Signup' : 'Login' }} form</v-toolbar-title>
+                    <v-toolbar-title>
+                        {{ isRegister ? $t('authentication.registerForm') : $t('authentication.loginForm') }}
+                    </v-toolbar-title>
                 </v-toolbar>
                 <v-form lazy-validation @submit.prevent="onSubmit">
                     <v-card-text>
                         <v-text-field
-                            v-if="isSignup"
+                            v-if="isRegister"
                             v-model="name"
                             prepend-icon="mdi-account"
                             :error-messages="nameErrors"
@@ -34,13 +36,13 @@
                             :error-messages="passwordErrors"
                             label="Password"
                             type="password"
-                            :counter="isSignup ? 12 : false"
+                            :counter="isRegister ? 12 : false"
                             password
                             required
                             @blur="$v.password.$touch()"
                         />
                         <v-text-field
-                            v-if="isSignup"
+                            v-if="isRegister"
                             v-model="repeatPassword"
                             prepend-icon="mdi-lock"
                             :error-messages="repeatPasswordErrors"
@@ -54,17 +56,17 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" type="submit">{{ isSignup ? 'Signup' : 'Login' }}</v-btn>
+                        <v-btn color="primary" type="submit">
+                            {{ isRegister ? $t('authentication.register') : $t('authentication.login') }}
+                        </v-btn>
                     </v-card-actions>
                 </v-form>
             </v-card>
             <div class="my-3">
-                <template v-if="isSignup">
-                    Already have an account?? <v-btn text @click="onSwitch">Login</v-btn>
-                </template>
-                <template v-else>
-                    Don't have an account? <v-btn text @click="onSwitch">Signup</v-btn>
-                </template>
+                {{ isRegister ? $t('authentication.withAccount') : $t('authentication.withoutAccount')  }}
+                <v-btn text @click="onSwitch">
+                    {{ isRegister ? $t('authentication.login') : $t('authentication.register') }}
+                </v-btn>
             </div>
         </v-col>
     </v-container>
@@ -84,7 +86,7 @@ export default {
             email: { required, email },
             password: { required, minLength: minLength(12) },
         };
-        if (this.isSignup) {
+        if (this.isRegister) {
             validations.name = { required, maxLength: maxLength(10) };
             validations.repeatPassword = { sameAsPassword: sameAs('password') };
         }
@@ -121,7 +123,7 @@ export default {
     },
     data() {
         return {
-            isSignup: false,
+            isRegister: false,
             name: '',
             email: '',
             password: '',
@@ -129,15 +131,15 @@ export default {
         };
     },
     methods: {
-        ...mapActions(['login', 'signup']),
+        ...mapActions(['login', 'register']),
 
         onSubmit() {
             this.$v.$touch();
             if (this.$v.$invalid) return;
 
             const data = { name: this.name, email: this.email, password: this.password };
-            if (this.isSignup) {
-                this.signup(data);
+            if (this.isRegister) {
+                this.register(data);
             } else {
                 this.login(data);
             }
@@ -147,7 +149,7 @@ export default {
         },
         onSwitch() {
             this.reset();
-            this.isSignup = !this.isSignup;
+            this.isRegister = !this.isRegister;
         },
     },
 };

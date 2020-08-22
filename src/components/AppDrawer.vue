@@ -3,7 +3,7 @@
         <v-list-item>
             <v-list-item-content>
                 <v-list-item-title class="title">
-                    Balcony Planner
+                    {{ $t('app.title') }}
                 </v-list-item-title>
             </v-list-item-content>
         </v-list-item>
@@ -25,7 +25,7 @@
         </v-list>
         <template v-slot:append v-if="isAuthenticated">
             <div class="pa-2">
-                <v-btn block @click="logout">Logout</v-btn>
+                <v-btn block @click="logout">{{ $t('authentication.logout') }}</v-btn>
             </div>
         </template>
     </v-navigation-drawer>
@@ -38,8 +38,8 @@ export default {
     data() {
         return {
             items: [
-                { to: 'home', icon: 'mdi-home', title: 'Home' },
-                { to: 'admin', icon: 'mdi-application-cog', title: 'Admin' },
+                { to: 'home', icon: 'mdi-home', title: this.$t('app.home') },
+                { to: 'admin', icon: 'mdi-application-cog', title: this.$t('app.admin') },
             ],
         };
     },

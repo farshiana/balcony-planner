@@ -1,3 +1,14 @@
 {
-    "message": "hello i18n !!"
+	"app.title": "Balcony Planner",
+	"app.home": "Home",
+	"app.admin": "Admin",
+	"authentication.register": "Register",
+	"authentication.login": "Login",
+	"authentication.registerForm": "Register form",
+	"authentication.loginForm": "Login form",
+	"authentication.withAccount": "Already have an account?",
+	"authentication.withoutAccount": "Don't have an account?",
+	"authentication.logout": "Logout",
+	"admin.families": "Plant families",
+	"admin.users": "Users"
 }

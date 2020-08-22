@@ -31,8 +31,8 @@ export default {
     },
     data() {
         const tabs = [
-            { label: 'Families', component: 'families', icon: 'mdi-database-edit' },
-            { label: 'Uers', component: 'users', icon: 'mdi-account-group' },
+            { label: this.$t('admin.families'), component: 'families', icon: 'mdi-sprout' },
+            { label: this.$t('admin.users'), component: 'users', icon: 'mdi-account-group' },
         ];
         return {
             tabs,
