@@ -18,10 +18,7 @@ auth.onAuthStateChanged((user) => {
         vuetify,
         render: (h) => h(App),
         created() {
-            if (user) {
-                // Auto sign-in
-                store.commit('setUser', user);
-            }
+            store.commit('setUser', user);
         },
     }).$mount('#app');
 });
