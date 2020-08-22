@@ -6,16 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        currentUser: null,
+        user: null,
     },
     getters: {
         isAuthenticated(state) {
-            return !!state.currentUser;
+            return !!state.user;
         },
     },
     mutations: {
-        setCurrentUser(state, user) {
-            state.currentUser = user;
+        setUser(state, user) {
+            state.user = user;
         },
     },
     actions: {
