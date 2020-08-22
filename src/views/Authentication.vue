@@ -11,8 +11,8 @@
             >
                 <v-toolbar-title>{{ isSignup ? 'Signup' : 'Login' }} form</v-toolbar-title>
             </v-toolbar>
-            <v-card-text>
-                <v-form lazy-validation>
+            <v-form lazy-validation @submit.prevent="onSubmit">
+                <v-card-text>
                     <v-text-field
                         v-if="isSignup"
                         v-model="name"
@@ -36,7 +36,7 @@
                         :error-messages="passwordErrors"
                         label="Password"
                         type="password"
-                        :counter="12"
+                        :counter="isSignup ? 12 : false"
                         password
                         required
                         @blur="$v.password.$touch()"
@@ -53,13 +53,13 @@
                         @input="$v.repeatPassword.$touch()"
                         @blur="$v.repeatPassword.$touch()"
                     />
-                </v-form>
-            </v-card-text>
-            <v-card-actions>
-                <v-btn text @click="isSignup = !isSignup;">{{ isSignup ? 'Login' : 'Signup' }}</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" @click="submit">{{ isSignup ? 'Signup' : 'Login' }}</v-btn>
-            </v-card-actions>
+                </v-card-text>
+                <v-card-actions>
+                    <v-btn text @click="onSwitch">{{ isSignup ? 'Login' : 'Signup' }}</v-btn>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" type="submit">{{ isSignup ? 'Signup' : 'Login' }}</v-btn>
+                </v-card-actions>
+            </v-form>
         </v-card>
     </v-row>
 </template>
@@ -73,12 +73,16 @@ import {
 
 export default {
     mixins: [validationMixin],
-
-    validations: {
-        name: { required, maxLength: maxLength(10) },
-        email: { required, email },
-        password: { required, minLength: minLength(12) },
-        repeatPassword: { sameAsPassword: sameAs('password') },
+    validations() {
+        const validations = {
+            email: { required, email },
+            password: { required, minLength: minLength(12) },
+        };
+        if (this.isSignup) {
+            validations.name = { required, maxLength: maxLength(10) };
+            validations.repeatPassword = { sameAsPassword: sameAs('password') };
+        }
+        return validations;
     },
     computed: {
         nameErrors() {
@@ -122,10 +126,10 @@ export default {
         ...mapMutations(['setUser']),
         ...mapActions(['login']),
 
-        submit() {
+        async onSubmit() {
             this.$v.$touch();
-        },
-        async onAuth() {
+            if (this.$v.$invalid) return;
+
             try {
                 const data = { email: this.email, password: this.password };
                 const { user } = this.isSignup ? await this.signup(data) : await this.login(data);
@@ -137,6 +141,13 @@ export default {
             } catch (error) {
                 console.error(error.message);
             }
+        },
+        reset() {
+            this.$v.$reset();
+        },
+        onSwitch() {
+            this.reset();
+            this.isSignup = !this.isSignup;
         },
     },
 };
