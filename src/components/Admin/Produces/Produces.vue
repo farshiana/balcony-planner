@@ -1,15 +1,15 @@
 <template>
     <v-container fluid>
-        <edible-form />
+        <produce-form />
     </v-container>
 </template>
 
 <script>
-import EdibleForm from './EdibleForm.vue';
+import ProduceForm from './ProduceForm.vue';
 
 export default {
     components: {
-        EdibleForm,
+        ProduceForm,
     },
 };
 </script>

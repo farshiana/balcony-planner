@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import Edibles from '@/components/Admin/Edibles/Edibles.vue';
+import Produces from '@/components/Admin/Produces/Produces.vue';
 import Users from '@/components/Admin/Users/Users.vue';
 
 export default {
     components: {
-        Edibles,
+        Produces,
         Users,
     },
     data() {
         const tabs = [
-            { label: 'Edibles', component: 'edibles', icon: 'mdi-database-edit' },
+            { label: 'Produces', component: 'produces', icon: 'mdi-database-edit' },
             { label: 'Uers', component: 'users', icon: 'mdi-account-group' },
         ];
         return {
