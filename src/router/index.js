@@ -21,6 +21,12 @@ const routes = [
         component: Authentication,
     },
     {
+        path: '/admin',
+        name: 'admin',
+        component: () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue'),
+
+    },
+    {
         path: '*',
         redirect: 'home',
     },
