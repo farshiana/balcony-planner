@@ -52,6 +52,7 @@ export default new Vuex.Store({
             try {
                 await auth.signOut();
                 commit('setUser', null);
+                router.push('login');
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error);
