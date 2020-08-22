@@ -1,67 +1,73 @@
 <template>
-    <v-row
-        align="center"
-        justify="center"
-    >
-        <v-card class="elevation-12">
-            <v-toolbar
-                color="primary"
-                dark
-                flat
-            >
-                <v-toolbar-title>{{ isSignup ? 'Signup' : 'Login' }} form</v-toolbar-title>
-            </v-toolbar>
-            <v-form lazy-validation @submit.prevent="onSubmit">
-                <v-card-text>
-                    <v-text-field
-                        v-if="isSignup"
-                        v-model="name"
-                        prepend-icon="mdi-account"
-                        :error-messages="nameErrors"
-                        label="Name"
-                        required
-                        @blur="$v.name.$touch()"
-                    />
-                    <v-text-field
-                        v-model="email"
-                        prepend-icon="mdi-email"
-                        :error-messages="emailErrors"
-                        label="E-mail"
-                        required
-                        @blur="$v.email.$touch()"
-                    />
-                    <v-text-field
-                        v-model="password"
-                        prepend-icon="mdi-lock"
-                        :error-messages="passwordErrors"
-                        label="Password"
-                        type="password"
-                        :counter="isSignup ? 12 : false"
-                        password
-                        required
-                        @blur="$v.password.$touch()"
-                    />
-                    <v-text-field
-                        v-if="isSignup"
-                        v-model="repeatPassword"
-                        prepend-icon="mdi-lock"
-                        :error-messages="repeatPasswordErrors"
-                        label="Repeat password"
-                        type="password"
-                        password
-                        required
-                        @input="$v.repeatPassword.$touch()"
-                        @blur="$v.repeatPassword.$touch()"
-                    />
-                </v-card-text>
-                <v-card-actions>
-                    <v-btn text @click="onSwitch">{{ isSignup ? 'Login' : 'Signup' }}</v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" type="submit">{{ isSignup ? 'Signup' : 'Login' }}</v-btn>
-                </v-card-actions>
-            </v-form>
-        </v-card>
-    </v-row>
+    <v-container class="fill-height justify-center" fluid>
+        <v-col md="3" align="center">
+            <v-card class="elevation-12">
+                <v-toolbar
+                    color="primary"
+                    dark
+                    flat
+                >
+                    <v-toolbar-title>{{ isSignup ? 'Signup' : 'Login' }} form</v-toolbar-title>
+                </v-toolbar>
+                <v-form lazy-validation @submit.prevent="onSubmit">
+                    <v-card-text>
+                        <v-text-field
+                            v-if="isSignup"
+                            v-model="name"
+                            prepend-icon="mdi-account"
+                            :error-messages="nameErrors"
+                            label="Name"
+                            required
+                            @blur="$v.name.$touch()"
+                        />
+                        <v-text-field
+                            v-model="email"
+                            prepend-icon="mdi-email"
+                            :error-messages="emailErrors"
+                            label="E-mail"
+                            required
+                            @blur="$v.email.$touch()"
+                        />
+                        <v-text-field
+                            v-model="password"
+                            prepend-icon="mdi-lock"
+                            :error-messages="passwordErrors"
+                            label="Password"
+                            type="password"
+                            :counter="isSignup ? 12 : false"
+                            password
+                            required
+                            @blur="$v.password.$touch()"
+                        />
+                        <v-text-field
+                            v-if="isSignup"
+                            v-model="repeatPassword"
+                            prepend-icon="mdi-lock"
+                            :error-messages="repeatPasswordErrors"
+                            label="Repeat password"
+                            type="password"
+                            password
+                            required
+                            @input="$v.repeatPassword.$touch()"
+                            @blur="$v.repeatPassword.$touch()"
+                        />
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer />
+                        <v-btn color="primary" type="submit">{{ isSignup ? 'Signup' : 'Login' }}</v-btn>
+                    </v-card-actions>
+                </v-form>
+            </v-card>
+            <div class="my-3">
+                <template v-if="isSignup">
+                    Already have an account?? <v-btn text @click="onSwitch">Login</v-btn>
+                </template>
+                <template v-else>
+                    Don't have an account? <v-btn text @click="onSwitch">Signup</v-btn>
+                </template>
+            </div>
+        </v-col>
+    </v-container>
 </template>
 
 <script>

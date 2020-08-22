@@ -1,6 +1,6 @@
 <template>
-    <div class="home">
-    </div>
+    <v-container class="fill-height" fluid>
+    </v-container>
 </template>
 
 <script>

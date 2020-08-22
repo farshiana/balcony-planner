@@ -5,16 +5,14 @@
 
         <v-app-bar app color="primary">
             <template v-if="isAuthenticated">
-                <v-spacer></v-spacer>
+                <v-spacer />
                 <v-btn icon @click="logout"><v-icon color="white">mdi-logout</v-icon></v-btn>
             </template>
         </v-app-bar>
 
         <v-main>
             <app-alert />
-            <v-container class="fill-height" fluid>
-                <router-view></router-view>
-            </v-container>
+            <router-view></router-view>
         </v-main>
     </v-app>
 </template>
