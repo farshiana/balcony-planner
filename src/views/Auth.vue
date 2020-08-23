@@ -121,16 +121,14 @@ export default {
             return errors;
         },
     },
-    data() {
-        return {
-            isSaving: false,
-            isRegister: false,
-            name: '',
-            email: '',
-            password: '',
-            repeatPassword: '',
-        };
-    },
+    data: () => ({
+        isSaving: false,
+        isRegister: false,
+        name: '',
+        email: '',
+        password: '',
+        repeatPassword: '',
+    }),
     methods: {
         ...mapActions('auth', ['login', 'register']),
 

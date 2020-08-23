@@ -28,12 +28,10 @@ export default {
         Varieties,
     },
     data() {
-        const tabs = [
-            { label: this.$t('admin.varieties'), component: 'Varieties', icon: 'mdi-sprout' },
-        ];
+        const tabs = [{ label: this.$t('admin.varieties'), component: 'Varieties', icon: 'mdi-sprout' }];
         return {
             tabs,
-            currentTab: tabs[0].components,
+            currentTab: tabs[0].component,
         };
     },
 };

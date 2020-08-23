@@ -29,12 +29,10 @@ export default {
         Balconies,
     },
     data() {
-        const tabs = [
-            { label: this.$t('home.balcony'), component: 'Balconies', icon: 'mdi-window-open-variant' },
-        ];
+        const tabs = [{ label: this.$t('home.balcony'), component: 'Balconies', icon: 'mdi-window-open-variant' }];
         return {
             tabs,
-            currentTab: tabs[0].components,
+            currentTab: tabs[0].component,
         };
     },
 };

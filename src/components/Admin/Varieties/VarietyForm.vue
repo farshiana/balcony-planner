@@ -120,15 +120,14 @@ export default {
         watering: { required },
     },
     data() {
-        const categories = [
-            { value: CATEGORY_FRUITS, text: this.$t('fruits') },
-            { value: CATEGORY_HERBS, text: this.$t('herbs') },
-            { value: CATEGORY_VEGETABLES, text: this.$t('vegetables') },
-        ];
         return {
             dialog: false,
             isSaving: false,
-            categories,
+            categories: [
+                { value: CATEGORY_FRUITS, text: this.$t('fruits') },
+                { value: CATEGORY_HERBS, text: this.$t('herbs') },
+                { value: CATEGORY_VEGETABLES, text: this.$t('vegetables') },
+            ],
             exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
             waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
             ...defaultData,

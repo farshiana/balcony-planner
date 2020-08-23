@@ -50,12 +50,10 @@ export default {
             required: true,
         },
     },
-    data() {
-        return {
-            isSaving: false,
-            ...defaultData,
-        };
-    },
+    data: () => ({
+        isSaving: false,
+        ...defaultData,
+    }),
     computed: {
         dialog: {
             get() {

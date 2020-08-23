@@ -8,12 +8,16 @@
         </v-app-bar>
         <v-main>
             <app-alert />
+            <v-overlay :value="overlay">
+                <v-progress-circular indeterminate size="64" />
+            </v-overlay>
             <router-view />
         </v-main>
     </v-app>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import AppDrawer from '@/components/AppDrawer.vue';
 import AppAlert from '@/components/AppAlert.vue';
 
@@ -22,12 +26,12 @@ export default {
         AppDrawer,
         AppAlert,
     },
-    data() {
-        return {
-            drawer: true,
-        };
-    },
+    data: () => ({
+        drawer: true,
+    }),
     computed: {
+        ...mapState(['overlay']),
+
         mini() {
             return !!this.$vuetify.breakpoint.smAndDown;
         },

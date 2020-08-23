@@ -21,15 +21,14 @@ export default {
         VarietyForm,
     },
     data() {
-        const headers = [
-            { value: 'name', text: this.$t('name') },
-            { value: 'category', text: this.$t('category'), groupable: true },
-            { value: 'genus', text: this.$t('genus'), groupable: true },
-            { value: 'exposure', text: this.$t('exposure') },
-            { value: 'watering', text: this.$t('watering') },
-        ];
         return {
-            headers,
+            headers: [
+                { value: 'name', text: this.$t('name') },
+                { value: 'category', text: this.$t('category'), groupable: true },
+                { value: 'genus', text: this.$t('genus'), groupable: true },
+                { value: 'exposure', text: this.$t('exposure') },
+                { value: 'watering', text: this.$t('watering') },
+            ],
         };
     },
     computed: {

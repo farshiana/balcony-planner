@@ -4,15 +4,12 @@ export default {
     namespaced: true,
     state: {
         balconies: [],
-        loadingBalconies: false,
     },
     mutations: {
         setBalconies: (state, collection) => { state.balconies = collection; },
-        setLoadingBalconies: (state, loadingBalconies) => { state.loadingBalconies = loadingBalconies; },
     },
     actions: {
         async loadBalconies({ commit }) {
-            commit('setLoadingBalconies', true);
             try {
                 const snapshot = await balconies.get();
                 const collection = [];
@@ -27,7 +24,6 @@ export default {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
             }
-            commit('setLoadingBalconies', false);
         },
         async addBalcony({ rootState, commit }, balcony) {
             try {
