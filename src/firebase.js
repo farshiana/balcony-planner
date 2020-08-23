@@ -17,5 +17,6 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 export const auth = firebase.auth();
 
+export const balconies = db.collection('balconies');
 export const genera = db.collection('genera');
 export const varieties = db.collection('varieties');

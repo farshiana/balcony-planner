@@ -1,7 +1,7 @@
 <template>
     <v-container class="fill-height justify-center" fluid>
-        <v-col md="3" align="center">
-            <v-card class="elevation-12">
+        <v-col md="4" align="center">
+            <v-card :elevation="12">
                 <v-toolbar
                     color="primary"
                     dark
@@ -55,7 +55,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" type="submit">
+                        <v-btn color="primary" type="submit" :loading="isSaving" >
                             {{ isRegister ? $t('auth.register') : $t('auth.login') }}
                         </v-btn>
                     </v-card-actions>
@@ -123,6 +123,7 @@ export default {
     },
     data() {
         return {
+            isSaving: false,
             isRegister: false,
             name: '',
             email: '',
@@ -133,16 +134,18 @@ export default {
     methods: {
         ...mapActions('auth', ['login', 'register']),
 
-        onSubmit() {
+        async onSubmit() {
             this.$v.$touch();
-            if (this.$v.$invalid) return;
+            if (this.$v.$invalid || this.isSaving) return;
 
+            this.isSaving = true;
             const data = { name: this.name, email: this.email, password: this.password };
             if (this.isRegister) {
-                this.register(data);
+                await this.register(data);
             } else {
-                this.login(data);
+                await this.login(data);
             }
+            this.isSaving = false;
         },
         onSwitch() {
             this.$v.$reset();

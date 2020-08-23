@@ -1,22 +1,19 @@
-import { varieties } from '@/firebase';
+import { balconies } from '@/firebase';
 
 export default {
     namespaced: true,
     state: {
-        varieties: [],
-        loadingVarieties: false,
+        balconies: [],
     },
     getters: {
     },
     mutations: {
-        setVarieties: (state, collection) => { state.varieties = collection; },
-        loadingVarieties: (state, loadingVarieties) => { state.loadingVarieties = loadingVarieties; },
+        setBalconies: (state, collection) => { state.balconies = collection; },
     },
     actions: {
-        async loadVarieties({ commit }) {
-            commit('loadingVarieties', true);
+        async loadBalconies({ commit }) {
             try {
-                const snapshot = await varieties.get();
+                const snapshot = await balconies.get();
                 const collection = [];
                 snapshot.forEach((doc) => {
                     collection.push({
@@ -24,17 +21,15 @@ export default {
                         ...doc.data(),
                     });
                 });
-                commit('setVarieties', collection);
+                commit('setBalconies', collection);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
             }
-            commit('loadingVarieties', false);
         },
-        async addVariety({ commit, dispatch }, variety) {
+        async addBalcony({ commit }, balcony) {
             try {
-                await varieties.add(variety);
-                dispatch('loadVarieties');
+                await balconies.add(balcony);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });

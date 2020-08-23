@@ -62,7 +62,7 @@
                                     v-model="exposure"
                                     :error-messages="exposureErrors"
                                     :items="exposures"
-                                    :label="$t('admin.varieties.exposure')"
+                                    :label="$t('exposure')"
                                     required
                                     @blur="$v.exposure.$touch()"
                                 />
@@ -72,7 +72,7 @@
                                     v-model="watering"
                                     :error-messages="wateringErrors"
                                     :items="waterings"
-                                    :label="$t('admin.varieties.watering')"
+                                    :label="$t('watering')"
                                     required
                                     @blur="$v.watering.$touch()"
                                 />
@@ -102,6 +102,14 @@ import {
     WATERINGS,
 } from '@/constants';
 
+const defaultData = {
+    category: '',
+    genusId: '',
+    name: '',
+    exposure: '',
+    watering: '',
+};
+
 export default {
     mixins: [validationMixin],
     validations: {
@@ -123,11 +131,7 @@ export default {
             categories,
             exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
             waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
-            category: '',
-            genusId: '',
-            name: '',
-            exposure: '',
-            watering: '',
+            ...defaultData,
         };
     },
     computed: {
@@ -151,13 +155,13 @@ export default {
         categoryErrors() {
             const errors = [];
             if (!this.$v.category.$dirty) return errors;
-            if (!this.$v.category.required) errors.push(this.$t('categoryRequired'));
+            if (!this.$v.category.required) errors.push(this.$t('admin.varieties.categoryRequired'));
             return errors;
         },
         genusErrors() {
             const errors = [];
             if (!this.$v.genusId.$dirty) return errors;
-            if (!this.$v.genusId.required) errors.push(this.$t('genusRequired'));
+            if (!this.$v.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
             return errors;
         },
         nameErrors() {
@@ -170,13 +174,13 @@ export default {
         exposureErrors() {
             const errors = [];
             if (!this.$v.exposure.$dirty) return errors;
-            if (!this.$v.exposure.required) errors.push(this.$t('exposureRequired'));
+            if (!this.$v.exposure.required) errors.push(this.$t('admin.varieties.exposureRequired'));
             return errors;
         },
         wateringErrors() {
             const errors = [];
             if (!this.$v.watering.$dirty) return errors;
-            if (!this.$v.watering.required) errors.push(this.$t('wateringRequired'));
+            if (!this.$v.watering.required) errors.push(this.$t('admin.varieties.wateringRequired'));
             return errors;
         },
     },
@@ -204,7 +208,10 @@ export default {
             const data = { name: this.name, category: this.category, genusId: this.genusId };
             await this.addVariety(data);
             this.isSaving = false;
+
             this.dialog = false;
+            this.$v.$reset();
+            Object.assign(this.$data, defaultData);
         },
     },
 };

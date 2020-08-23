@@ -4,9 +4,9 @@
             :headers="headers"
             :items="items"
             :items-per-page="10"
-            :loading="isLoading"
-            show-group-by
+            :loading="loadingVarieties"
             class="elevation-1"
+            show-group-by
         />
         <variety-form />
     </v-container>
@@ -29,12 +29,11 @@ export default {
             { value: 'watering', text: this.$t('watering') },
         ];
         return {
-            isLoading: false,
             headers,
         };
     },
     computed: {
-        ...mapState('varieties', ['varieties']),
+        ...mapState('varieties', ['varieties', 'loadingVarieties']),
         ...mapGetters('genera', ['getGenusById']),
 
         items() {
@@ -45,10 +44,8 @@ export default {
         },
     },
     async created() {
-        this.isLoading = true;
         await this.loadGenera();
         await this.loadVarieties();
-        this.isLoading = false;
     },
     methods: {
         ...mapActions('varieties', ['loadVarieties']),
