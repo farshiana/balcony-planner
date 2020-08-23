@@ -40,6 +40,7 @@
 	"auth.repeatPasswordSameAs": "Passwords must match",
 
 	"admin.varieties": "Plant varieties",
+	"admin.varieties.addVariety": "Add variety",
 	"admin.varieties.newVariety": "New variety",
 	"admin.varieties.categoryRequired": "Category is required",
 	"admin.varieties.genusRequired": "Genus is required",

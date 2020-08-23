@@ -21,12 +21,12 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" @click="visible = true;">{{ $t('home.balconies.addBalcony') }}</v-btn>
+                        <v-btn color="primary" @click="dialog = true;">{{ $t('home.balconies.addBalcony') }}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
         </v-container>
-        <balcony-form :visible="visible" @toggle="(dialog) => { visible = dialog; }" />
+        <balcony-form :visible="dialog" @toggle="(visible) => { dialog = visible; }" />
     </v-container>
 </template>
 
@@ -43,7 +43,7 @@ export default {
         Planters,
     },
     data: () => ({
-        visible: false,
+        dialog: false,
     }),
     computed: {
         ...mapState(['overlay']),

@@ -3,13 +3,22 @@
         <v-data-table
             :headers="headers"
             :items="items"
-            :items-per-page="15"
+            :items-per-page="12"
             :loading="loadingVarieties"
             class="elevation-1"
             show-group-by
             dense
-        />
-        <variety-form />
+        >
+            <template  v-slot:top>
+                <v-row fill-height class="mr-1">
+                    <v-spacer />
+                    <v-btn class="mt-1" text small color="accent" @click="dialog =! dialog;">
+                        {{ $t('admin.varieties.addVariety') }}
+                    </v-btn>
+                </v-row>
+            </template>
+        </v-data-table>
+        <variety-form :visible="dialog" @toggle="(visible) => { dialog = visible; }" />
     </v-container>
 </template>
 
@@ -23,6 +32,7 @@ export default {
     },
     data() {
         return {
+            dialog: false,
             headers: [
                 { value: 'name', text: this.$t('name') },
                 { value: 'category', text: this.$t('category'), groupable: true },

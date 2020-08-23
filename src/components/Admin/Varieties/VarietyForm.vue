@@ -1,19 +1,5 @@
 <template>
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
-        <template v-slot:activator="{ on, attrs }">
-            <v-btn
-                color="secondary"
-                fab
-                fixed
-                dark
-                bottom
-                right
-                v-bind="attrs"
-                v-on="on"
-            >
-                <v-icon>mdi-plus</v-icon>
-            </v-btn>
-        </template>
         <v-card>
             <v-card-title>
                 <span class="headline">{{ $t('admin.varieties.newVariety') }}</span>
@@ -119,9 +105,14 @@ export default {
         exposure: { required },
         watering: { required },
     },
+    props: {
+        visible: {
+            type: Boolean,
+            required: true,
+        },
+    },
     data() {
         return {
-            dialog: false,
             isSaving: false,
             categories: [
                 { value: CATEGORY_FRUITS, text: this.$t('fruits') },
@@ -137,6 +128,14 @@ export default {
         ...mapState('genera', ['genera']),
         ...mapGetters('genera', ['getGenusById', 'getGeneraByCategory']),
 
+        dialog: {
+            get() {
+                return this.visible;
+            },
+            set(visible) {
+                this.$emit('toggle', visible);
+            },
+        },
         generaList() {
             if (this.category) return this.getGeneraByCategory(this.category);
 
