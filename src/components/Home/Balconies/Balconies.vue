@@ -1,10 +1,13 @@
 <template>
     <v-container v-if="!overlay" :style="{ height: '100%' }">
-        <v-card v-if="balconies.length" :elevation="6" height="100%">
-            <!-- Card takes all space -->
-            <v-card-title>{{ balcony.name }}</v-card-title>
-            <balcony :balcony="balcony" />
-        </v-card>
+        <template v-if="balconies.length">
+            <planters class="mb-3" />
+            <v-card height="calc(100% - 12px)">
+                <!-- Card takes all space -->
+                <v-card-title>{{ balcony.name }}</v-card-title>
+                <balcony :balcony="balcony" />
+            </v-card>
+        </template>
         <v-container v-else d-flex justify-center>
             <!-- Card is centered vertically -->
             <v-col md="6">
@@ -31,11 +34,13 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 import BalconyForm from './BalconyForm.vue';
 import Balcony from './Balcony.vue';
+import Planters from './Planters.vue';
 
 export default {
     components: {
         BalconyForm,
         Balcony,
+        Planters,
     },
     data: () => ({
         visible: false,
