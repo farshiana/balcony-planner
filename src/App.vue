@@ -11,7 +11,7 @@
             <v-overlay :value="overlay">
                 <v-progress-circular indeterminate size="64" />
             </v-overlay>
-            <router-view />
+            <router-view class="fill-height" />
         </v-main>
     </v-app>
 </template>

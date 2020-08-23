@@ -1,26 +1,45 @@
 <template>
-    <v-card :elevation="6">
-        <v-card-title>{{ balcony.name }}</v-card-title>
-        <v-card-text v-if="!planters.length">
-            {{ $t('home.balconies.planterHelp') }}
-        </v-card-text>
-        <v-card-actions>
-            <v-spacer />
-            <v-btn color="primary" @click="onAdd">{{ $t('home.balconies.addPlanter') }}</v-btn>
-        </v-card-actions>
-    </v-card>
+    <Moveable v-bind="moveable">
+        <span>Vue Moveable</span>
+    </Moveable>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import Moveable from 'vue-moveable';
 
 export default {
+    components: {
+        Moveable,
+    },
     props: {
         balcony: {
             type: Object,
             required: true,
         },
     },
+    data: () => ({
+        moveable: {
+            draggable: true,
+            // snappable: true,
+            bounds: {
+                left: 40,
+                top: 40,
+                right: 600,
+                bottom: 430,
+            },
+            // throttleDrag: 0,
+            // resizable: false,
+            // throttleResize: 1,
+            // keepRatio: false,
+            // scalable: true,
+            // throttleScale: 0,
+            // rotatable: true,
+            // throttleRotate: 0,
+            // pinchable: true, // ["draggable", "resizable", "scalable", "rotatable"]
+            // origin: false,
+        },
+    }),
     created() {
         this.loadPlanters(this.balcony.id);
     },
@@ -30,9 +49,10 @@ export default {
     methods: {
         ...mapActions('planters', ['loadPlanters']),
 
-        onAdd() {
-
-        },
+        // onDrag({ target, transform }) {
+        //     console.log('onDrag', transform);
+        //     target.style.transform = transform;
+        // },
     },
 };
 </script>

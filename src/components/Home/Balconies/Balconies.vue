@@ -1,10 +1,16 @@
 <template>
-    <v-container fill-height justify-center fluid>
-        <template v-if="!overlay">
-            <balcony v-if="balconies.length" :balcony="balconies[0]" />
-            <v-col v-else md="5">
+    <v-container v-if="!overlay" :style="{ height: '100%' }">
+        <v-card v-if="balconies.length" :elevation="6" height="100%">
+            <!-- Card takes all space -->
+            <v-card-title>{{ balcony.name }}</v-card-title>
+            <balcony :balcony="balcony" />
+        </v-card>
+        <v-container v-else d-flex justify-center>
+            <!-- Card is centered vertically -->
+            <v-col md="6">
                 <v-card>
                     <v-card-title>
+                        <v-icon class="mr-1">mdi-shovel-off</v-icon>
                         {{ $t('home.balconies.noBalcony') }}
                     </v-card-title>
                     <v-card-text>
@@ -16,7 +22,7 @@
                     </v-card-actions>
                 </v-card>
             </v-col>
-            </template>
+        </v-container>
         <balcony-form :visible="visible" @toggle="(dialog) => { visible = dialog; }" />
     </v-container>
 </template>
@@ -37,6 +43,10 @@ export default {
     computed: {
         ...mapState(['overlay']),
         ...mapState('balconies', ['balconies']),
+
+        balcony() {
+            return this.balconies[0];
+        },
     },
     async created() {
         this.setOverlay(true);

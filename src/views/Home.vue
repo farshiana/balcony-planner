@@ -9,10 +9,11 @@
                 {{ tab.label }}
             </v-tab>
         </v-tabs>
-        <v-tabs-items v-model="currentTab">
+        <v-tabs-items v-model="currentTab" :style="{ height: 'calc(100% - 48px)' }">
             <v-tab-item
                 v-for="tab in tabs"
                 :key="tab.component"
+                class="fill-height"
             >
                 <component :is="tab.component" />
             </v-tab-item>

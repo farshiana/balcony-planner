@@ -48,9 +48,7 @@
 
 	"home.balcony": "Balcony",
 	"home.balconies.noBalcony": "You don't have a balcony yet!",
-	"home.balconies.balconyHelp": "Once you've created a balcony, you will be able to organize it by adding planters.",
+	"home.balconies.balconyHelp": "Once you've created a balcony, you will be able to planters and organize it.",
 	"home.balconies.addBalcony": "Add a balcony",
-	"home.balconies.newBalcony": "New balcony",
-	"home.balconies.addPlanter": "Add a planter",
-	"home.balconies.planterHelp": "Let's start adding planters!"
+	"home.balconies.newBalcony": "New balcony"
 }
