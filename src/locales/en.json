@@ -9,6 +9,14 @@
 	"nameMaxLength": "Name must be at most 30 characters long",
 	"category": "Category",
 	"genus": "Genus",
+	"exposure": "Exposure",
+	"watering": "Watering",
+	"partial": "Partial",
+	"shade": "Shade",
+	"sun": "Sun",
+	"low": "Low",
+	"medium": "Medium",
+	"high": "High",
 	"app.title": "Balcony Planner",
 	"app.home": "Home",
 	"app.admin": "Admin",
@@ -33,5 +41,7 @@
 	"admin.varieties.exposure": "Exposure",
 	"admin.varieties.watering": "Watering",
 	"categoryRequired": "Category is required",
-	"genusRequired": "Genus is required"
+	"genusRequired": "Genus is required",
+	"exposureRequired": "Exposure is required",
+	"wateringRequired": "Watering is required"
 }

@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <template v-slot:activator="{ on, attrs }">
             <v-btn
                 color="secondary"
@@ -60,15 +60,21 @@
                             <v-col cols="12" sm="6" md="4">
                                 <v-select
                                     v-model="exposure"
+                                    :error-messages="exposureErrors"
                                     :items="exposures"
                                     :label="$t('admin.varieties.exposure')"
+                                    required
+                                    @blur="$v.exposure.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-select
                                     v-model="watering"
+                                    :error-messages="wateringErrors"
                                     :items="waterings"
                                     :label="$t('admin.varieties.watering')"
+                                    required
+                                    @blur="$v.watering.$touch()"
                                 />
                             </v-col>
                         </v-row>
@@ -92,6 +98,8 @@ import {
     CATEGORY_FRUITS,
     CATEGORY_HERBS,
     CATEGORY_VEGETABLES,
+    EXPOSURES,
+    WATERINGS,
 } from '@/constants';
 
 export default {
@@ -100,6 +108,8 @@ export default {
         category: { required },
         genusId: { required },
         name: { required, maxLength: maxLength(30) },
+        exposure: { required },
+        watering: { required },
     },
     data() {
         const categories = [
@@ -110,8 +120,8 @@ export default {
         return {
             dialog: false,
             categories,
-            exposures: [],
-            waterings: [],
+            exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
+            waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
             category: '',
             genusId: '',
             name: '',
@@ -154,6 +164,18 @@ export default {
             if (!this.$v.name.$dirty) return errors;
             if (!this.$v.name.maxLength) errors.push(this.$t('nameMaxLength'));
             if (!this.$v.name.required) errors.push(this.$t('nameRequired'));
+            return errors;
+        },
+        exposureErrors() {
+            const errors = [];
+            if (!this.$v.exposure.$dirty) return errors;
+            if (!this.$v.exposure.required) errors.push(this.$t('exposureRequired'));
+            return errors;
+        },
+        wateringErrors() {
+            const errors = [];
+            if (!this.$v.watering.$dirty) return errors;
+            if (!this.$v.watering.required) errors.push(this.$t('wateringRequired'));
             return errors;
         },
     },

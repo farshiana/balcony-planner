@@ -4,6 +4,7 @@
             :headers="headers"
             :items="items"
             :items-per-page="10"
+            :loading="isLoading"
             show-group-by
             class="elevation-1"
         />
@@ -24,8 +25,11 @@ export default {
             { value: 'name', text: this.$t('name') },
             { value: 'category', text: this.$t('category'), groupable: true },
             { value: 'genus', text: this.$t('genus'), groupable: true },
+            { value: 'exposure', text: this.$t('exposure') },
+            { value: 'watering', text: this.$t('watering') },
         ];
         return {
+            isLoading: false,
             headers,
         };
     },
@@ -41,8 +45,10 @@ export default {
         },
     },
     async created() {
+        this.isLoading = true;
         await this.loadGenera();
-        this.loadVarieties();
+        await this.loadVarieties();
+        this.isLoading = false;
     },
     methods: {
         ...mapActions('varieties', ['loadVarieties']),

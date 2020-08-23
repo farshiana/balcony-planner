@@ -13,9 +13,9 @@ export const EXPOSURE_SHADE = 'shade';
 export const EXPOSURE_SUN = 'sun';
 export const EXPOSURE_PARTIAL = 'partial';
 export const EXPOSURES = [
+    EXPOSURE_PARTIAL,
     EXPOSURE_SHADE,
     EXPOSURE_SUN,
-    EXPOSURE_PARTIAL,
 ];
 
 // WATERINGS
