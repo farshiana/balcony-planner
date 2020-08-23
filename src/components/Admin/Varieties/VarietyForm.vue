@@ -27,7 +27,7 @@
                                     v-model="category"
                                     :items="categories"
                                     :error-messages="categoryErrors"
-                                    :label="$t('admin.varieties.category')"
+                                    :label="$t('category')"
                                     clearable
                                     required
                                     @blur="$v.category.$touch()"
@@ -41,7 +41,7 @@
                                     :error-messages="genusErrors"
                                     item-value="id"
                                     item-text="name"
-                                    :label="$t('admin.varieties.genus')"
+                                    :label="$t('genus')"
                                     clearable
                                     required
                                     @blur="$v.genusId.$touch()"
@@ -140,13 +140,13 @@ export default {
         categoryErrors() {
             const errors = [];
             if (!this.$v.category.$dirty) return errors;
-            if (!this.$v.category.required) errors.push(this.$t('admin.varieties.categoryRequired'));
+            if (!this.$v.category.required) errors.push(this.$t('categoryRequired'));
             return errors;
         },
         genusErrors() {
             const errors = [];
             if (!this.$v.genusId.$dirty) return errors;
-            if (!this.$v.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
+            if (!this.$v.genusId.required) errors.push(this.$t('genusRequired'));
             return errors;
         },
         nameErrors() {

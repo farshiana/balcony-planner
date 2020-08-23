@@ -6,7 +6,7 @@ export default {
         genera: [],
     },
     getters: {
-        getGenusById: (state) => (id) => state.genera.filter((genus) => genus.id === id),
+        getGenusById: (state) => (id) => state.genera.find((genus) => genus.id === id),
         getGeneraByCategory: (state) => (category) => (
             state.genera.filter((genus) => genus.category === category)
         ),

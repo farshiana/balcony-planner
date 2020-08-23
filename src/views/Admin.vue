@@ -22,17 +22,14 @@
 
 <script>
 import Varieties from '@/components/Admin/Varieties/Varieties.vue';
-import Users from '@/components/Admin/Users/Users.vue';
 
 export default {
     components: {
         Varieties,
-        Users,
     },
     data() {
         const tabs = [
             { label: this.$t('admin.varieties'), component: 'Varieties', icon: 'mdi-sprout' },
-            { label: this.$t('admin.users'), component: 'users', icon: 'mdi-account-group' },
         ];
         return {
             tabs,

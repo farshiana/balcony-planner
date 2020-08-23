@@ -7,6 +7,8 @@
 	"name": "Name",
 	"nameRequired": "Name is required",
 	"nameMaxLength": "Name must be at most 30 characters long",
+	"category": "Category",
+	"genus": "Genus",
 	"app.title": "Balcony Planner",
 	"app.home": "Home",
 	"app.admin": "Admin",
@@ -27,12 +29,9 @@
 	"auth.repeatPasswordRequired": "Repeat password is required",
 	"auth.repeatPasswordSameAs": "Passwords must match",
 	"admin.varieties": "Plant varieties",
-	"admin.users": "Users",
 	"admin.varieties.newVariety": "New variety",
-	"admin.varieties.category": "Category",
-	"admin.varieties.genus": "Genus",
 	"admin.varieties.exposure": "Exposure",
 	"admin.varieties.watering": "Watering",
-	"admin.varieties.categoryRequired": "Category is required",
-	"admin.varieties.genusRequired": "Genus is required"
+	"categoryRequired": "Category is required",
+	"genusRequired": "Genus is required"
 }
