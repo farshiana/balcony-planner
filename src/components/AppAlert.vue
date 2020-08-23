@@ -3,6 +3,7 @@
         class="app-alert text-center"
         :value="!!alert"
         :type="alert && alert.type"
+        dense
         dismissible
         @input="setAlert(null)"
     >

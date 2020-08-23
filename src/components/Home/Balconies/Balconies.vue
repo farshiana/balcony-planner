@@ -1,5 +1,5 @@
 <template>
-    <v-container class="fill-height justify-center" fluid>
+    <v-container fill-height justify-center fluid>
         <template v-if="!overlay">
             <balcony v-if="balconies.length" :balcony="balconies[0]" />
             <v-col v-else md="5">

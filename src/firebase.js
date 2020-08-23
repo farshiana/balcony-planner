@@ -18,6 +18,6 @@ const db = firebase.firestore();
 export const auth = firebase.auth();
 
 export const balconies = db.collection('balconies');
-export const genera = db.collection('genera').orderBy('name', 'asc');
+export const genera = db.collection('genera');
 export const planters = db.collection('planters');
-export const varieties = db.collection('varieties').orderBy('name', 'asc');
+export const varieties = db.collection('varieties');

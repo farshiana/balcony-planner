@@ -1,5 +1,5 @@
 <template>
-    <v-container class="fill-height justify-center" fluid>
+    <v-container fill-height justify-center fluid>
         <v-col md="4" align="center">
             <v-card :elevation="12">
                 <v-toolbar

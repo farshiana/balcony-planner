@@ -14,7 +14,7 @@ export default {
         async loadVarieties({ commit }) {
             commit('setLoadingVarieties', true);
             try {
-                const snapshot = await varieties.get();
+                const snapshot = await varieties.orderBy('name', 'asc').get();
                 const collection = [];
                 snapshot.forEach((doc) => {
                     collection.push({
@@ -34,7 +34,7 @@ export default {
                 await varieties.add({
                     ...variety,
                     createdAt: new Date(),
-                    createdBy: rootState.auth.user.uuid,
+                    createdBy: rootState.auth.user.uid,
                 });
                 dispatch('loadVarieties');
             } catch (error) {

@@ -3,10 +3,11 @@
         <v-data-table
             :headers="headers"
             :items="items"
-            :items-per-page="10"
+            :items-per-page="15"
             :loading="loadingVarieties"
             class="elevation-1"
             show-group-by
+            dense
         />
         <variety-form />
     </v-container>

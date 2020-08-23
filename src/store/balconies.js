@@ -30,7 +30,7 @@ export default {
                 await balconies.add({
                     ...balcony,
                     createdAt: new Date(),
-                    createdBy: rootState.auth.user.uuid,
+                    createdBy: rootState.auth.user.uid,
                 });
             } catch (error) {
                 console.error(error.message);

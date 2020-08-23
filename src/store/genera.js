@@ -17,7 +17,7 @@ export default {
     actions: {
         async loadGenera({ commit }) {
             try {
-                const snapshot = await genera.get();
+                const snapshot = await genera.orderBy('name', 'asc').get();
                 const collection = [];
                 snapshot.forEach((doc) => {
                     collection.push({
