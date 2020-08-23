@@ -1,12 +1,5 @@
 <template>
-    <v-navigation-drawer v-if="isAuthenticated" app>
-        <v-list-item>
-            <v-list-item-content>
-                <v-list-item-title class="title">
-                    {{ $t('app.title') }}
-                </v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+    <v-navigation-drawer v-if="isAuthenticated" v-model="show" app :permanent="!mini" :mini-variant="mini">
         <v-divider />
         <v-list dense>
             <v-list-item
@@ -24,9 +17,16 @@
             </v-list-item>
         </v-list>
         <template v-slot:append v-if="isAuthenticated">
-            <div class="pa-2">
-                <v-btn block @click="logout">{{ $t('auth.logout') }}</v-btn>
-            </div>
+            <v-list dense>
+                <v-list-item button @click="logout">
+                    <v-list-item-action>
+                        <v-icon>mdi-logout</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ $t('auth.logout') }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
         </template>
     </v-navigation-drawer>
 </template>
@@ -35,6 +35,16 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    props: {
+        drawer: {
+            type: Boolean,
+            required: true,
+        },
+        mini: {
+            type: Boolean,
+            required: true,
+        },
+    },
     data() {
         return {
             items: [
@@ -45,6 +55,15 @@ export default {
     },
     computed: {
         ...mapGetters('auth', ['isAuthenticated']),
+
+        show: {
+            get() {
+                return this.drawer;
+            },
+            set(drawer) {
+                this.$emit('toggle', drawer);
+            },
+        },
     },
     methods: {
         ...mapActions('auth', ['logout']),
