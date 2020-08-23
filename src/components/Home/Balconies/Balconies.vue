@@ -2,16 +2,18 @@
     <v-container class="fill-height justify-center" fluid>
         <v-col md="5">
             <v-card :loading="loadingBalconies">
-                <v-card-title>
-                    {{ $t('home.balconies.empty') }}
-                </v-card-title>
-                <v-card-text>
-                    {{ $t('home.balconies.help') }}
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn color="primary" @click="visible = true;">{{ $t('home.balconies.create') }}</v-btn>
-                </v-card-actions>
+                <template v-if="!balconies.length">
+                    <v-card-title>
+                        {{ $t('home.balconies.empty') }}
+                    </v-card-title>
+                    <v-card-text>
+                        {{ $t('home.balconies.help') }}
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer />
+                        <v-btn color="primary" @click="visible = true;">{{ $t('home.balconies.create') }}</v-btn>
+                    </v-card-actions>
+                </template>
             </v-card>
         </v-col>
         <balcony-form :visible="visible" @toggle="(dialog) => { visible = dialog; }" />
