@@ -83,7 +83,7 @@
                 <v-card-actions>
                     <v-spacer />
                     <v-btn color="info" text @click="dialog = false;">{{ $t('cancel') }}</v-btn>
-                    <v-btn color="primary" text type="submit">{{ $t('save') }}</v-btn>
+                    <v-btn color="primary" text type="submit" :loading="isSaving">{{ $t('save') }}</v-btn>
                 </v-card-actions>
             </v-form>
         </v-card>
@@ -119,6 +119,7 @@ export default {
         ];
         return {
             dialog: false,
+            isSaving: false,
             categories,
             exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
             waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
@@ -197,10 +198,12 @@ export default {
         },
         async onSubmit() {
             this.$v.$touch();
-            if (this.$v.$invalid) return;
+            if (this.$v.$invalid || this.isSaving) return;
 
+            this.isSaving = true;
             const data = { name: this.name, category: this.category, genusId: this.genusId };
             await this.addVariety(data);
+            this.isSaving = false;
             this.dialog = false;
         },
     },
