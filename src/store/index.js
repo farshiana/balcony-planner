@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import auth from './auth';
 import balconies from './balconies';
 import genera from './genera';
+import planters from './planters';
 import varieties from './varieties';
 
 Vue.use(Vuex);
@@ -18,6 +19,7 @@ export default new Vuex.Store({
         auth,
         balconies,
         genera,
+        planters,
         varieties,
     },
 });

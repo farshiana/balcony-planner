@@ -1,20 +1,20 @@
-import { varieties } from '@/firebase';
+import { planters } from '@/firebase';
 
 export default {
     namespaced: true,
     state: {
-        varieties: [],
-        loadingVarieties: false,
+        planters: [],
+        loadingPlanters: false,
     },
     mutations: {
-        setVarieties: (state, collection) => { state.varieties = collection; },
-        setLoadingVarieties: (state, loadingVarieties) => { state.loadingVarieties = loadingVarieties; },
+        setPlanters: (state, collection) => { state.planters = collection; },
+        setLoadingPlanters: (state, loadingPlanters) => { state.loadingPlanters = loadingPlanters; },
     },
     actions: {
-        async loadVarieties({ commit }) {
-            commit('setLoadingVarieties', true);
+        async loadPlanters({ commit }, balconyId) {
+            commit('setLoadingPlanters', true);
             try {
-                const snapshot = await varieties.get();
+                const snapshot = await planters.where('balconyId', '==', balconyId).get();
                 const collection = [];
                 snapshot.forEach((doc) => {
                     collection.push({
@@ -22,21 +22,20 @@ export default {
                         ...doc.data(),
                     });
                 });
-                commit('setVarieties', collection);
+                commit('setPlanters', collection);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
             }
-            commit('setLoadingVarieties', false);
+            commit('setLoadingPlanters', false);
         },
-        async addVariety({ rootState, commit, dispatch }, variety) {
+        async addPlanter({ rootState, commit }, planter) {
             try {
-                await varieties.add({
-                    ...variety,
+                await planters.add({
+                    ...planter,
                     createdAt: new Date(),
                     createdBy: rootState.auth.user.uuid,
                 });
-                dispatch('loadVarieties');
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });

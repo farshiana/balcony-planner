@@ -21,16 +21,16 @@
 </template>
 
 <script>
-import Balcony from '@/components/Home/Balcony/Balcony.vue';
+import Balconies from '@/components/Home/Balconies/Balconies.vue';
 
 export default {
     name: 'Home',
     components: {
-        Balcony,
+        Balconies,
     },
     data() {
         const tabs = [
-            { label: this.$t('home.balcony'), component: 'Balcony', icon: 'mdi-window-open-variant' },
+            { label: this.$t('home.balcony'), component: 'Balconies', icon: 'mdi-window-open-variant' },
         ];
         return {
             tabs,
