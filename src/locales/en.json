@@ -47,8 +47,10 @@
 	"admin.varieties.wateringRequired": "Watering is required",
 
 	"home.balcony": "Balcony",
-	"home.balconies.empty": "You don't have a balcony yet!",
-	"home.balconies.help": "Once you've created a balcony, you will be able to organize it by adding planters.",
-	"home.balconies.create": "Add a balcony",
-	"home.balconies.newBalcony": "New balcony"
+	"home.balconies.noBalcony": "You don't have a balcony yet!",
+	"home.balconies.balconyHelp": "Once you've created a balcony, you will be able to organize it by adding planters.",
+	"home.balconies.addBalcony": "Add a balcony",
+	"home.balconies.newBalcony": "New balcony",
+	"home.balconies.addPlanter": "Add a planter",
+	"home.balconies.planterHelp": "Let's start adding planters!"
 }

@@ -5,14 +5,14 @@
             <v-col v-else md="5">
                 <v-card>
                     <v-card-title>
-                        {{ $t('home.balconies.empty') }}
+                        {{ $t('home.balconies.noBalcony') }}
                     </v-card-title>
                     <v-card-text>
-                        {{ $t('home.balconies.help') }}
+                        {{ $t('home.balconies.balconyHelp') }}
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" @click="visible = true;">{{ $t('home.balconies.create') }}</v-btn>
+                        <v-btn color="primary" @click="visible = true;">{{ $t('home.balconies.addBalcony') }}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
