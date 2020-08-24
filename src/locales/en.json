@@ -43,6 +43,7 @@
     "seed": "Seed",
     "plant": "Plant",
     "harvest": "Harvest",
+    "actions": "actions",
 
     "app.title": "Balcony Planner",
     "app.home": "Home",

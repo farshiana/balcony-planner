@@ -10,19 +10,19 @@
                         <v-row>
                             <v-col cols="12" sm="6" md="4">
                                 <v-select
-                                    v-model="category"
+                                    v-model="variety.category"
                                     :items="categories"
                                     :error-messages="categoryErrors"
                                     :label="$t('category')"
                                     clearable
                                     required
-                                    @blur="$v.category.$touch()"
+                                    @blur="$v.variety.category.$touch()"
                                     @input="onCategorySelect"
                                 />
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-autocomplete
-                                    v-model="genusId"
+                                    v-model="variety.genusId"
                                     :items="generaList"
                                     :error-messages="genusErrors"
                                     item-value="id"
@@ -30,43 +30,42 @@
                                     :label="$t('genus')"
                                     clearable
                                     required
-                                    @blur="$v.genusId.$touch()"
-                                    @input="onGenusSelect"
+                                    @blur="$v.variety.genusId.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-text-field
-                                    v-model="name"
+                                    v-model="variety.name"
                                     :error-messages="nameErrors"
                                     :label="$t('name')"
                                     required
-                                    @blur="$v.name.$touch()"
+                                    @blur="$v.variety.name.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-select
-                                    v-model="exposure"
+                                    v-model="variety.exposure"
                                     :error-messages="exposureErrors"
                                     :items="exposures"
                                     :label="$t('exposure')"
                                     required
-                                    @blur="$v.exposure.$touch()"
+                                    @blur="$v.variety.exposure.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-select
-                                    v-model="watering"
+                                    v-model="variety.watering"
                                     :error-messages="wateringErrors"
                                     :items="waterings"
                                     :label="$t('watering')"
                                     required
-                                    @blur="$v.watering.$touch()"
+                                    @blur="$v.variety.watering.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" class="overflow-auto">
                                 <p>{{ $t('seed') }}</p>
                                 <v-btn-toggle
-                                    v-model="seed"
+                                    v-model="variety.seed"
                                     dense
                                     multiple
                                     rounded
@@ -85,7 +84,7 @@
                             <v-col cols="12" class="overflow-auto">
                                 <p>{{ $t('plant') }}</p>
                                 <v-btn-toggle
-                                    v-model="plant"
+                                    v-model="variety.plant"
                                     dense
                                     multiple
                                     rounded
@@ -104,7 +103,7 @@
                             <v-col cols="12" class="overflow-auto">
                                 <p>{{ $t('harvest') }}</p>
                                 <v-btn-toggle
-                                    v-model="harvest"
+                                    v-model="variety.harvest"
                                     dense
                                     multiple
                                     rounded
@@ -146,29 +145,24 @@ import {
 } from '@/constants';
 import { shortMonths } from '@/utils';
 
-const defaultData = {
-    category: '',
-    genusId: '',
-    name: '',
-    exposure: '',
-    watering: '',
-    seed: [1, 2, 3, 4],
-    plant: [3, 4, 5, 6],
-    harvest: [5, 6, 7, 8, 9],
-};
-
 export default {
     mixins: [validationMixin],
     validations: {
-        category: { required },
-        genusId: { required },
-        name: { required, maxLength: maxLength(30) },
-        exposure: { required },
-        watering: { required },
+        variety: {
+            category: { required },
+            genusId: { required },
+            name: { required, maxLength: maxLength(30) },
+            exposure: { required },
+            watering: { required },
+        },
     },
     props: {
         visible: {
             type: Boolean,
+            required: true,
+        },
+        variety: {
+            type: Object,
             required: true,
         },
     },
@@ -183,7 +177,6 @@ export default {
             ],
             exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
             waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
-            ...defaultData,
         };
     },
     computed: {
@@ -198,8 +191,12 @@ export default {
                 this.$emit('toggle', visible);
             },
         },
+        /*
+            Either show the genera of the selected category
+            Or all genera grouped by category
+        */
         generaList() {
-            if (this.category) return this.getGeneraByCategory(this.category);
+            if (this.variety.category) return this.getGeneraByCategory(this.variety.category);
 
             return [
                 { header: this.$t('fruits') },
@@ -214,71 +211,61 @@ export default {
         },
         categoryErrors() {
             const errors = [];
-            if (!this.$v.category.$dirty) return errors;
-            if (!this.$v.category.required) errors.push(this.$t('admin.varieties.categoryRequired'));
+            if (!this.$v.variety.category.$dirty) return errors;
+            if (!this.$v.variety.category.required) errors.push(this.$t('admin.varieties.categoryRequired'));
             return errors;
         },
         genusErrors() {
             const errors = [];
-            if (!this.$v.genusId.$dirty) return errors;
-            if (!this.$v.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
+            if (!this.$v.variety.genusId.$dirty) return errors;
+            if (!this.$v.variety.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
             return errors;
         },
         nameErrors() {
             const errors = [];
-            if (!this.$v.name.$dirty) return errors;
-            if (!this.$v.name.maxLength) errors.push(this.$t('nameMaxLength'));
-            if (!this.$v.name.required) errors.push(this.$t('nameRequired'));
+            if (!this.$v.variety.name.$dirty) return errors;
+            if (!this.$v.variety.name.maxLength) errors.push(this.$t('nameMaxLength'));
+            if (!this.$v.variety.name.required) errors.push(this.$t('nameRequired'));
             return errors;
         },
         exposureErrors() {
             const errors = [];
-            if (!this.$v.exposure.$dirty) return errors;
-            if (!this.$v.exposure.required) errors.push(this.$t('admin.varieties.exposureRequired'));
+            if (!this.$v.variety.exposure.$dirty) return errors;
+            if (!this.$v.variety.exposure.required) errors.push(this.$t('admin.varieties.exposureRequired'));
             return errors;
         },
         wateringErrors() {
             const errors = [];
-            if (!this.$v.watering.$dirty) return errors;
-            if (!this.$v.watering.required) errors.push(this.$t('admin.varieties.wateringRequired'));
+            if (!this.$v.variety.watering.$dirty) return errors;
+            if (!this.$v.variety.watering.required) errors.push(this.$t('admin.varieties.wateringRequired'));
             return errors;
         },
     },
     methods: {
         ...mapActions('varieties', ['addVariety']),
 
+        /*
+            When one clears a category and puts another one,
+            the selected genius has to be removed
+        */
         onCategorySelect(category) {
-            if (!category || !this.genusId) return;
+            if (!category || !this.variety.genusId) return;
 
-            const genus = this.getGenusById(this.genusId);
+            const genus = this.getGenusById(this.variety.genusId);
             if (genus.category !== category) {
-                this.genus = ';';
+                this.variety.genusId = '';
             }
         },
-        onGenusSelect(genusId) {
-            if (!genusId || this.category) return;
-
-            this.category = this.genera.find((genus) => genus.id === genusId).category;
-        },
         async onSubmit() {
-            this.$v.$touch();
-            if (this.$v.$invalid || this.isSaving) return;
+            this.$v.variety.$touch();
+            if (this.$v.variety.$invalid || this.isSaving) return;
 
             this.isSaving = true;
-            const data = {
-                category: this.category,
-                genusId: this.genusId,
-                name: this.name.trim(),
-                seed: this.seed,
-                plant: this.plant,
-                harvest: this.harvest,
-            };
-            await this.addVariety(data);
+            await this.addVariety(this.variety);
             this.isSaving = false;
 
             this.dialog = false;
-            this.$v.$reset();
-            Object.assign(this.$data, defaultData);
+            this.$v.variety.$reset();
         },
     },
 };
