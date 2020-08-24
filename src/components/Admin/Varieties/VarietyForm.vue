@@ -70,6 +70,7 @@
                                     dense
                                     multiple
                                     rounded
+                                    mandatory
                                 >
                                     <v-btn
                                         v-for="(month, index) in shortMonths"
@@ -88,6 +89,7 @@
                                     dense
                                     multiple
                                     rounded
+                                    mandatory
                                 >
                                     <v-btn
                                         v-for="(month, index) in shortMonths"
@@ -106,6 +108,7 @@
                                     dense
                                     multiple
                                     rounded
+                                    mandatory
                                 >
                                     <v-btn
                                         v-for="(month, index) in shortMonths"
@@ -262,7 +265,14 @@ export default {
             if (this.$v.$invalid || this.isSaving) return;
 
             this.isSaving = true;
-            const data = { name: this.name, category: this.category, genusId: this.genusId };
+            const data = {
+                category: this.category,
+                genusId: this.genusId,
+                name: this.name.trim(),
+                seed: this.seed,
+                plant: this.plant,
+                harvest: this.harvest,
+            };
             await this.addVariety(data);
             this.isSaving = false;
 
