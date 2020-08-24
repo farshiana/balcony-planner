@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="dropTarget" :style="{ width: '500px', height: '500px' }">
+        <div class="dropTarget" :style="{ width: '500px', height: '400px', background: 'red' }">
             Drop target
         </div>
     </div>
