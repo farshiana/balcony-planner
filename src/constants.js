@@ -27,3 +27,31 @@ export const WATERINGS = [
     WATERING_MEDIUM,
     WATERING_HIGH,
 ];
+
+// MONTHS
+export const MONTH_JANUARY = 0;
+export const MONTH_FEBRUARY = 1;
+export const MONTH_MARCH = 2;
+export const MONTH_APRIL = 3;
+export const MONTH_MAY = 4;
+export const MONTH_JUNE = 5;
+export const MONTH_JULY = 6;
+export const MONTH_AUGUST = 7;
+export const MONTH_SEPTEMBER = 8;
+export const MONTH_OCTOBER = 9;
+export const MONTH_NOVEMBER = 10;
+export const MONTH_DECEMBER = 11;
+export const MONTHS = [
+    MONTH_JANUARY,
+    MONTH_FEBRUARY,
+    MONTH_MARCH,
+    MONTH_APRIL,
+    MONTH_MAY,
+    MONTH_JUNE,
+    MONTH_JULY,
+    MONTH_AUGUST,
+    MONTH_SEPTEMBER,
+    MONTH_OCTOBER,
+    MONTH_NOVEMBER,
+    MONTH_DECEMBER,
+];

@@ -34,7 +34,7 @@
                                     @input="onGenusSelect"
                                 />
                             </v-col>
-                            <v-col cols="12">
+                            <v-col cols="12" sm="6" md="4">
                                 <v-text-field
                                     v-model="name"
                                     :error-messages="nameErrors"
@@ -63,6 +63,60 @@
                                     @blur="$v.watering.$touch()"
                                 />
                             </v-col>
+                            <v-col cols="12" class="overflow-auto">
+                                <p>{{ $t('seed') }}</p>
+                                <v-btn-toggle
+                                    v-model="seed"
+                                    dense
+                                    multiple
+                                    rounded
+                                >
+                                    <v-btn
+                                        v-for="(month, index) in shortMonths"
+                                        :key="index"
+                                        active-class="brown white--text"
+                                        x-small
+                                    >
+                                        {{ month }}
+                                    </v-btn>
+                                </v-btn-toggle>
+                            </v-col>
+                            <v-col cols="12" class="overflow-auto">
+                                <p>{{ $t('plant') }}</p>
+                                <v-btn-toggle
+                                    v-model="plant"
+                                    dense
+                                    multiple
+                                    rounded
+                                >
+                                    <v-btn
+                                        v-for="(month, index) in shortMonths"
+                                        :key="index"
+                                        active-class="orange white--text"
+                                        x-small
+                                    >
+                                        {{ month }}
+                                    </v-btn>
+                                </v-btn-toggle>
+                            </v-col>
+                            <v-col cols="12" class="overflow-auto">
+                                <p>{{ $t('harvest') }}</p>
+                                <v-btn-toggle
+                                    v-model="harvest"
+                                    dense
+                                    multiple
+                                    rounded
+                                >
+                                    <v-btn
+                                        v-for="(month, index) in shortMonths"
+                                        :key="index"
+                                        active-class="green white--text"
+                                        x-small
+                                    >
+                                        {{ month }}
+                                    </v-btn>
+                                </v-btn-toggle>
+                            </v-col>
                         </v-row>
                     </v-container>
                 </v-card-text>
@@ -87,6 +141,7 @@ import {
     EXPOSURES,
     WATERINGS,
 } from '@/constants';
+import { shortMonths } from '@/utils';
 
 const defaultData = {
     category: '',
@@ -94,6 +149,9 @@ const defaultData = {
     name: '',
     exposure: '',
     watering: '',
+    seed: [1, 2, 3, 4],
+    plant: [3, 4, 5, 6],
+    harvest: [5, 6, 7, 8, 9],
 };
 
 export default {
@@ -114,6 +172,7 @@ export default {
     data() {
         return {
             isSaving: false,
+            shortMonths,
             categories: [
                 { value: CATEGORY_FRUITS, text: this.$t('fruits') },
                 { value: CATEGORY_HERBS, text: this.$t('herbs') },

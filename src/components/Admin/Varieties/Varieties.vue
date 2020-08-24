@@ -34,11 +34,11 @@ export default {
         return {
             dialog: false,
             headers: [
-                { value: 'name', text: this.$t('name') },
+                { value: 'name', text: this.$t('name'), groupable: false },
                 { value: 'category', text: this.$t('category'), groupable: true },
                 { value: 'genus', text: this.$t('genus'), groupable: true },
-                { value: 'exposure', text: this.$t('exposure') },
-                { value: 'watering', text: this.$t('watering') },
+                { value: 'exposure', text: this.$t('exposure'), groupable: false },
+                { value: 'watering', text: this.$t('watering'), groupable: false },
             ],
         };
     },

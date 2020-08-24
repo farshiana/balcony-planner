@@ -19,5 +19,6 @@ export const auth = firebase.auth();
 
 export const balconies = db.collection('balconies');
 export const genera = db.collection('genera');
+export const plants = db.collection('plants');
 export const planters = db.collection('planters');
 export const varieties = db.collection('varieties');
