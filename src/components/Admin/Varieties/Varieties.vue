@@ -39,16 +39,16 @@
             @toggle="(visible) => { dialog = visible; }"
         />
         <v-dialog v-model="deleteDialog" persistent max-width="290">
-        <v-card>
-            <v-card-title class="headline">{{ variety.name }}</v-card-title>
-            <v-card-text>{{ $t('deleteConfirmation') }}</v-card-text>
-            <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="error" text @click="deleteDialog = false;">{{ $t('cancel') }}</v-btn>
-                <v-btn color="primary" text :loading="deleting" @click="onDeleteConfirm">{{ $t('confirm') }}</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
+            <v-card>
+                <v-card-title class="headline">{{ variety.name }}</v-card-title>
+                <v-card-text>{{ $t('deleteConfirmation') }}</v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="error" text @click="deleteDialog = false;">{{ $t('cancel') }}</v-btn>
+                    <v-btn color="primary" text :loading="deleting" @click="onDeleteConfirm">{{ $t('confirm') }}</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-container>
 </template>
 
