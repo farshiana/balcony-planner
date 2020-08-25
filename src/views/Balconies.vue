@@ -14,14 +14,14 @@
                 <v-card>
                     <v-card-title>
                         <v-icon class="mr-1">mdi-shovel-off</v-icon>
-                        {{ $t('home.balconies.noBalcony') }}
+                        {{ $t('balconies.noBalcony') }}
                     </v-card-title>
                     <v-card-text>
-                        {{ $t('home.balconies.balconyHelp') }}
+                        {{ $t('balconies.balconyHelp') }}
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" @click="dialog = true;">{{ $t('home.balconies.addBalcony') }}</v-btn>
+                        <v-btn color="primary" @click="dialog = true;">{{ $t('balconies.addBalcony') }}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -32,9 +32,9 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
-import BalconyForm from './BalconyForm.vue';
-import Balcony from './Balcony.vue';
-import Planters from './Planters.vue';
+import BalconyForm from '@/components/Balconies/BalconyForm.vue';
+import Balcony from '@/components/Balconies/Balcony.vue';
+import Planters from '@/components/Balconies/Planters.vue';
 
 export default {
     components: {

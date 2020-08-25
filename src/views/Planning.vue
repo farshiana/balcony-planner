@@ -21,7 +21,7 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import { SHORT_MONTHS } from '@/constants';
-import PlanningMonth from './PlanningMonth.vue';
+import PlanningMonth from '@/components/Planning/PlanningMonth.vue';
 
 export default {
     components: {

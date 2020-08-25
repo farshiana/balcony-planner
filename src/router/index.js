@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '@/views/Home.vue';
+import Planning from '@/views/Planning.vue';
+import Balconies from '@/views/Balconies.vue';
 import Auth from '@/views/Auth.vue';
 import { auth } from '@/firebase';
 
@@ -8,9 +9,17 @@ Vue.use(VueRouter);
 
 const routes = [
     {
-        path: '/home',
-        name: 'home',
-        component: Home,
+        path: '/planning',
+        name: 'planning',
+        component: Planning,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: '/balconies',
+        name: 'balconies',
+        component: Balconies,
         meta: {
             requiresAuth: true,
         },
@@ -28,7 +37,7 @@ const routes = [
     },
     {
         path: '*',
-        redirect: 'home',
+        redirect: 'planning',
     },
 ];
 

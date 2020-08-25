@@ -23,8 +23,8 @@ export default {
     data() {
         return {
             planters: [
-                { value: 'circle', icon: 'mdi-circle', label: this.$t('home.balconies.rounded') },
-                { value: 'square', icon: 'mdi-square', label: this.$t('home.balconies.square') },
+                { value: 'circle', icon: 'mdi-circle', label: this.$t('balconies.rounded') },
+                { value: 'square', icon: 'mdi-square', label: this.$t('balconies.square') },
             ],
         };
     },

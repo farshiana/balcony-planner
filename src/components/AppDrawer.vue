@@ -48,7 +48,8 @@ export default {
     data() {
         return {
             items: [
-                { to: 'home', icon: 'mdi-home', title: this.$t('app.home') },
+                { to: 'planning', icon: 'mdi-calendar-month', title: this.$t('app.planning') },
+                { to: 'balconies', icon: 'mdi-window-open-variant', title: this.$t('app.balcony') },
                 { to: 'admin', icon: 'mdi-application-cog', title: this.$t('app.admin') },
             ],
         };

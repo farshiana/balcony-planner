@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <v-card>
             <v-card-title>
-                <span class="headline">{{ $t('home.balconies.newBalcony') }}</span>
+                <span class="headline">{{ $t('balconies.newBalcony') }}</span>
             </v-card-title>
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
