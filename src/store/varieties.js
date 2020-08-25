@@ -9,9 +9,6 @@ export default {
     mutations: {
         setVarieties: (state, collection) => { state.varieties = collection; },
         setLoadingVarieties: (state, loadingVarieties) => { state.loadingVarieties = loadingVarieties; },
-        removeVariety: (state, varietyId) => {
-            state.varieties = state.varieties.filter((variety) => variety.id !== varietyId);
-        },
     },
     actions: {
         async loadVarieties({ commit }) {
@@ -58,10 +55,10 @@ export default {
                 commit('setAlert', error, { root: true });
             }
         },
-        async deleteVariety({ commit }, varietyId) {
+        async deleteVariety({ commit, dispatch }, varietyId) {
             try {
                 await varieties.doc(varietyId).delete();
-                commit('removeVariety', varietyId);
+                dispatch('loadVarieties');
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
