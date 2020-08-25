@@ -7,30 +7,33 @@
             :loading="loadingPlants"
             class="elevation-1"
             dense
-        />
+        >
+            <template
+                v-for="(month, index) in months"
+                v-slot:[`item.${month}`]="{ item }"
+            >
+                <planning-month :key="month" :variety="item" :month="index" />
+            </template>
+        </v-data-table>
     </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import { SHORT_MONTHS } from '@/constants';
+import PlanningMonth from './PlanningMonth.vue';
 
 export default {
+    components: {
+        PlanningMonth,
+    },
     data() {
+        const months = SHORT_MONTHS.map((month) => month.toLowerCase());
         return {
+            months,
             headers: [
                 { value: 'name', text: this.$t('plant') },
-                { text: this.$t('jan') },
-                { text: this.$t('feb') },
-                { text: this.$t('mar') },
-                { text: this.$t('apr') },
-                { text: this.$t('may') },
-                { text: this.$t('jun') },
-                { text: this.$t('jul') },
-                { text: this.$t('aug') },
-                { text: this.$t('sept') },
-                { text: this.$t('oct') },
-                { text: this.$t('nov') },
-                { text: this.$t('dec') },
+                ...months.map((month) => ({ value: month, text: month, sortable: false })),
             ],
         };
     },
