@@ -4,6 +4,8 @@
     "herbs": "Aromatic herbs",
     "cancel": "Cancel",
     "save": "Save",
+    "confirm": "Confirm",
+    "deleteConfirmation": "Are you sure you want to delete it? It cannot be undone.",
     "name": "Name",
     "nameRequired": "Name is required",
     "nameMaxLength": "Name must be at most 30 characters long",

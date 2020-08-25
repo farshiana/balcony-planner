@@ -38,10 +38,22 @@
             :variety="variety"
             @toggle="(visible) => { dialog = visible; }"
         />
+        <v-dialog v-model="deleteDialog" persistent max-width="290">
+        <v-card>
+            <v-card-title class="headline">{{ variety.name }}</v-card-title>
+            <v-card-text>{{ $t('deleteConfirmation') }}</v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="error" text @click="deleteDialog = false;">{{ $t('cancel') }}</v-btn>
+                <v-btn color="primary" text :loading="deleting" @click="onDeleteConfirm">{{ $t('confirm') }}</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
     </v-container>
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapState, mapGetters, mapActions } from 'vuex';
 import VarietyForm from './VarietyForm.vue';
 
@@ -52,6 +64,8 @@ export default {
     data() {
         return {
             dialog: false,
+            deleteDialog: false,
+            deleting: false,
             variety: this.getDefaultVariety(),
             headers: [
                 { value: 'name', text: this.$t('name'), groupable: false },
@@ -81,7 +95,7 @@ export default {
         await this.loadVarieties();
     },
     methods: {
-        ...mapActions('varieties', ['loadVarieties']),
+        ...mapActions('varieties', ['loadVarieties', 'deleteVariety']),
         ...mapActions('genera', ['loadGenera']),
 
         getDefaultVariety: () => ({
@@ -99,11 +113,18 @@ export default {
             this.dialog = true;
         },
         onEdit(variety) {
-            this.variety = this.util.extend({}, variety);
+            this.variety = Vue.util.extend({}, variety);
             this.dialog = true;
         },
         onDelete(variety) {
-            console.log(variety);
+            this.variety = variety;
+            this.deleteDialog = true;
+        },
+        async onDeleteConfirm() {
+            this.deleting = true;
+            await this.deleteVariety(this.variety.id);
+            this.deleting = false;
+            this.deleteDialog = false;
         },
     },
 };

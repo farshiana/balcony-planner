@@ -9,6 +9,9 @@ export default {
     mutations: {
         setVarieties: (state, collection) => { state.varieties = collection; },
         setLoadingVarieties: (state, loadingVarieties) => { state.loadingVarieties = loadingVarieties; },
+        removeVariety: (state, varietyId) => {
+            state.varieties = state.varieties.filter((variety) => variety.id !== varietyId);
+        },
     },
     actions: {
         async loadVarieties({ commit }) {
@@ -37,6 +40,28 @@ export default {
                     createdBy: rootState.auth.user.uid,
                 });
                 dispatch('loadVarieties');
+            } catch (error) {
+                console.error(error.message);
+                commit('setAlert', error, { root: true });
+            }
+        },
+        async updateVariety({ rootState, commit, dispatch }, { id, ...variety }) {
+            try {
+                await varieties.doc(id).update({
+                    ...variety,
+                    updatedAt: new Date(),
+                    updatedBy: rootState.auth.user.uid,
+                });
+                dispatch('loadVarieties');
+            } catch (error) {
+                console.error(error.message);
+                commit('setAlert', error, { root: true });
+            }
+        },
+        async deleteVariety({ commit }, varietyId) {
+            try {
+                await varieties.doc(varietyId).delete();
+                commit('removeVariety', varietyId);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });

@@ -125,7 +125,7 @@
                 <v-card-actions>
                     <v-spacer />
                     <v-btn color="info" text @click="dialog = false;">{{ $t('cancel') }}</v-btn>
-                    <v-btn color="primary" text type="submit" :loading="isSaving">{{ $t('save') }}</v-btn>
+                    <v-btn color="primary" text type="submit" :loading="saving">{{ $t('save') }}</v-btn>
                 </v-card-actions>
             </v-form>
         </v-card>
@@ -168,7 +168,7 @@ export default {
     },
     data() {
         return {
-            isSaving: false,
+            saving: false,
             shortMonths,
             categories: [
                 { value: CATEGORY_FRUITS, text: this.$t('fruits') },
@@ -242,7 +242,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions('varieties', ['addVariety']),
+        ...mapActions('varieties', ['addVariety', 'updateVariety']),
 
         /*
             When one clears a category and puts another one,
@@ -258,11 +258,15 @@ export default {
         },
         async onSubmit() {
             this.$v.variety.$touch();
-            if (this.$v.variety.$invalid || this.isSaving) return;
+            if (this.$v.variety.$invalid || this.saving) return;
 
-            this.isSaving = true;
-            await this.addVariety(this.variety);
-            this.isSaving = false;
+            this.saving = true;
+            if (this.variety.id) {
+                await this.updateVariety(this.variety);
+            } else {
+                await this.addVariety(this.variety);
+            }
+            this.saving = false;
 
             this.dialog = false;
             this.$v.variety.$reset();
