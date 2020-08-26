@@ -25,13 +25,14 @@ export default {
                 commit('setAlert', error, { root: true });
             }
         },
-        async addBalcony({ rootState, commit }, balcony) {
+        async addBalcony({ rootState, commit, dispatch }, balcony) {
             try {
                 await balconies.add({
                     ...balcony,
                     createdAt: new Date(),
                     createdBy: rootState.auth.user.uid,
                 });
+                dispatch('loadBalconies');
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
