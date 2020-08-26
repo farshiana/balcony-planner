@@ -17,7 +17,7 @@ export default {
             try {
                 const { user } = await auth.signInWithEmailAndPassword(email, password);
                 commit('setUser', user);
-                router.push(router.currentRoute.query.redirect || { name: 'home' });
+                router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
@@ -28,7 +28,7 @@ export default {
                 const { user } = await auth.createUserWithEmailAndPassword(email, password);
                 await user.updateProfile({ displayName: name });
                 commit('setUser', user);
-                router.push(router.currentRoute.query.redirect || { name: 'home' });
+                router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });

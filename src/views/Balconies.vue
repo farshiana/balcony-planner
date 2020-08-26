@@ -1,27 +1,25 @@
 <template>
-    <v-container v-if="!overlay" :style="{ height: '100%' }">
+    <v-container v-if="!overlay">
         <template v-if="balconies.length">
-            <planters class="mb-3" />
-            <v-card height="calc(100% - 12px)">
-                <!-- Card takes all space -->
-                <v-card-title>{{ balcony.name }}</v-card-title>
-                <balcony :balcony="balcony" />
-            </v-card>
+            <balcony
+                v-for="balcony in balconies"
+                :key="balcony.id"
+                :balcony="balcony"
+            />
         </template>
         <v-container v-else d-flex justify-center>
-            <!-- Card is centered vertically -->
             <v-col md="6">
                 <v-card>
                     <v-card-title>
                         <v-icon class="mr-1">mdi-shovel-off</v-icon>
-                        {{ $t('balconies.noBalcony') }}
+                        {{ $t('noBalcony') }}
                     </v-card-title>
                     <v-card-text>
-                        {{ $t('balconies.balconyHelp') }}
+                        {{ $t('balconyHelp') }}
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer />
-                        <v-btn color="primary" @click="dialog = true;">{{ $t('balconies.addBalcony') }}</v-btn>
+                        <v-btn color="primary" @click="dialog = true;">{{ $t('addBalcony') }}</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-col>
@@ -34,13 +32,11 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 import BalconyForm from '@/components/Balconies/BalconyForm.vue';
 import Balcony from '@/components/Balconies/Balcony.vue';
-import Planters from '@/components/Balconies/Planters.vue';
 
 export default {
     components: {
         BalconyForm,
         Balcony,
-        Planters,
     },
     data: () => ({
         dialog: false,
@@ -48,10 +44,6 @@ export default {
     computed: {
         ...mapState(['overlay']),
         ...mapState('balconies', ['balconies']),
-
-        balcony() {
-            return this.balconies[0];
-        },
     },
     async created() {
         this.setOverlay(true);

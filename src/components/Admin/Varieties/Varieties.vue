@@ -13,7 +13,7 @@
                 <v-row fill-height class="mr-1">
                     <v-spacer />
                     <v-btn class="mt-1" text small color="accent" @click="onAdd">
-                        {{ $t('admin.varieties.addVariety') }}
+                        {{ $t('addVariety') }}
                     </v-btn>
                 </v-row>
             </template>

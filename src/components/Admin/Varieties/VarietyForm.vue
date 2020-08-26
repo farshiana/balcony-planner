@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <v-card>
             <v-card-title>
-                <span class="headline">{{ $t('admin.varieties.newVariety') }}</span>
+                <span class="headline">{{ $t('newVariety') }}</span>
             </v-card-title>
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
@@ -212,13 +212,13 @@ export default {
         categoryErrors() {
             const errors = [];
             if (!this.$v.variety.category.$dirty) return errors;
-            if (!this.$v.variety.category.required) errors.push(this.$t('admin.varieties.categoryRequired'));
+            if (!this.$v.variety.category.required) errors.push(this.$t('categoryRequired'));
             return errors;
         },
         genusErrors() {
             const errors = [];
             if (!this.$v.variety.genusId.$dirty) return errors;
-            if (!this.$v.variety.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
+            if (!this.$v.variety.genusId.required) errors.push(this.$t('genusRequired'));
             return errors;
         },
         nameErrors() {
@@ -231,13 +231,13 @@ export default {
         exposureErrors() {
             const errors = [];
             if (!this.$v.variety.exposure.$dirty) return errors;
-            if (!this.$v.variety.exposure.required) errors.push(this.$t('admin.varieties.exposureRequired'));
+            if (!this.$v.variety.exposure.required) errors.push(this.$t('exposureRequired'));
             return errors;
         },
         wateringErrors() {
             const errors = [];
             if (!this.$v.variety.watering.$dirty) return errors;
-            if (!this.$v.variety.watering.required) errors.push(this.$t('admin.varieties.wateringRequired'));
+            if (!this.$v.variety.watering.required) errors.push(this.$t('wateringRequired'));
             return errors;
         },
     },

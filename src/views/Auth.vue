@@ -8,7 +8,7 @@
                     flat
                 >
                     <v-toolbar-title>
-                        {{ isRegister ? $t('auth.registerForm') : $t('auth.loginForm') }}
+                        {{ isRegister ? $t('registerForm') : $t('loginForm') }}
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-form lazy-validation @submit.prevent="onSubmit">
@@ -26,7 +26,7 @@
                             v-model="email"
                             prepend-icon="mdi-email"
                             :error-messages="emailErrors"
-                            :label="$t('auth.email')"
+                            :label="$t('email')"
                             required
                             @blur="$v.email.$touch()"
                         />
@@ -34,7 +34,7 @@
                             v-model="password"
                             prepend-icon="mdi-lock"
                             :error-messages="passwordErrors"
-                            :label="$t('auth.password')"
+                            :label="$t('password')"
                             type="password"
                             :counter="isRegister ? 12 : false"
                             password
@@ -46,7 +46,7 @@
                             v-model="repeatPassword"
                             prepend-icon="mdi-lock"
                             :error-messages="repeatPasswordErrors"
-                            :label="$t('auth.repeatPassword')"
+                            :label="$t('repeatPassword')"
                             type="password"
                             password
                             required
@@ -56,15 +56,15 @@
                     <v-card-actions>
                         <v-spacer />
                         <v-btn color="primary" type="submit" :loading="isSaving" >
-                            {{ isRegister ? $t('auth.register') : $t('auth.login') }}
+                            {{ isRegister ? $t('register') : $t('login') }}
                         </v-btn>
                     </v-card-actions>
                 </v-form>
             </v-card>
             <div class="my-3">
-                {{ isRegister ? $t('auth.withAccount') : $t('auth.withoutAccount')  }}
+                {{ isRegister ? $t('withAccount') : $t('withoutAccount')  }}
                 <v-btn text @click="onSwitch">
-                    {{ isRegister ? $t('auth.login') : $t('auth.register') }}
+                    {{ isRegister ? $t('login') : $t('register') }}
                 </v-btn>
             </div>
         </v-col>
@@ -102,22 +102,22 @@ export default {
         emailErrors() {
             const errors = [];
             if (!this.$v.email.$dirty) return errors;
-            if (!this.$v.email.required) errors.push(this.$t('auth.emailRequired'));
-            if (!this.$v.email.email) errors.push(this.$t('auth.emailValid'));
+            if (!this.$v.email.required) errors.push(this.$t('emailRequired'));
+            if (!this.$v.email.email) errors.push(this.$t('emailValid'));
             return errors;
         },
         passwordErrors() {
             const errors = [];
             if (!this.$v.password.$dirty) return errors;
-            if (!this.$v.password.required) errors.push(this.$t('auth.passwordRequired'));
-            if (!this.$v.password.minLength) errors.push(this.$t('auth.passwordMinLength'));
+            if (!this.$v.password.required) errors.push(this.$t('passwordRequired'));
+            if (!this.$v.password.minLength) errors.push(this.$t('passwordMinLength'));
             return errors;
         },
         repeatPasswordErrors() {
             const errors = [];
             if (!this.$v.repeatPassword.$dirty) return errors;
-            if (!this.$v.repeatPassword.required) errors.push(this.$t('auth.repeatPasswordRequired'));
-            if (!this.$v.repeatPassword.sameAsPassword) errors.push(this.$t('auth.repeatPasswordSameAs'));
+            if (!this.$v.repeatPassword.required) errors.push(this.$t('repeatPasswordRequired'));
+            if (!this.$v.repeatPassword.sameAsPassword) errors.push(this.$t('repeatPasswordSameAs'));
             return errors;
         },
     },

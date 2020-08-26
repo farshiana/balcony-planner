@@ -1,5 +1,6 @@
 <template>
-    <v-card class="home-balconies-planters">
+    <div>Planters</div>
+    <!-- <v-card class="home-balconies-planters">
         <v-chip
             v-for="planter in planters"
             :key="planter.value"
@@ -13,7 +14,7 @@
             </v-avatar>
             {{ planter.label }}
         </v-chip>
-    </v-card>
+    </v-card> -->
 </template>
 
 <script>
@@ -23,8 +24,8 @@ export default {
     data() {
         return {
             planters: [
-                { value: 'circle', icon: 'mdi-circle', label: this.$t('balconies.rounded') },
-                { value: 'square', icon: 'mdi-square', label: this.$t('balconies.square') },
+                { value: 'circle', icon: 'mdi-circle', label: this.$t('rounded') },
+                { value: 'square', icon: 'mdi-square', label: this.$t('square') },
             ],
         };
     },

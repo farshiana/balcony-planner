@@ -1,10 +1,20 @@
 <template>
     <v-app>
-        <app-drawer :drawer="drawer" :mini="mini" @toggle="(show) => { drawer = show; }" />
         <v-app-bar app color="primary" dark>
+            <v-toolbar-title>{{ $t('title') }}</v-toolbar-title>
             <v-spacer />
-            <v-toolbar-title>{{ $t('app.title') }}</v-toolbar-title>
-            <v-app-bar-nav-icon v-if="mini" @click.stop="drawer = !drawer;" />
+            <template v-if="isAuthenticated">
+                <v-btn icon
+                    v-for="item in items"
+                    :key="item.to"
+                    :to="item.to"
+                >
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-btn>
+                <v-btn icon @click="logout">
+                    <v-icon>mdi-logout</v-icon>
+                </v-btn>
+            </template>
         </v-app-bar>
         <v-main>
             <app-alert />
@@ -17,24 +27,28 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import AppDrawer from '@/components/AppDrawer.vue';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import AppAlert from '@/components/AppAlert.vue';
 
 export default {
     components: {
-        AppDrawer,
         AppAlert,
     },
-    data: () => ({
-        drawer: true,
-    }),
+    data() {
+        return {
+            items: [
+                { to: 'planning', icon: 'mdi-calendar-month' },
+                { to: 'balconies', icon: 'mdi-window-open-variant' },
+                { to: 'admin', icon: 'mdi-application-cog' },
+            ],
+        };
+    },
     computed: {
         ...mapState(['overlay']),
-
-        mini() {
-            return !!this.$vuetify.breakpoint.smAndDown;
-        },
+        ...mapGetters('auth', ['isAuthenticated']),
+    },
+    methods: {
+        ...mapActions('auth', ['logout']),
     },
 };
 </script>
