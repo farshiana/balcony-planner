@@ -1,3 +1,3 @@
 <template>
-    <span>Plants</span>
+    <div>Plants</div>
 </template>

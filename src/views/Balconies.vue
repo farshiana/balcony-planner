@@ -1,11 +1,7 @@
 <template>
-    <v-container v-if="!overlay">
+    <div v-if="!overlay" class="fill-height">
         <template v-if="balconies.length">
-            <balcony
-                v-for="balcony in balconies"
-                :key="balcony.id"
-                :balcony="balcony"
-            />
+            <balcony :balcony="balconies[0]" />
         </template>
         <v-container v-else d-flex justify-center>
             <v-col md="6">
@@ -23,9 +19,9 @@
                     </v-card-actions>
                 </v-card>
             </v-col>
+            <balcony-form :visible="dialog" @toggle="(visible) => { dialog = visible; }" />
         </v-container>
-        <balcony-form :visible="dialog" @toggle="(visible) => { dialog = visible; }" />
-    </v-container>
+    </div>
 </template>
 
 <script>

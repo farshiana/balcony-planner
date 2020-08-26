@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-column" :style="{ height: '100%' }">
         <div>
             <v-tabs v-model="currentTab">
                 <v-tab
@@ -13,12 +13,13 @@
                 <v-tab-item
                     v-for="tab in tabs"
                     :key="tab.icon"
+                    height="50px"
                 >
                     <component :is="tab.component" />
                 </v-tab-item>
             </v-tabs-items>
         </div>
-        <div>DD</div>
+        <balcony-area :balcony="balcony" />
     </div>
 </template>
 
@@ -27,11 +28,13 @@ import { mapState, mapActions } from 'vuex';
 import interact from 'interactjs';
 import Plants from './Plants.vue';
 import Planters from './Planters.vue';
+import BalconyArea from './BalconyArea.vue';
 
 export default {
     components: {
         Plants,
         Planters,
+        BalconyArea,
     },
     props: {
         balcony: {
