@@ -1,5 +1,5 @@
 import router from '@/router/index';
-import { BASE_URL } from '@/constants';
+import { API_URL } from '@/constants';
 
 export default {
     namespaced: true,
@@ -14,7 +14,7 @@ export default {
     },
     actions: {
         async getUser({ commit }) {
-            const response = await fetch(`${BASE_URL}/users/current`);
+            const response = await fetch(`${API_URL}/users/current`);
             if (response.ok) {
                 const body = await response.json();
                 commit('setUser', body);
@@ -23,7 +23,7 @@ export default {
             }
         },
         async login({ commit }, { email, password }) {
-            const response = await fetch(`${BASE_URL}/auth/login`, {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'PUT',
                 body: JSON.stringify({ email, password }),
             });
@@ -37,7 +37,7 @@ export default {
             }
         },
         async register({ commit }, { username, email, password }) {
-            const response = await fetch(`${BASE_URL}/auth/login`, {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 body: JSON.stringify({ username, email, password }),
             });

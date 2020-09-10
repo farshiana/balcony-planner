@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/constants';
 import { sortBy } from '@/utils';
+import { API_URL } from '@/constants';
 
 export default {
     namespaced: true,
@@ -18,7 +18,7 @@ export default {
     actions: {
         async loadGenera({ commit }) {
             try {
-                const { data } = await fetch(`${BASE_URL}/genera`);
+                const { data } = await fetch(`${API_URL}/genera`);
                 data.sort(sortBy('name'));
                 commit('setGenera', data);
             } catch (error) {

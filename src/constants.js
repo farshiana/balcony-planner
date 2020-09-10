@@ -1,6 +1,6 @@
 import i18n from './i18n';
 
-export const BASE_URL = 'http://localhost:8080';
+export const API_URL = process.env.API_URL;
 
 // CATEGORIES
 export const CATEGORY_FRUITS = 'fruits';

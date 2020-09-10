@@ -1,5 +1,3 @@
-import { BASE_URL } from '@/constants';
-
 export default {
     namespaced: true,
     state: {
