@@ -1,5 +1,7 @@
 import i18n from './i18n';
 
+export const BASE_URL = 'http://localhost:8080';
+
 // CATEGORIES
 export const CATEGORY_FRUITS = 'fruits';
 export const CATEGORY_HERBS = 'herbs';

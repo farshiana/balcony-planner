@@ -1,5 +1,3 @@
-import { plants } from '@/firebase';
-
 export default {
     namespaced: true,
     state: {
@@ -14,15 +12,15 @@ export default {
         async loadPlants({ commit }) {
             commit('setLoadingPlants', true);
             try {
-                const snapshot = await plants.orderBy('name', 'asc').get();
-                const collection = [];
-                snapshot.forEach((doc) => {
-                    collection.push({
-                        id: doc.id,
-                        ...doc.data(),
-                    });
-                });
-                commit('setPlants', collection);
+                // const snapshot = await plants.orderBy('name', 'asc').get();
+                // const collection = [];
+                // snapshot.forEach((doc) => {
+                //     collection.push({
+                //         id: doc.id,
+                //         ...doc.data(),
+                //     });
+                // });
+                // commit('setPlants', collection);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });
@@ -31,11 +29,11 @@ export default {
         },
         async addVariety({ rootState, commit, dispatch }, variety) {
             try {
-                await plants.add({
-                    ...variety,
-                    createdAt: new Date(),
-                    createdBy: rootState.auth.user.uid,
-                });
+                // await plants.add({
+                //     ...variety,
+                //     createdAt: new Date(),
+                //     createdBy: rootState.auth.user.uid,
+                // });
                 dispatch('loadPlants');
             } catch (error) {
                 console.error(error.message);

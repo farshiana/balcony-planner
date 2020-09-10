@@ -1,4 +1,4 @@
-import { planters } from '@/firebase';
+import { BASE_URL } from '@/constants';
 
 export default {
     namespaced: true,

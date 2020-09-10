@@ -1,6 +1,5 @@
 <template>
-    <div>Planters</div>
-    <!-- <v-card class="home-balconies-planters">
+    <v-card class="home-balconies-planters">
         <v-chip
             v-for="planter in planters"
             :key="planter.value"
@@ -14,7 +13,7 @@
             </v-avatar>
             {{ planter.label }}
         </v-chip>
-    </v-card> -->
+    </v-card>
 </template>
 
 <script>

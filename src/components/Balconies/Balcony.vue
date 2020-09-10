@@ -25,7 +25,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
-import interact from 'interactjs';
 import Plants from './Plants.vue';
 import Planters from './Planters.vue';
 import BalconyArea from './BalconyArea.vue';
@@ -54,17 +53,6 @@ export default {
     },
     created() {
         this.loadPlanters(this.balcony.id);
-    },
-    mounted() {
-        interact('.dropTarget').dropzone({
-            ondrop(event) {
-                alert(`${event.relatedTarget.id
-                } was dropped into ${
-                    event.target.id}`);
-            },
-        }).on('dropactivate', (event) => {
-            event.target.classList.add('drop-activated');
-        });
     },
     computed: {
         ...mapState('planters', ['planters']),

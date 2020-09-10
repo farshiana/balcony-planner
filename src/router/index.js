@@ -3,7 +3,6 @@ import VueRouter from 'vue-router';
 import Planning from '@/views/Planning.vue';
 import Balconies from '@/views/Balconies.vue';
 import Auth from '@/views/Auth.vue';
-import { auth } from '@/firebase';
 
 Vue.use(VueRouter);
 
@@ -49,13 +48,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
-    const { currentUser } = auth;
+    // const { currentUser } = auth;
 
-    if (requiresAuth && !currentUser) {
-        next({ name: 'login', query: { redirect: to.fullPath } });
-    } else {
-        next();
-    }
+    // if (requiresAuth && !currentUser) {
+    //     next({ name: 'login', query: { redirect: to.fullPath } });
+    // } else {
+    next();
+    // }
 });
 
 export default router;

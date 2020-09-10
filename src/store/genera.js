@@ -1,4 +1,5 @@
-import { genera } from '@/firebase';
+import { BASE_URL } from '@/constants';
+import { sortBy } from '@/utils';
 
 export default {
     namespaced: true,
@@ -17,15 +18,9 @@ export default {
     actions: {
         async loadGenera({ commit }) {
             try {
-                const snapshot = await genera.orderBy('name', 'asc').get();
-                const collection = [];
-                snapshot.forEach((doc) => {
-                    collection.push({
-                        id: doc.id,
-                        ...doc.data(),
-                    });
-                });
-                commit('setGenera', collection);
+                const { data } = await fetch(`${BASE_URL}/genera`);
+                data.sort(sortBy('name'));
+                commit('setGenera', data);
             } catch (error) {
                 console.error(error.message);
                 commit('setAlert', error, { root: true });

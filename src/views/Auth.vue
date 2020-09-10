@@ -15,12 +15,12 @@
                     <v-card-text>
                         <v-text-field
                             v-if="isRegister"
-                            v-model="name"
+                            v-model="username"
                             prepend-icon="mdi-account"
-                            :error-messages="nameErrors"
-                            :label="$t('name')"
+                            :error-messages="usernameErrors"
+                            :label="$t('username')"
                             required
-                            @blur="$v.name.$touch()"
+                            @blur="$v.username.$touch()"
                         />
                         <v-text-field
                             v-model="email"
@@ -86,17 +86,17 @@ export default {
             password: { required, minLength: minLength(12) },
         };
         if (this.isRegister) {
-            validations.name = { required, maxLength: maxLength(30) };
+            validations.username = { required, maxLength: maxLength(30) };
             validations.repeatPassword = { required, sameAsPassword: sameAs('password') };
         }
         return validations;
     },
     computed: {
-        nameErrors() {
+        usernameErrors() {
             const errors = [];
-            if (!this.$v.name.$dirty) return errors;
-            if (!this.$v.name.maxLength) errors.push(this.$t('nameMaxLength'));
-            if (!this.$v.name.required) errors.push(this.$t('nameRequired'));
+            if (!this.$v.username.$dirty) return errors;
+            if (!this.$v.username.maxLength) errors.push(this.$t('usernameMaxLength'));
+            if (!this.$v.username.required) errors.push(this.$t('usernameRequired'));
             return errors;
         },
         emailErrors() {
@@ -124,7 +124,7 @@ export default {
     data: () => ({
         isSaving: false,
         isRegister: false,
-        name: '',
+        username: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -137,7 +137,7 @@ export default {
             if (this.$v.$invalid || this.isSaving) return;
 
             this.isSaving = true;
-            const data = { name: this.name, email: this.email, password: this.password };
+            const data = { username: this.username, email: this.email, password: this.password };
             if (this.isRegister) {
                 await this.register(data);
             } else {
