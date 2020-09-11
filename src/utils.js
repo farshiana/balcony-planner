@@ -12,12 +12,21 @@ export const sortBy = (key) => (a, b) => {
     return b[key] > a[key] ? -1 : 0;
 };
 
+export const get = (route) => fetch(`${API_URL}${route}`, {
+    // headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    // },
+    credentials: 'include',
+});
+
 export const post = (route, body) => fetch(`${API_URL}${route}`, {
     method: 'POST',
     headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(body),
 });
 
@@ -27,5 +36,6 @@ export const put = (route, body) => fetch(`${API_URL}${route}`, {
         Accept: 'application/json',
         'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(body),
 });

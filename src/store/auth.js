@@ -1,6 +1,5 @@
 import router from '@/router/index';
-import { API_URL } from '@/constants';
-import { post, put } from '@/utils';
+import { get, put, post } from '@/utils';
 
 export default {
     namespaced: true,
@@ -15,7 +14,7 @@ export default {
     },
     actions: {
         async getUser({ commit }) {
-            const response = await fetch(`${API_URL}/users/current`);
+            const response = await get('/users/current');
             if (response.ok) {
                 const body = await response.json();
                 commit('setUser', body);
@@ -23,19 +22,20 @@ export default {
                 router.push({ name: 'login', query: { redirect: router.currentRoute.fullPath } });
             }
         },
-        async login({ commit }, { email, password }) {
-            const response = await put('/auth/login', { email, password });
+        async register({ commit, dispatch }, { username, email, password }) {
+            const response = await post('/auth/register', { username, email, password });
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);
+                dispatch('getUser');
                 router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });
             }
         },
-        async register({ commit }, { username, email, password }) {
-            const response = await post('/auth/register', { username, email, password });
+        async login({ commit }, { email, password }) {
+            const response = await put('/auth/login', { email, password });
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);
