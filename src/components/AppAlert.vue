@@ -1,7 +1,7 @@
 <template>
     <v-alert
         class="app-alert text-center"
-        :value="!!alert"
+        :value="!!(alert && alert.message)"
         :type="alert && alert.type"
         dense
         dismissible

@@ -1,6 +1,6 @@
 import i18n from './i18n';
 
-export const API_URL = process.env.API_URL;
+export const API_URL = process.env.VUE_APP_API_URL;
 
 // CATEGORIES
 export const CATEGORY_FRUITS = 'fruits';

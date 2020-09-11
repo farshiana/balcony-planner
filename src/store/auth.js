@@ -1,5 +1,6 @@
 import router from '@/router/index';
 import { API_URL } from '@/constants';
+import { post, put } from '@/utils';
 
 export default {
     namespaced: true,
@@ -23,10 +24,7 @@ export default {
             }
         },
         async login({ commit }, { email, password }) {
-            const response = await fetch(`${API_URL}/auth/login`, {
-                method: 'PUT',
-                body: JSON.stringify({ email, password }),
-            });
+            const response = await put('/auth/login', { email, password });
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);
@@ -37,10 +35,7 @@ export default {
             }
         },
         async register({ commit }, { username, email, password }) {
-            const response = await fetch(`${API_URL}/auth/login`, {
-                method: 'POST',
-                body: JSON.stringify({ username, email, password }),
-            });
+            const response = await post('/auth/register', { username, email, password });
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);
