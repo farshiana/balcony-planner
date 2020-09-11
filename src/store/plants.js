@@ -1,3 +1,5 @@
+import { get } from '@/utils';
+
 export default {
     namespaced: true,
     state: {
@@ -11,34 +13,28 @@ export default {
     actions: {
         async loadPlants({ commit }) {
             commit('setLoadingPlants', true);
-            try {
-                // const snapshot = await plants.orderBy('name', 'asc').get();
-                // const collection = [];
-                // snapshot.forEach((doc) => {
-                //     collection.push({
-                //         id: doc.id,
-                //         ...doc.data(),
-                //     });
-                // });
-                // commit('setPlants', collection);
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+            const response = await get('/plants');
+            const body = await response.json();
+            if (response.ok) {
+                commit('setPlants', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
             commit('setLoadingPlants', false);
         },
-        async addVariety({ rootState, commit, dispatch }, variety) {
-            try {
-                // await plants.add({
-                //     ...variety,
-                //     createdAt: new Date(),
-                //     createdBy: rootState.auth.user.uid,
-                // });
-                dispatch('loadPlants');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
-            }
-        },
+        // async addVariety({ rootState, commit, dispatch }, variety) {
+        //     try {
+        //         // await plants.add({
+        //         //     ...variety,
+        //         //     createdAt: new Date(),
+        //         //     createdBy: rootState.auth.user.uid,
+        //         // });
+        //         dispatch('loadPlants');
+        //     } catch (error) {
+        //         console.error(error.message);
+        //         commit('setAlert', error, { root: true });
+        //     }
+        // },
     },
 };

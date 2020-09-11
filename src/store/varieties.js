@@ -1,3 +1,5 @@
+import { get, put, post } from '@/utils';
+
 export default {
     namespaced: true,
     state: {
@@ -5,61 +7,45 @@ export default {
         loadingVarieties: false,
     },
     mutations: {
-        setVarieties: (state, collection) => { state.varieties = collection; },
+        setVarieties: (state, list) => { state.varieties = list; },
+        addVariety: (state, item) => { state.varieties.push(item); },
+        updateVariety: (state, item) => {
+            const current = state.varieties.find((variety) => variety.id === item.id);
+            Object.assign(current, item);
+        },
         setLoadingVarieties: (state, loadingVarieties) => { state.loadingVarieties = loadingVarieties; },
     },
     actions: {
         async loadVarieties({ commit }) {
             commit('setLoadingVarieties', true);
-            // try {
-            //     const snapshot = await varieties.orderBy('name', 'asc').get();
-            //     const collection = [];
-            //     snapshot.forEach((doc) => {
-            //         collection.push({
-            //             id: doc.id,
-            //             ...doc.data(),
-            //         });
-            //     });
-            //     commit('setVarieties', collection);
-            // } catch (error) {
-            //     console.error(error.message);
-            //     commit('setAlert', error, { root: true });
-            // }
+            const response = await get('/varieties');
+            const body = await response.json();
+            if (response.ok) {
+                commit('setVarieties', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
             commit('setLoadingVarieties', false);
         },
-        async addVariety({ rootState, commit, dispatch }, variety) {
-            try {
-                // await varieties.add({
-                //     ...variety,
-                //     createdAt: new Date(),
-                //     createdBy: rootState.auth.user.uid,
-                // });
-                dispatch('loadVarieties');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+        async addVariety({ commit }, variety) {
+            const response = await post('/varieties', variety);
+            const body = await response.json();
+            if (response.ok) {
+                commit('addVariety', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
         },
-        async updateVariety({ rootState, commit, dispatch }, { id, ...variety }) {
-            try {
-                // await varieties.doc(id).update({
-                //     ...variety,
-                //     updatedAt: new Date(),
-                //     updatedBy: rootState.auth.user.uid,
-                // });
-                dispatch('loadVarieties');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
-            }
-        },
-        async deleteVariety({ commit, dispatch }, varietyId) {
-            try {
-                // await varieties.doc(varietyId).delete();
-                dispatch('loadVarieties');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+        async updateVariety({ commit }, variety) {
+            const response = await put(`/varieties/${variety.id}`, variety);
+            const body = await response.json();
+            if (response.ok) {
+                commit('updateVariety', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
         },
     },

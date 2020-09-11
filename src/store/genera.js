@@ -1,5 +1,4 @@
-import { sortBy } from '@/utils';
-import { API_URL } from '@/constants';
+import { get, put, post } from '@/utils';
 
 export default {
     namespaced: true,
@@ -13,17 +12,42 @@ export default {
         ),
     },
     mutations: {
-        setGenera: (state, collection) => { state.genera = collection; },
+        setGenera: (state, list) => { state.genera = list; },
+        addGenus: (state, item) => { state.genera.push(item); },
+        updateGenus: (state, item) => {
+            const current = state.genera.find((genus) => genus.id === item.id);
+            Object.assign(current, item);
+        },
     },
     actions: {
         async loadGenera({ commit }) {
-            try {
-                const { data } = await fetch(`${API_URL}/genera`);
-                data.sort(sortBy('name'));
-                commit('setGenera', data);
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+            const response = await get('/genera');
+            const body = await response.json();
+            if (response.ok) {
+                commit('setGenera', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async addGenus({ commit }, genus) {
+            const response = await post('/balconies', genus);
+            const body = await response.json();
+            if (response.ok) {
+                commit('addGenus', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async updateGenus({ commit }, genus) {
+            const response = await put(`/balconies/${genus.id}`, genus);
+            const body = await response.json();
+            if (response.ok) {
+                commit('updateGenus', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
         },
     },

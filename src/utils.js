@@ -6,12 +6,6 @@ export const shortMonths = [i18n.t('jan'), i18n.t('feb'), i18n.t('mar'), i18n.t(
 
 export const getShortMonth = (month) => shortMonths[month];
 
-export const sortBy = (key) => (a, b) => {
-    if (a[key] > b[key]) return 1;
-
-    return b[key] > a[key] ? -1 : 0;
-};
-
 export const get = (route) => fetch(`${API_URL}${route}`, {
     // headers: {
     //     Accept: 'application/json',

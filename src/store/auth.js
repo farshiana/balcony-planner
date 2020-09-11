@@ -1,5 +1,5 @@
 import router from '@/router/index';
-import { get, put, post } from '@/utils';
+import { get, post, put } from '@/utils';
 
 export default {
     namespaced: true,
@@ -22,20 +22,19 @@ export default {
                 router.push({ name: 'login', query: { redirect: router.currentRoute.fullPath } });
             }
         },
-        async register({ commit, dispatch }, { username, email, password }) {
-            const response = await post('/auth/register', { username, email, password });
+        async register({ commit }, user) {
+            const response = await post('/auth/register', user);
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);
-                dispatch('getUser');
                 router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });
             }
         },
-        async login({ commit }, { email, password }) {
-            const response = await put('/auth/login', { email, password });
+        async login({ commit }, user) {
+            const response = await put('/auth/login', user);
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', body);

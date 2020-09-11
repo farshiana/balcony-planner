@@ -1,39 +1,47 @@
+import { get, put, post } from '@/utils';
+
 export default {
     namespaced: true,
     state: {
         balconies: [],
     },
     mutations: {
-        setBalconies: (state, collection) => { state.balconies = collection; },
+        setBalconies: (state, list) => { state.balconies = list; },
+        addBalcony: (state, item) => { state.balconies.push(item); },
+        updateBalcony: (state, item) => {
+            const current = state.balconies.find((balcony) => balcony.id === item.id);
+            Object.assign(current, item);
+        },
     },
     actions: {
-        async loadBalconies({ commit }) {
-            try {
-                // const snapshot = await balconies.get();
-                // const collection = [];
-                // snapshot.forEach((doc) => {
-                //     collection.push({
-                //         id: doc.id,
-                //         ...doc.data(),
-                //     });
-                // });
-                // commit('setBalconies', collection);
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+        async loadBalconies({ rootState, commit }) {
+            const response = await get(`/users/${rootState.auth.user.id}/balconies`);
+            const body = await response.json();
+            if (response.ok) {
+                commit('setBalconies', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
         },
-        async addBalcony({ rootState, commit, dispatch }, balcony) {
-            try {
-                // await balconies.add({
-                //     ...balcony,
-                //     createdAt: new Date(),
-                //     createdBy: rootState.auth.user.uid,
-                // });
-                dispatch('loadBalconies');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
+        async addBalcony({ commit }, balcony) {
+            const response = await post('/balconies', balcony);
+            const body = await response.json();
+            if (response.ok) {
+                commit('addBalcony', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async updateBalcony({ commit }, balcony) {
+            const response = await put(`/balconies/${balcony.id}`, balcony);
+            const body = await response.json();
+            if (response.ok) {
+                commit('updateBalcony', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
             }
         },
     },
