@@ -38,7 +38,8 @@ export default {
         return {
             items: [
                 { to: 'planning', icon: 'mdi-calendar-month' },
-                { to: 'balconies', icon: 'mdi-window-open-variant' },
+                { to: 'plants', icon: 'mdi-sprout' },
+                { to: 'balcony', icon: 'mdi-window-open-variant' },
                 { to: 'admin', icon: 'mdi-application-cog' },
             ],
         };

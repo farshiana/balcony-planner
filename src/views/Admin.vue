@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import Genera from '@/components/Admin/Genera/Genera.vue';
 import Varieties from '@/components/Admin/Varieties/Varieties.vue';
 
 export default {
@@ -28,7 +29,10 @@ export default {
         Varieties,
     },
     data() {
-        const tabs = [{ label: this.$t('varieties'), component: Varieties, icon: 'mdi-sprout' }];
+        const tabs = [
+            { label: this.$t('genera'), component: Genera, icon: 'mdi-barn' },
+            { label: this.$t('varieties'), component: Varieties, icon: 'mdi-sprout' },
+        ];
         return {
             tabs,
             currentTab: tabs[0].component,

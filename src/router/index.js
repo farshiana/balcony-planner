@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Planning from '@/views/Planning.vue';
-import Balconies from '@/views/Balconies.vue';
+import Plants from '@/views/Plants.vue';
+import Balcony from '@/views/Balcony.vue';
 import Auth from '@/views/Auth.vue';
 
 Vue.use(VueRouter);
@@ -16,9 +17,17 @@ const routes = [
         },
     },
     {
-        path: '/balconies',
-        name: 'balconies',
-        component: Balconies,
+        path: '/plants',
+        name: 'plants',
+        component: Plants,
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: '/balcony',
+        name: 'balcony',
+        component: Balcony,
         meta: {
             requiresAuth: true,
         },
@@ -48,13 +57,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
-    // const { currentUser } = auth;
+    const { currentUser } = router.app.$store.state.auth;
 
-    // if (requiresAuth && !currentUser) {
-    //     next({ name: 'login', query: { redirect: to.fullPath } });
-    // } else {
-    next();
-    // }
+    if (requiresAuth && !currentUser) {
+        next({ name: 'login', query: { redirect: to.fullPath } });
+    } else {
+        next();
+    }
 });
 
 export default router;

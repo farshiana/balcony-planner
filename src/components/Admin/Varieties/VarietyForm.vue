@@ -8,22 +8,10 @@
                 <v-card-text>
                     <v-container>
                         <v-row>
-                            <v-col cols="12" sm="6" md="4">
-                                <v-select
-                                    v-model="variety.category"
-                                    :items="categories"
-                                    :error-messages="categoryErrors"
-                                    :label="$t('category')"
-                                    clearable
-                                    required
-                                    @blur="$v.variety.category.$touch()"
-                                    @input="onCategorySelect"
-                                />
-                            </v-col>
-                            <v-col cols="12" sm="6" md="4">
+                            <v-col cols="12" sm="6" md="6">
                                 <v-autocomplete
                                     v-model="variety.genusId"
-                                    :items="generaList"
+                                    :items="genera"
                                     :error-messages="genusErrors"
                                     item-value="id"
                                     item-text="name"
@@ -33,7 +21,7 @@
                                     @blur="$v.variety.genusId.$touch()"
                                 />
                             </v-col>
-                            <v-col cols="12" sm="6" md="4">
+                            <v-col cols="12" sm="6" md="6">
                                 <v-text-field
                                     v-model="variety.name"
                                     :error-messages="nameErrors"
@@ -42,7 +30,7 @@
                                     @blur="$v.variety.name.$touch()"
                                 />
                             </v-col>
-                            <v-col cols="12" sm="6" md="4">
+                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                     v-model="variety.exposure"
                                     :error-messages="exposureErrors"
@@ -52,7 +40,7 @@
                                     @blur="$v.variety.exposure.$touch()"
                                 />
                             </v-col>
-                            <v-col cols="12" sm="6" md="4">
+                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                     v-model="variety.watering"
                                     :error-messages="wateringErrors"
@@ -137,9 +125,6 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import {
-    CATEGORY_FRUITS,
-    CATEGORY_HERBS,
-    CATEGORY_VEGETABLES,
     EXPOSURES,
     WATERINGS,
 } from '@/constants';
@@ -149,7 +134,6 @@ export default {
     mixins: [validationMixin],
     validations: {
         variety: {
-            category: { required },
             genusId: { required },
             name: { required, maxLength: maxLength(30) },
             exposure: { required },
@@ -170,18 +154,13 @@ export default {
         return {
             saving: false,
             shortMonths,
-            categories: [
-                { value: CATEGORY_FRUITS, text: this.$t('fruits') },
-                { value: CATEGORY_HERBS, text: this.$t('herbs') },
-                { value: CATEGORY_VEGETABLES, text: this.$t('vegetables') },
-            ],
             exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
             waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
         };
     },
     computed: {
         ...mapState('genera', ['genera']),
-        ...mapGetters('genera', ['getGenusById', 'getGeneraByCategory']),
+        ...mapGetters('genera', ['getGenusById']),
 
         dialog: {
             get() {
@@ -190,30 +169,6 @@ export default {
             set(visible) {
                 this.$emit('toggle', visible);
             },
-        },
-        /*
-            Either show the genera of the selected category
-            Or all genera grouped by category
-        */
-        generaList() {
-            if (this.variety.category) return this.getGeneraByCategory(this.variety.category);
-
-            return [
-                { header: this.$t('fruits') },
-                ...this.getGeneraByCategory(CATEGORY_FRUITS),
-                { divider: true },
-                { header: this.$t('herbs') },
-                ...this.getGeneraByCategory(CATEGORY_HERBS),
-                { divider: true },
-                { header: this.$t('vegetables') },
-                ...this.getGeneraByCategory(CATEGORY_VEGETABLES),
-            ];
-        },
-        categoryErrors() {
-            const errors = [];
-            if (!this.$v.variety.category.$dirty) return errors;
-            if (!this.$v.variety.category.required) errors.push(this.$t('categoryRequired'));
-            return errors;
         },
         genusErrors() {
             const errors = [];
@@ -244,18 +199,6 @@ export default {
     methods: {
         ...mapActions('varieties', ['addVariety', 'updateVariety']),
 
-        /*
-            When one clears a category and puts another one,
-            the selected genius has to be removed
-        */
-        onCategorySelect(category) {
-            if (!category || !this.variety.genusId) return;
-
-            const genus = this.getGenusById(this.variety.genusId);
-            if (genus.category !== category) {
-                this.variety.genusId = '';
-            }
-        },
         async onSubmit() {
             this.$v.variety.$touch();
             if (this.$v.variety.$invalid || this.saving) return;

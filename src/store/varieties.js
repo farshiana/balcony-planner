@@ -28,8 +28,8 @@ export default {
             }
             commit('setLoadingVarieties', false);
         },
-        async addVariety({ commit }, variety) {
-            const response = await post('/varieties', variety);
+        async addVariety({ commit }, { genusId, ...variety }) {
+            const response = await post(`/genera/${genusId}/varieties`, variety);
             const body = await response.json();
             if (response.ok) {
                 commit('addVariety', body);
