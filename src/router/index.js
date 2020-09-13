@@ -55,15 +55,4 @@ const router = new VueRouter({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
-    const { currentUser } = router.app.$store.state.auth;
-
-    if (requiresAuth && !currentUser) {
-        next({ name: 'login', query: { redirect: to.fullPath } });
-    } else {
-        next();
-    }
-});
-
 export default router;

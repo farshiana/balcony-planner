@@ -8,6 +8,17 @@ import i18n from './i18n';
 
 Vue.config.productionTip = false;
 
+router.beforeEach((to, from, next) => {
+    const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+    const { user } = store.state.auth;
+
+    if (requiresAuth && !user) {
+        next({ name: 'login', query: { redirect: to.fullPath } });
+    } else {
+        next();
+    }
+});
+
 const init = async () => {
     await store.dispatch('auth/getUser');
 
