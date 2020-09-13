@@ -102,9 +102,9 @@ export default {
             name: '',
             exposure: '',
             watering: '',
-            seed: [1, 2, 3, 4],
-            plant: [3, 4, 5, 6],
-            harvest: [5, 6, 7, 8, 9],
+            seed: [],
+            plant: [],
+            harvest: [],
         }),
         onAdd() {
             this.variety = this.getDefaultVariety();
