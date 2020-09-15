@@ -14,8 +14,8 @@ export default {
         },
     },
     actions: {
-        async loadBalconies({ rootState, commit }) {
-            const response = await get(`/users/${rootState.auth.user.id}/balconies`);
+        async loadBalconies({ commit }) {
+            const response = await get('/balconies');
             const body = await response.json();
             if (response.ok) {
                 commit('setBalconies', body);
