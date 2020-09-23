@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <v-card>
             <v-card-title>
-                <span class="headline">{{ $t('newVariety') }}</span>
+                <span class="headline">{{ $t('admin.varieties.newVariety') }}</span>
             </v-card-title>
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
@@ -15,7 +15,7 @@
                                     :error-messages="genusErrors"
                                     item-value="id"
                                     item-text="name"
-                                    :label="$t('genus')"
+                                    :label="$t('shared.genus')"
                                     clearable
                                     required
                                     @blur="$v.variety.genusId.$touch()"
@@ -25,7 +25,7 @@
                                 <v-text-field
                                     v-model="variety.name"
                                     :error-messages="nameErrors"
-                                    :label="$t('name')"
+                                    :label="$t('admin.varieties.name')"
                                     required
                                     @blur="$v.variety.name.$touch()"
                                 />
@@ -35,7 +35,7 @@
                                     v-model="variety.exposure"
                                     :error-messages="exposureErrors"
                                     :items="exposures"
-                                    :label="$t('exposure')"
+                                    :label="$t('shared.exposure')"
                                     required
                                     @blur="$v.variety.exposure.$touch()"
                                 />
@@ -45,13 +45,13 @@
                                     v-model="variety.watering"
                                     :error-messages="wateringErrors"
                                     :items="waterings"
-                                    :label="$t('watering')"
+                                    :label="$t('shared.watering')"
                                     required
                                     @blur="$v.variety.watering.$touch()"
                                 />
                             </v-col>
                             <v-col cols="12" class="overflow-auto">
-                                <p>{{ $t('seed') }}</p>
+                                <p>{{ $t('shared.seed') }}</p>
                                 <v-btn-toggle
                                     v-model="variety.seed"
                                     dense
@@ -70,7 +70,7 @@
                                 </v-btn-toggle>
                             </v-col>
                             <v-col cols="12" class="overflow-auto">
-                                <p>{{ $t('plant') }}</p>
+                                <p>{{ $t('shared.plant') }}</p>
                                 <v-btn-toggle
                                     v-model="variety.plant"
                                     dense
@@ -89,7 +89,7 @@
                                 </v-btn-toggle>
                             </v-col>
                             <v-col cols="12" class="overflow-auto">
-                                <p>{{ $t('harvest') }}</p>
+                                <p>{{ $t('shared.harvest') }}</p>
                                 <v-btn-toggle
                                     v-model="variety.harvest"
                                     dense
@@ -112,8 +112,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer />
-                    <v-btn color="info" text @click="dialog = false;">{{ $t('cancel') }}</v-btn>
-                    <v-btn color="primary" text type="submit" :loading="saving">{{ $t('save') }}</v-btn>
+                    <v-btn color="info" text @click="dialog = false;">{{ $t('shared.cancel') }}</v-btn>
+                    <v-btn color="primary" text type="submit" :loading="saving">{{ $t('shared.save') }}</v-btn>
                 </v-card-actions>
             </v-form>
         </v-card>
@@ -134,8 +134,8 @@ export default {
     mixins: [validationMixin],
     validations: {
         variety: {
-            genusId: { required },
             name: { required, maxLength: maxLength(30) },
+            genusId: { required },
             exposure: { required },
             watering: { required },
         },
@@ -197,7 +197,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions('varieties', ['addVariety', 'updateVariety']),
+        ...mapActions('genera', ['addVariety', 'updateVariety']),
 
         async onSubmit() {
             this.$v.variety.$touch();

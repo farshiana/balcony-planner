@@ -1,5 +1,7 @@
 import { get, put, post } from '@/utils';
 
+const getGenusById = (state) => (id) => state.genera.find((genus) => genus.id === id);
+
 export default {
     namespaced: true,
     state: {
@@ -7,16 +9,32 @@ export default {
         loadingGenera: false,
     },
     getters: {
-        getGenusById: (state) => (id) => state.genera.find((genus) => genus.id === id),
+        getGenusById,
     },
     mutations: {
         setGenera: (state, list) => { state.genera = list; },
-        addGenus: (state, item) => { state.genera.push(item); },
-        updateGenus: (state, item) => {
-            const current = state.genera.find((genus) => genus.id === item.id);
-            Object.assign(current, item);
+        setGenus: (state, genus) => {
+            const current = getGenusById(state)(genus.id);
+            if (current) {
+                Object.assign(current, genus);
+            } else {
+                state.genera.push(genus);
+            }
         },
         setLoadingGenera: (state, loadingGenera) => { state.loadingGenera = loadingGenera; },
+        setVariety: (state, variety) => {
+            const genus = getGenusById(state)(variety.genusId);
+            const current = genus.varieties.find((item) => item.id === variety.id);
+            if (current) {
+                Object.assign(current, variety);
+            } else {
+                genus.varieties = [...genus.varieties, variety];
+            }
+        },
+        setVarieties: (state, { genus, varieties }) => {
+            const current = getGenusById(state)(genus.id);
+            current.varieties = varieties;
+        },
     },
     actions: {
         async loadGenera({ commit }) {
@@ -35,7 +53,7 @@ export default {
             const response = await post('/genera', genus);
             const body = await response.json();
             if (response.ok) {
-                commit('addGenus', body);
+                commit('setGenus', body);
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });
@@ -45,7 +63,37 @@ export default {
             const response = await put(`/genera/${genus.id}`, genus);
             const body = await response.json();
             if (response.ok) {
-                commit('updateGenus', body);
+                commit('setGenus', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async loadVarieties({ commit }, genus) {
+            const response = await get(`/varieties?genusId=${genus.id}`);
+            const body = await response.json();
+            if (response.ok) {
+                commit('setVarieties', { genus, varieties: body });
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async addVariety({ commit }, variety) {
+            const response = await post('/varieties', variety);
+            const body = await response.json();
+            if (response.ok) {
+                commit('setVariety', body);
+            } else {
+                console.error(response, body);
+                commit('setAlert', body, { root: true });
+            }
+        },
+        async updateVariety({ commit }, variety) {
+            const response = await put(`/varieties/${variety.id}`, variety);
+            const body = await response.json();
+            if (response.ok) {
+                commit('setVariety', body);
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });

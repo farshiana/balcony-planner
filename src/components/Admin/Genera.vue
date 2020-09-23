@@ -5,15 +5,17 @@
             :items="genera"
             :items-per-page="12"
             :loading="loadingGenera"
-            class="elevation-1"
             show-group-by
             dense
+            class="elevation-1"
+            :item-class="() => 'clickable'"
+            @click:row="onSelect"
         >
             <template  v-slot:top>
                 <v-row fill-height class="mr-1">
                     <v-spacer />
                     <v-btn class="mt-1" text small color="accent" @click="onAdd">
-                        {{ $t('addGenus') }}
+                        {{ $t('admin.genera.addGenus') }}
                     </v-btn>
                 </v-row>
             </template>
@@ -21,17 +23,17 @@
                 <v-icon
                     small
                     class="mr-2"
-                    @click="onEdit(item)"
+                    @click.stop="onEdit(item)"
                 >
                     mdi-pencil
                 </v-icon>
                 <v-icon
                     small
-                    @click="onDelete(item)"
+                    @click.stop="onDelete(item)"
                 >
                     mdi-delete
                 </v-icon>
-                </template>
+            </template>
         </v-data-table>
         <genus-form
             :visible="dialog"
@@ -40,15 +42,23 @@
         />
         <v-dialog v-model="deleteDialog" persistent max-width="290">
             <v-card>
-                <v-card-title class="headline">{{ genus.name }}</v-card-title>
-                <v-card-text>{{ $t('deleteConfirmation') }}</v-card-text>
+                <v-card-title class="headline">{{ $t('admin.genera.deleteGenus') }}</v-card-title>
+                <v-card-text>{{ $t('admin.genera.deleteGenusConfirmation', { name: genus.name }) }}</v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="error" text @click="deleteDialog = false;">{{ $t('cancel') }}</v-btn>
-                    <v-btn color="primary" text :loading="deleting" @click="onDeleteConfirm">{{ $t('confirm') }}</v-btn>
+                    <v-btn text @click="deleteDialog = false;">{{ $t('shared.cancel') }}</v-btn>
+                    <v-btn
+                        color="error"
+                        text
+                        :loading="deleting"
+                        @click="onConfirmDelete"
+                    >
+                        {{ $t('shared.confirm') }}
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <router-view />
     </v-container>
 </template>
 
@@ -68,8 +78,9 @@ export default {
             deleting: false,
             genus: this.getDefaultGenus(),
             headers: [
-                { value: 'name', text: this.$t('name'), groupable: false },
-                { value: 'category', text: this.$t('category'), groupable: true },
+                { value: 'name', text: this.$t('shared.name'), groupable: false },
+                { value: 'category', text: this.$t('admin.genera.category'), groupable: true },
+                { value: 'actions', text: '', groupable: false },
             ],
         };
     },
@@ -80,7 +91,7 @@ export default {
         this.loadGenera();
     },
     methods: {
-        ...mapActions('genera', ['loadGenera']),
+        ...mapActions('genera', ['loadGenera', 'deleteGenus']),
 
         getDefaultGenus: () => ({
             name: '',
@@ -98,11 +109,14 @@ export default {
             this.genus = genus;
             this.deleteDialog = true;
         },
-        async onDeleteConfirm() {
+        async onConfirmDelete() {
             this.deleting = true;
-            await this.deleteGenus(this.genus.id);
+            await this.deleteGenus(this.genus.id); // TODO: implement action
             this.deleting = false;
             this.deleteDialog = false;
+        },
+        onSelect(row) {
+            this.$router.push({ name: 'genus', params: { genusId: row.id } });
         },
     },
 };

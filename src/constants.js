@@ -3,8 +3,12 @@ import i18n from './i18n';
 export const API_URL = process.env.VUE_APP_API_URL;
 
 // MONTHS
-export const SHORT_MONTHS = [i18n.t('jan'), i18n.t('feb'), i18n.t('mar'), i18n.t('apr'), i18n.t('may'), i18n.t('jun'),
-    i18n.t('jul'), i18n.t('aug'), i18n.t('sept'), i18n.t('oct'), i18n.t('nov'), i18n.t('dec')];
+export const SHORT_MONTHS = [
+    i18n.t('shared.jan'), i18n.t('shared.feb'), i18n.t('shared.mar'),
+    i18n.t('shared.apr'), i18n.t('shared.may'), i18n.t('shared.jun'),
+    i18n.t('shared.jul'), i18n.t('shared.aug'), i18n.t('shared.sept'),
+    i18n.t('shared.oct'), i18n.t('shared.nov'), i18n.t('shared.dec'),
+];
 
 // CATEGORIES
 export const CATEGORY_FRUITS = 'fruits';

@@ -1,13 +1,14 @@
 <template>
     <v-app>
         <v-app-bar app color="primary" dark>
-            <v-toolbar-title>{{ $t('title') }}</v-toolbar-title>
+            <v-toolbar-title>{{ $t('app.title') }}</v-toolbar-title>
             <v-spacer />
             <template v-if="isAuthenticated">
-                <v-btn icon
+                <v-btn
+                    icon
                     v-for="item in items"
                     :key="item.to"
-                    :to="item.to"
+                    :to="{ name: item.to }"
                 >
                     <v-icon>{{ item.icon }}</v-icon>
                 </v-btn>
@@ -40,7 +41,7 @@ export default {
                 { to: 'planning', icon: 'mdi-calendar-month' },
                 { to: 'plants', icon: 'mdi-sprout' },
                 { to: 'balcony', icon: 'mdi-window-open-variant' },
-                { to: 'admin', icon: 'mdi-application-cog' },
+                { to: 'genera', icon: 'mdi-application-cog' },
             ],
         };
     },
@@ -53,3 +54,9 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+.clickable {
+    cursor: pointer;
+}
+</style>

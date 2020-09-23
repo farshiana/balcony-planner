@@ -1,41 +1,28 @@
 <template>
     <div>
-        <v-tabs v-model="currentTab">
+        <v-tabs v-model="activeTab">
             <v-tab
                 v-for="tab in tabs"
-                :key="tab.icon"
+                :key="tab.to"
+                :to="{ name: tab.to }"
             >
                 <v-icon left>{{ tab.icon }}</v-icon>
                 {{ tab.label }}
             </v-tab>
         </v-tabs>
-        <v-tabs-items v-model="currentTab">
-            <v-tab-item
-                v-for="tab in tabs"
-                :key="tab.icon"
-            >
-                <component :is="tab.component" />
-            </v-tab-item>
-        </v-tabs-items>
+        <router-view />
     </div>
 </template>
 
 <script>
-import Genera from '@/components/Admin/Genera/Genera.vue';
-import Varieties from '@/components/Admin/Varieties/Varieties.vue';
-
 export default {
-    components: {
-        Varieties,
-    },
     data() {
         const tabs = [
-            { label: this.$t('genera'), component: Genera, icon: 'mdi-barn' },
-            { label: this.$t('varieties'), component: Varieties, icon: 'mdi-sprout' },
+            { label: this.$t('shared.genera'), icon: 'mdi-barn', to: 'genera' },
         ];
         return {
             tabs,
-            currentTab: tabs[0].component,
+            activeTab: tabs[0].component,
         };
     },
 };

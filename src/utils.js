@@ -33,3 +33,31 @@ export const put = (route, body) => fetch(`${API_URL}${route}`, {
     credentials: 'include',
     body: JSON.stringify(body),
 });
+
+// export const getColors = (months, color) => {
+//     const monthsCount = 12;
+//     let colors = '';
+
+//     const addColor = (color, month) => {
+//         colors += `, ${color} ${month / monthsCount* 100}%`;
+//     };
+
+//     months.forEach((month, index) => {
+//         if (index === 0) {
+//             addColor(month === 0 ? color : 'transparent', 0);
+//         } else if (month !== months[index - 1] + 1) {
+//             addColor(color, months[index - 1] + 1);
+//             addColor('transparent', months[index - 1] + 1);
+//             addColor('transparent', month);
+//             addColor(color, month);
+//         }
+//         if (index === months.length - 1) {
+//             addColor(color, month + 1);
+//             if (month !== monthsCount - 1) {
+//                 addColor('transparent', month + 1);
+//                 addColor('transparent', monthsCount);
+//             }
+//         }
+//     });
+//     return colors;
+// };

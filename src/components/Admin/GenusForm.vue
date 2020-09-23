@@ -2,7 +2,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <v-card>
             <v-card-title>
-                <span class="headline">{{ $t('newGenus') }}</span>
+                <span class="headline">{{ $t('admin.genera.newGenus') }}</span>
             </v-card-title>
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
@@ -13,7 +13,7 @@
                                     v-model="genus.category"
                                     :items="categories"
                                     :error-messages="categoryErrors"
-                                    :label="$t('category')"
+                                    :label="$t('admin.genera.category')"
                                     clearable
                                     required
                                     @blur="$v.genus.category.$touch()"
@@ -23,7 +23,7 @@
                                 <v-text-field
                                     v-model="genus.name"
                                     :error-messages="nameErrors"
-                                    :label="$t('name')"
+                                    :label="$t('shared.name')"
                                     required
                                     @blur="$v.genus.name.$touch()"
                                 />
@@ -33,8 +33,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer />
-                    <v-btn color="info" text @click="dialog = false;">{{ $t('cancel') }}</v-btn>
-                    <v-btn color="primary" text type="submit" :loading="saving">{{ $t('save') }}</v-btn>
+                    <v-btn color="info" text @click="dialog = false;">{{ $t('shared.cancel') }}</v-btn>
+                    <v-btn color="primary" text type="submit" :loading="saving">{{ $t('shared.save') }}</v-btn>
                 </v-card-actions>
             </v-form>
         </v-card>
@@ -73,9 +73,9 @@ export default {
         return {
             saving: false,
             categories: [
-                { value: CATEGORY_FRUITS, text: this.$t('fruits') },
-                { value: CATEGORY_HERBS, text: this.$t('herbs') },
-                { value: CATEGORY_VEGETABLES, text: this.$t('vegetables') },
+                { value: CATEGORY_FRUITS, text: this.$t('shared.fruits') },
+                { value: CATEGORY_HERBS, text: this.$t('shared.herbs') },
+                { value: CATEGORY_VEGETABLES, text: this.$t('shared.vegetables') },
             ],
         };
     },
@@ -91,14 +91,14 @@ export default {
         categoryErrors() {
             const errors = [];
             if (!this.$v.genus.category.$dirty) return errors;
-            if (!this.$v.genus.category.required) errors.push(this.$t('categoryRequired'));
+            if (!this.$v.genus.category.required) errors.push(this.$t('admin.genera.categoryRequired'));
             return errors;
         },
         nameErrors() {
             const errors = [];
             if (!this.$v.genus.name.$dirty) return errors;
-            if (!this.$v.genus.name.maxLength) errors.push(this.$t('nameMaxLength'));
-            if (!this.$v.genus.name.required) errors.push(this.$t('nameRequired'));
+            if (!this.$v.genus.name.maxLength) errors.push(this.$t('shared.nameMaxLength'));
+            if (!this.$v.genus.name.required) errors.push(this.$t('shared.nameRequired'));
             return errors;
         },
     },

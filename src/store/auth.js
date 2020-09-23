@@ -14,7 +14,7 @@ export default {
     },
     actions: {
         async getUser({ commit }) {
-            const response = await get('/users/current');
+            const response = await get('/auth/current');
             if (response.ok) {
                 const body = await response.json();
                 commit('setUser', body);

@@ -41,7 +41,20 @@ const routes = [
         path: '/admin',
         name: 'admin',
         component: () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue'),
-
+        children: [{
+            path: '/admin/genera',
+            name: 'genera',
+            component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genera.vue'),
+            children: [{
+                path: '/admin/genera/:genusId',
+                name: 'genus',
+                component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genus.vue'),
+                props: true,
+            }],
+        }],
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: '*',
