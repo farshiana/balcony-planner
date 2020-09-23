@@ -2,7 +2,9 @@
     <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
         <v-card>
             <v-card-title>
-                <span class="headline">{{ $t('admin.varieties.newVariety') }}</span>
+                <span class="headline">
+                    {{ variety.id ? $t('admin.varieties.editVariety') : $t('admin.varieties.newVariety') }}
+                </span>
             </v-card-title>
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>

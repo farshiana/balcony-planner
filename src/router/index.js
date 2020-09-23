@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Planning from '@/views/Planning.vue';
-import Plants from '@/views/Plants.vue';
-import Balcony from '@/views/Balcony.vue';
-import Auth from '@/views/Auth.vue';
+import Planning from '@/components/Planning.vue';
+import Plants from '@/components/Plants/Plants.vue';
+import Balcony from '@/components/Balcony.vue';
+import Auth from '@/components/Auth.vue';
 
 Vue.use(VueRouter);
 
@@ -40,15 +40,15 @@ const routes = [
     {
         path: '/admin',
         name: 'admin',
-        component: () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue'),
+        component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Admin.vue'),
         children: [{
             path: '/admin/genera',
             name: 'genera',
-            component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genera.vue'),
+            component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genera/Genera.vue'),
             children: [{
                 path: '/admin/genera/:genusId',
                 name: 'genus',
-                component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genus.vue'),
+                component: () => import(/* webpackChunkName: "admin" */ '@/components/Admin/Genera/Genus.vue'),
                 props: true,
             }],
         }],

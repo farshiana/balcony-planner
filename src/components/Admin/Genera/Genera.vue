@@ -43,7 +43,7 @@
         <v-dialog v-model="deleteDialog" persistent max-width="290">
             <v-card>
                 <v-card-title class="headline">{{ $t('admin.genera.deleteGenus') }}</v-card-title>
-                <v-card-text>{{ $t('admin.genera.deleteGenusConfirmation', { name: genus.name }) }}</v-card-text>
+                <v-card-text>{{ $t('shared.deleteConfirmation', { name: genus.name }) }}</v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn text @click="deleteDialog = false;">{{ $t('shared.cancel') }}</v-btn>

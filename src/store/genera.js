@@ -13,6 +13,7 @@ export default {
     },
     mutations: {
         setGenera: (state, list) => { state.genera = list; },
+        setLoadingGenera: (state, loadingGenera) => { state.loadingGenera = loadingGenera; },
         setGenus: (state, genus) => {
             const current = getGenusById(state)(genus.id);
             if (current) {
@@ -21,7 +22,6 @@ export default {
                 state.genera.push(genus);
             }
         },
-        setLoadingGenera: (state, loadingGenera) => { state.loadingGenera = loadingGenera; },
         setVariety: (state, variety) => {
             const genus = getGenusById(state)(variety.genusId);
             const current = genus.varieties.find((item) => item.id === variety.id);
