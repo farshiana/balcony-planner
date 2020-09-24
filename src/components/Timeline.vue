@@ -6,8 +6,8 @@
             class="line d-flex flex-row"
         >
             <v-tooltip
-                v-for="(month, index) in 12"
-                :key="index"
+                v-for="(month, index) in shortMonths"
+                :key="month"
                 :disabled="!line.months.includes(index)"
                 bottom
             >
@@ -19,7 +19,7 @@
                         v-on="on"
                     />
                 </template>
-                <span>{{ shortMonths[index] }} {{ line.tooltip.toLowerCase() }}</span>
+                <span>{{ month }} {{ line.tooltip.toLowerCase() }}</span>
             </v-tooltip>
         </div>
     </div>
