@@ -9,7 +9,7 @@
                 v-for="(month, index) in 12"
                 :key="index"
                 :disabled="!line.months.includes(index)"
-                top
+                bottom
             >
                 <template v-slot:activator="{ on, attrs }">
                     <div

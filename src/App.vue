@@ -1,20 +1,39 @@
 <template>
     <v-app>
         <v-app-bar app color="primary" dark>
-            <v-toolbar-title>{{ $t('app.title') }}</v-toolbar-title>
+            <v-toolbar-title>{{ $t('shared.title') }}</v-toolbar-title>
             <v-spacer />
             <template v-if="isAuthenticated">
-                <v-btn
-                    icon
+                <v-tooltip
                     v-for="item in items"
                     :key="item.to"
-                    :to="{ name: item.to }"
+                    bottom
                 >
-                    <v-icon>{{ item.icon }}</v-icon>
-                </v-btn>
-                <v-btn icon @click="logout">
-                    <v-icon>mdi-logout</v-icon>
-                </v-btn>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            v-bind="attrs"
+                            v-on="on"
+                            icon
+                            :to="{ name: item.to }"
+                        >
+                            <v-icon>{{ item.icon }}</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>{{ item.tooltip }}</span>
+                </v-tooltip>
+                <v-tooltip bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                            v-bind="attrs"
+                            v-on="on"
+                            icon
+                            @click="logout"
+                        >
+                            <v-icon>mdi-logout</v-icon>
+                        </v-btn>
+                    </template>
+                    <span>{{ $t('auth.logout') }}</span>
+                </v-tooltip>
             </template>
         </v-app-bar>
         <v-main>
@@ -38,10 +57,10 @@ export default {
     data() {
         return {
             items: [
-                { to: 'planning', icon: 'mdi-calendar-month' },
-                { to: 'plants', icon: 'mdi-sprout' },
-                { to: 'balcony', icon: 'mdi-window-open-variant' },
-                { to: 'genera', icon: 'mdi-application-cog' },
+                { to: 'planning', icon: 'mdi-calendar-month', tooltip: this.$t('shared.planning') },
+                { to: 'plants', icon: 'mdi-sprout', tooltip: this.$t('shared.plants') },
+                { to: 'balcony', icon: 'mdi-window-open-variant', tooltip: this.$t('shared.balcony') },
+                { to: 'genera', icon: 'mdi-application-cog', tooltip: this.$t('shared.admin') },
             ],
         };
     },

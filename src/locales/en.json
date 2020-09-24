@@ -1,5 +1,5 @@
 {
-    "app.title": "Balcony Planner",
+    "shared.title": "Balcony Planner",
     "shared.save": "Save",
     "shared.cancel": "Cancel",
     "shared.confirm": "Confirm",
@@ -14,6 +14,11 @@
     "shared.plant": "Plant",
     "shared.harvest": "Harvest",
     "shared.herbs": "Herbs",
+    "shared.planters": "Planters",
+    "shared.plants": "Plants",
+    "shared.planning": "Planning",
+    "shared.balcony": "Balcony",
+    "shared.admin": "Admin",
     "shared.jan": "Jan",
     "shared.feb": "Feb",
     "shared.mar": "Mar",
