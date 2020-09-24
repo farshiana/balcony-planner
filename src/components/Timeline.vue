@@ -19,14 +19,14 @@
                         v-on="on"
                     />
                 </template>
-                <span>{{ SHORT_MONTHS[index] }} {{ line.tooltip.toLowerCase() }}</span>
+                <span>{{ shortMonths[index] }} {{ line.tooltip.toLowerCase() }}</span>
             </v-tooltip>
         </div>
     </div>
 </template>
 
 <script>
-import { SHORT_MONTHS } from '@/constants';
+import { shortMonths } from '@/constants';
 
 export default {
     props: {
@@ -45,7 +45,7 @@ export default {
     },
     data() {
         return {
-            SHORT_MONTHS,
+            shortMonths,
         };
     },
     computed: {

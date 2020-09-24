@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Planning from '@/components/Planning.vue';
 import Plants from '@/components/Plants/Plants.vue';
-import Balcony from '@/components/Balcony.vue';
+import Balcony from '@/components/Balcony/Balcony.vue';
 import Auth from '@/components/Auth.vue';
 
 Vue.use(VueRouter);
@@ -23,6 +23,12 @@ const routes = [
         meta: {
             requiresAuth: true,
         },
+        children: [{
+            path: '/plants/:plantId',
+            name: 'plant',
+            component: () => import(/* webpackChunkName: "plants" */ '@/components/Plants/Plant.vue'),
+            props: true,
+        }],
     },
     {
         path: '/balcony',

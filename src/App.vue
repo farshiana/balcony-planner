@@ -59,4 +59,7 @@ export default {
 .clickable {
     cursor: pointer;
 }
+.disable-events {
+    pointer-events: none
+}
 </style>

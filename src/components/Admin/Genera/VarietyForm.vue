@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
+    <v-dialog v-model="dialog" max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">
@@ -126,10 +126,7 @@
 import { mapState, mapGetters, mapActions } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
-import {
-    EXPOSURES,
-    WATERINGS,
-} from '@/constants';
+import { exposures, waterings } from '@/constants';
 import { shortMonths } from '@/utils';
 
 export default {
@@ -154,10 +151,10 @@ export default {
     },
     data() {
         return {
-            saving: false,
             shortMonths,
-            exposures: EXPOSURES.map((exposure) => ({ value: exposure, text: this.$t(exposure) })),
-            waterings: WATERINGS.map((watering) => ({ value: watering, text: this.$t(watering) })),
+            exposures,
+            waterings,
+            saving: false,
         };
     },
     computed: {

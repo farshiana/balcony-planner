@@ -8,6 +8,8 @@
             show-group-by
             dense
             class="elevation-1"
+            :item-class="() => 'clickable'"
+            @click:row="onSelect"
         >
             <template  v-slot:top>
                 <v-row fill-height class="mr-1">
@@ -20,7 +22,7 @@
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">
                     <div
-                        v-for="month in SHORT_MONTHS"
+                        v-for="month in shortMonths"
                         :key="month"
                     >
                         {{ month }}
@@ -55,7 +57,7 @@
             :plant="plant"
             @toggle="(visible) => { dialog = visible; }"
         />
-        <v-dialog v-model="deleteDialog" persistent max-width="290">
+        <v-dialog v-model="deleteDialog" max-width="290">
             <v-card>
                 <v-card-title class="headline">{{ $t('plants.deletePlant') }}</v-card-title>
                 <v-card-text>
@@ -75,6 +77,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+        <router-view />
     </v-container>
 </template>
 
@@ -82,7 +85,7 @@
 import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
 import PlantForm from '@/components/Plants/PlantForm.vue';
-import { SHORT_MONTHS } from '@/constants';
+import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
 
 export default {
@@ -92,7 +95,7 @@ export default {
     },
     data() {
         return {
-            SHORT_MONTHS,
+            shortMonths,
             dialog: false,
             deleteDialog: false,
             deleting: false,
@@ -136,6 +139,9 @@ export default {
             await this.deletePlant(this.plant.id); // TODO: implement action
             this.deleting = false;
             this.deleteDialog = false;
+        },
+        onSelect(row) {
+            this.$router.push({ name: 'plant', params: { plantId: row.id } });
         },
     },
 };

@@ -19,7 +19,7 @@
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">
                     <div
-                        v-for="month in SHORT_MONTHS"
+                        v-for="month in shortMonths"
                         :key="month"
                     >
                         {{ month }}
@@ -60,7 +60,7 @@
 <script>
 import Vue from 'vue';
 import { mapActions } from 'vuex';
-import { SHORT_MONTHS } from '@/constants';
+import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
 import VarietyForm from './VarietyForm.vue';
 
@@ -77,7 +77,7 @@ export default {
     },
     data() {
         return {
-            SHORT_MONTHS,
+            shortMonths,
             loading: false,
             dialog: false,
             deleteDialog: false,

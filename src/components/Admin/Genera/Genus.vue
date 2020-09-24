@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import Varieties from './Varieties.vue';
 
 export default {
@@ -43,7 +43,6 @@ export default {
         };
     },
     computed: {
-        ...mapState('genera', ['loadingGenera']),
         ...mapGetters('genera', ['getGenusById']),
 
         genus() {

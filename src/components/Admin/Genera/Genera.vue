@@ -40,7 +40,7 @@
             :genus="genus"
             @toggle="(visible) => { dialog = visible; }"
         />
-        <v-dialog v-model="deleteDialog" persistent max-width="290">
+        <v-dialog v-model="deleteDialog" max-width="290">
             <v-card>
                 <v-card-title class="headline">{{ $t('admin.genera.deleteGenus') }}</v-card-title>
                 <v-card-text>{{ $t('shared.deleteConfirmation', { name: genus.name }) }}</v-card-text>

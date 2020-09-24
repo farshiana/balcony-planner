@@ -3,7 +3,7 @@ import i18n from './i18n';
 export const API_URL = process.env.VUE_APP_API_URL;
 
 // MONTHS
-export const SHORT_MONTHS = [
+export const shortMonths = [
     i18n.t('shared.jan'), i18n.t('shared.feb'), i18n.t('shared.mar'),
     i18n.t('shared.apr'), i18n.t('shared.may'), i18n.t('shared.jun'),
     i18n.t('shared.jul'), i18n.t('shared.aug'), i18n.t('shared.sept'),
@@ -29,6 +29,7 @@ export const EXPOSURES = [
     EXPOSURE_SHADE,
     EXPOSURE_SUN,
 ];
+export const exposures = EXPOSURES.map((exposure) => ({ value: exposure, text: i18n.t(exposure) }));
 
 // WATERINGS
 export const WATERING_LOW = 'low';
@@ -39,6 +40,7 @@ export const WATERINGS = [
     WATERING_MEDIUM,
     WATERING_HIGH,
 ];
+export const waterings = WATERINGS.map((watering) => ({ value: watering, text: i18n.t(watering) }));
 
 // SHAPES
 export const SHAPE_CIRCLE = 'circle';

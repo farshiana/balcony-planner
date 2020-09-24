@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" persistent max-width="600px" @click:outside="dialog = false;">
+    <v-dialog v-model="dialog" max-width="600px">
         <v-card>
             <v-card-title>
                 <span class="headline">
