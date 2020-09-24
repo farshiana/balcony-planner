@@ -71,5 +71,8 @@
     "plants.deletePlant": "Delete plant",
     "plants.notes": "Notes",
     "plants.notesMaxLength": "Notes must be at most 100 characters long",
-    "plants.varietyRequired": "Variety is required"
+    "plants.varietyRequired": "Variety is required",
+    "balcony.square": "Square",
+    "balcony.circle": "Circle",
+    "balcony.rectangle": "Rectangle"
 }

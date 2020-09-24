@@ -51,6 +51,7 @@ export const SHAPES = [
     SHAPE_SQUARE,
     SHAPE_RECTANGLE,
 ];
+export const shapes = SHAPES.map((shape) => ({ value: shape, text: i18n.t(shape) }));
 
 // COLORS
 export const COLOR_RED = 'red';
