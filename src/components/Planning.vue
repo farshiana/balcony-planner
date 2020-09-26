@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container fluid class="planning">
         <v-data-table
             :headers="headers"
             :items="plants"
@@ -8,23 +8,31 @@
             dense
             class="elevation-1"
         >
-            <template v-slot:[`header.timeline`]="">
-                <div class="d-flex flex-row justify-space-around">
-                    <div
-                        v-for="month in shortMonths"
-                        :key="month"
-                        :class="{ current: month === currentMonth }"
+            <template
+                v-for="(month, index) in shortMonths"
+                v-slot:[`item.${month}`]="{ item }"
+            >
+                <div :key="month" :style="{ height: '100%' }">
+                    <v-tooltip
+                        v-for="step in steps"
+                        :key="step.value"
+                        bottom
+                        :disabled="!item.variety[step.value].includes(index)"
                     >
-                        {{ month }}
-                    </div>
+                        <template v-slot:activator="{ on, attrs }">
+                            <div
+                                class="month flex-grow-1"
+                                :class="{
+                                    [step.value]: item.variety[step.value].includes(index),
+                                    selected: index === currentMonth,
+                                }"
+                                v-bind="attrs"
+                                v-on="on"
+                            />
+                        </template>
+                        <span>{{ month }} {{ step.text.toLowerCase() }} </span>
+                    </v-tooltip>
                 </div>
-            </template>
-            <template v-slot:[`item.timeline`]="{ item }">
-                <timeline
-                    :seed="item.variety.seed"
-                    :plant="item.variety.plant"
-                    :harvest="item.variety.harvest"
-                />
             </template>
         </v-data-table>
     </v-container>
@@ -33,20 +41,27 @@
 <script>
 import { mapState, mapActions } from 'vuex';
 import { shortMonths } from '@/constants';
-import Timeline from '@/components/Timeline.vue';
 
 export default {
-    components: {
-        Timeline,
-    },
     data() {
+        const currentMonth = (new Date()).getMonth();
         return {
             shortMonths,
+            steps: [
+                { value: 'seed', text: this.$t('shared.seed') },
+                { value: 'plant', text: this.$t('shared.plant') },
+                { value: 'harvest', text: this.$t('shared.harvest') },
+            ],
             headers: [
                 { value: 'variety.name', text: this.$t('shared.name') },
-                { value: 'timeline', text: '', sortable: false },
+                ...shortMonths.map((month, index) => ({
+                    value: month,
+                    text: month,
+                    sortable: false,
+                    class: index === currentMonth ? 'selected' : '',
+                })),
             ],
-            currentMonth: (new Date()).getMonth(),
+            currentMonth,
         };
     },
     computed: {
@@ -60,3 +75,32 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.planning {
+    .month {
+        height: 33.3%;
+        &.selected {
+            background: #E8EAF6;
+        }
+        &.seed {
+            background: #6D4C41;
+        }
+        &.plant {
+            background: #FFB300;
+        }
+        &.harvest {
+            background: #43A047;
+        }
+    }
+    ::v-deep .text-start {
+        &.selected {
+            background: #E8EAF6;
+        }
+        &:not(:first-child) {
+            padding: 0px;
+            text-align: center !important;
+        }
+    }
+}
+</style>

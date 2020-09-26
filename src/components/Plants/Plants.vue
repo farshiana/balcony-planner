@@ -104,8 +104,12 @@ export default {
                 { value: 'variety.name', text: this.$t('shared.name'), groupable: false },
                 { value: 'variety.exposure', text: this.$t('shared.exposure') },
                 { value: 'variety.watering', text: this.$t('shared.watering') },
-                { value: 'timeline', text: '', sortable: false },
-                { value: 'actions', text: '', sortable: false },
+                {
+                    value: 'timeline', text: '', sortable: false, groupable: false,
+                },
+                {
+                    value: 'actions', text: '', sortable: false, groupable: false,
+                },
             ],
         };
     },
