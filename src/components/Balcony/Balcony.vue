@@ -20,6 +20,10 @@ export default {
 <style lang="scss" scoped>
 .balcony {
     ::v-deep .shape {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
         background: #3f51b5;
         color: white;
         &.rectangle {

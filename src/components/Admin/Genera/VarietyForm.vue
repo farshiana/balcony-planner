@@ -27,7 +27,7 @@
                                 <v-text-field
                                     v-model="variety.name"
                                     :error-messages="nameErrors"
-                                    :label="$t('admin.varieties.name')"
+                                    :label="$t('shared.name')"
                                     required
                                     @blur="$v.variety.name.$touch()"
                                 />
@@ -172,20 +172,20 @@ export default {
         genusErrors() {
             const errors = [];
             if (!this.$v.variety.genusId.$dirty) return errors;
-            if (!this.$v.variety.genusId.required) errors.push(this.$t('genusRequired'));
+            if (!this.$v.variety.genusId.required) errors.push(this.$t('admin.varieties.genusRequired'));
             return errors;
         },
         nameErrors() {
             const errors = [];
             if (!this.$v.variety.name.$dirty) return errors;
-            if (!this.$v.variety.name.maxLength) errors.push(this.$t('nameMaxLength'));
-            if (!this.$v.variety.name.required) errors.push(this.$t('nameRequired'));
+            if (!this.$v.variety.name.maxLength) errors.push(this.$t('shared.nameMaxLength'));
+            if (!this.$v.variety.name.required) errors.push(this.$t('shared.nameRequired'));
             return errors;
         },
         exposureErrors() {
             const errors = [];
             if (!this.$v.variety.exposure.$dirty) return errors;
-            if (!this.$v.variety.exposure.required) errors.push(this.$t('exposureRequired'));
+            if (!this.$v.variety.exposure.required) errors.push(this.$t('shared.exposureRequired'));
             return errors;
         },
         wateringErrors() {

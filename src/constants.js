@@ -80,3 +80,17 @@ export const COLORS = [
     COLOR_BROWN,
     COLOR_GREY,
 ];
+export const colors = [
+    { value: COLOR_RED, text: i18n.t(COLOR_RED), hex: '#F44336' },
+    { value: COLOR_PINK, text: i18n.t(COLOR_PINK), hex: '#E91E63' },
+    { value: COLOR_PURPLE, text: i18n.t(COLOR_PURPLE), hex: '#673AB7' },
+    { value: COLOR_INDIGO, text: i18n.t(COLOR_INDIGO), hex: '#3F51B5' },
+    { value: COLOR_BLUE, text: i18n.t(COLOR_BLUE), hex: '#2196F3' },
+    { value: COLOR_CYAN, text: i18n.t(COLOR_CYAN), hex: '#00BCD4' },
+    { value: COLOR_TEAL, text: i18n.t(COLOR_TEAL), hex: '#009688' },
+    { value: COLOR_GREEN, text: i18n.t(COLOR_GREEN), hex: '#4CAF50' },
+    { value: COLOR_YELLOW, text: i18n.t(COLOR_YELLOW), hex: '#FFEB3B' },
+    { value: COLOR_ORANGE, text: i18n.t(COLOR_ORANGE), hex: '#FF9800' },
+    { value: COLOR_BROWN, text: i18n.t(COLOR_BROWN), hex: '#795548' },
+    { value: COLOR_GREY, text: i18n.t(COLOR_GREY), hex: '#607D8B' },
+];

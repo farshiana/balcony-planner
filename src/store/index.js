@@ -4,6 +4,7 @@ import auth from './auth';
 import genera from './genera';
 import plants from './plants';
 import varieties from './varieties';
+import planters from './planters';
 
 Vue.use(Vuex);
 
@@ -21,5 +22,6 @@ export default new Vuex.Store({
         genera,
         plants,
         varieties,
+        planters,
     },
 });

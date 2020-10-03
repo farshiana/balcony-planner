@@ -4,10 +4,11 @@
             v-for="shape in shapes"
             :key="shape.value"
             :id="shape.value"
-            class="shape d-flex align-center justify-center"
+            class="shape"
             :class="shape.value"
             draggable
             @dragstart="onDragStart($event, shape.value)"
+            @dragend="onDragEnd"
         >
             {{ shape.text }}
         </div>
@@ -24,13 +25,18 @@ export default {
         };
     },
     methods: {
+        /* eslint-disable no-param-reassign */
         onDragStart(event, shape) {
-            /* eslint-disable no-param-reassign */
+            event.target.style.opacity = 0.6;
+
             event.dataTransfer.setData('shape', shape);
             event.dataTransfer.dropEffect = 'copy';
             event.dataTransfer.effectAllowed = 'copy';
-            /* eslint-enable no-param-reassign */
         },
+        onDragEnd(event) {
+            event.target.style.opacity = 1;
+        },
+        /* eslint-enable no-param-reassign */
     },
 };
 </script>
