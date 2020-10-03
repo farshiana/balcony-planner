@@ -26,7 +26,7 @@ export default {
     },
     data() {
         return {
-            nav: 'plants',
+            nav: 'shapes', // TODO: put plants first
         };
     },
 };

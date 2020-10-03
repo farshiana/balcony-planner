@@ -1,19 +1,17 @@
 <template>
-    <v-list>
-        <v-list-item
+    <div class="d-flex flex-column align-center ma-3">
+        <div
             v-for="shape in shapes"
             :key="shape.value"
-            @click="selectShape"
+            :id="shape.value"
+            class="shape d-flex align-center justify-center"
+            :class="shape.value"
+            draggable
+            @dragstart="onDragStart($event, shape.value)"
         >
-            <v-list-item-icon>
-                <v-icon x-large color="accent">{{ `mdi-${shape.value}` }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-                <v-list-item-title v-text="shape.text" />
-            </v-list-item-content>
-        </v-list-item>
-    </v-list>
+            {{ shape.text }}
+        </div>
+    </div>
 </template>
 
 <script>
@@ -26,8 +24,12 @@ export default {
         };
     },
     methods: {
-        selectShape() {
-            // TODO: implement
+        onDragStart(event, shape) {
+            /* eslint-disable no-param-reassign */
+            event.dataTransfer.setData('shape', shape);
+            event.dataTransfer.dropEffect = 'copy';
+            event.dataTransfer.effectAllowed = 'copy';
+            /* eslint-enable no-param-reassign */
         },
     },
 };

@@ -43,13 +43,13 @@ export const WATERINGS = [
 export const waterings = WATERINGS.map((watering) => ({ value: watering, text: i18n.t(watering) }));
 
 // SHAPES
+export const SHAPE_RECTANGLE = 'rectangle';
 export const SHAPE_CIRCLE = 'circle';
 export const SHAPE_SQUARE = 'square';
-export const SHAPE_RECTANGLE = 'rectangle';
 export const SHAPES = [
+    SHAPE_RECTANGLE,
     SHAPE_CIRCLE,
     SHAPE_SQUARE,
-    SHAPE_RECTANGLE,
 ];
 export const shapes = SHAPES.map((shape) => ({ value: shape, text: i18n.t(shape) }));
 
