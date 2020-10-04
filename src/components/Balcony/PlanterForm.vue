@@ -26,7 +26,7 @@
                                     :error-messages="shapeErrors"
                                     :label="$t('planters.shape')"
                                     required
-                                    :disabled="!!planter.id"
+                                    :disabled="true"
                                     @blur="$v.planter.shape.$touch()"
                                 />
                             </v-col>

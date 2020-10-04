@@ -76,14 +76,12 @@ export default {
             if (event.target.id !== 'dropZone') return;
 
             const shape = event.dataTransfer.getData('shape');
-            const source = document.getElementById(shape);
+            const { width, height } = document.getElementById(shape).getBoundingClientRect();
+            const { left, top } = event.target.getBoundingClientRect();
 
-            const {
-                left, top, width, height,
-            } = source.getBoundingClientRect();
             this.planter = this.getDefaultPlanter({
                 shape,
-                position: { left, top },
+                position: { left: event.clientX - left, top: event.clientY - top },
                 dimensions: { width, height },
             });
             this.dialog = true;
