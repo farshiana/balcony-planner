@@ -1,47 +1,42 @@
 <template>
-    <div
-        class="zone elevation-2 my-3 mr-3"
-        @drop="onDrop"
-        @dragover.prevent
-        @dragenter.prevent="onDragEnter"
-        @dragleave="onDragLeave"
-    >
-        zone
+    <div class="zone elevation-2 my-3 mr-3">
         <div
-            v-for="planter in planters"
-            :key="planter.id"
-            class="shape"
-            :class="planter.shape"
-            :style="{
-                left: `${planter.position.left}px`,
-                top: `${planter.position.top}px`,
-                width: `${planter.dimensions.width}px`,
-                height: `${planter.dimensions.height}px`,
-                'border-radius': planter.shape === SHAPE_CIRCLE ? '50%' : 0,
-            }"
+            class="content ma-3"
+            @drop="onDrop"
+            @dragover.prevent
+            @dragenter.prevent="onDragEnter"
+            @dragleave="onDragLeave"
         >
-            {{ planter.name }}
+            zone
+            <planter
+                v-for="planter in planters"
+                :key="planter.id"
+                :planter="planter"
+                @edit="onEdit(planter)"
+            />
+            <planter-form
+                :visible="dialog"
+                :planter="planter"
+                @toggle="(visible) => { dialog = visible; }"
+            />
         </div>
-        <planter-form
-            :visible="dialog"
-            :planter="planter"
-            @toggle="(visible) => { dialog = visible; }"
-        />
     </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
-import { SHAPE_CIRCLE, COLORS } from '@/constants';
+import { COLORS } from '@/constants';
+import Planter from './Planter.vue';
 import PlanterForm from './PlanterForm.vue';
 
 export default {
     components: {
+        Planter,
         PlanterForm,
     },
     data() {
         return {
-            SHAPE_CIRCLE,
             dialog: false,
             planter: this.getDefaultPlanter(),
         };
@@ -62,6 +57,10 @@ export default {
             color: COLORS[0],
             ...props,
         }),
+        onEdit(planter) {
+            this.planter = Vue.util.extend({}, planter);
+            this.dialog = true;
+        },
         onDragEnter(event) {
             event.target.classList.add('hover');
         },
@@ -105,7 +104,19 @@ export default {
 <style lang="scss" scoped>
 .zone {
     flex: 5 0;
-    position: relative;
+    .content {
+        position: relative;
+        height: calc(100% - 24px);
+        overflow: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        .shape {
+            position: absolute;
+        }
+    }
     &.hover {
         background: #ECEFF1;
     }
