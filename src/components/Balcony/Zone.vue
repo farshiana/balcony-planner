@@ -1,7 +1,8 @@
 <template>
     <div class="zone elevation-2 my-3 mr-3">
         <div
-            class="content ma-3"
+            id="dropZone"
+            class="drop-zone ma-3"
             @drop="onDrop"
             @dragover.prevent
             @dragenter.prevent="onDragEnter"
@@ -62,12 +63,18 @@ export default {
             this.dialog = true;
         },
         onDragEnter(event) {
+            if (event.target.id !== 'dropZone') return;
+
             event.target.classList.add('hover');
         },
         onDragLeave(event) {
+            if (event.target.id !== 'dropZone') return;
+
             event.target.classList.remove('hover');
         },
         onDrop(event) {
+            if (event.target.id !== 'dropZone') return;
+
             const shape = event.dataTransfer.getData('shape');
             const source = document.getElementById(shape);
 
@@ -80,22 +87,6 @@ export default {
                 dimensions: { width, height },
             });
             this.dialog = true;
-
-            // const clone =  source.cloneNode(true);
-            // clone.setAttribute('draggable', false);
-            // clone.style.opacity = 1;
-            // clone.style.position = 'absolute';
-
-            // // Use offset since the structure is not nested, otherwise:
-            // // const rect = event.target.getBoundingClientRect();
-            // // clone.style.left = `${event.clientX - rect.left}px`;
-            // // clone.style.top = `${event.clientY - rect.top}px`;
-
-            // clone.style.left = `${event.offsetX}px`;
-            // clone.style.top = `${event.offsetY}px`;
-
-            // event.target.appendChild(clone);
-            // event.target.classList.remove('hover');
         },
     },
 };
@@ -104,7 +95,7 @@ export default {
 <style lang="scss" scoped>
 .zone {
     flex: 5 0;
-    .content {
+    .drop-zone {
         position: relative;
         height: calc(100% - 24px);
         overflow: auto;
