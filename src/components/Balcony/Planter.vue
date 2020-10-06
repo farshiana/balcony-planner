@@ -1,5 +1,6 @@
 <template>
     <div
+        :id="_uid"
         class="shape"
         :class="planter.shape"
         :style="{
@@ -40,7 +41,7 @@
 
 <script>
 import interact from 'interactjs';
-import { SHAPE_CIRCLE, colors } from '@/constants';
+import { SHAPE_RECTANGLE, SHAPE_CIRCLE, colors } from '@/constants';
 
 export default {
     props: {
@@ -56,7 +57,19 @@ export default {
         };
     },
     mounted() {
-        interact('.shape')
+        const modifiers = this.planter.shape === SHAPE_RECTANGLE
+            ? interact.modifiers.restrictEdges({
+                outer: 'parent',
+            }) : interact.modifiers.aspectRatio({
+                ratio: 'preserve',
+                modifiers: [
+                    interact.modifiers.restrictEdges({
+                        outer: 'parent',
+                    }),
+                ],
+            });
+
+        interact(document.getElementById(this._uid))
             .resizable({
                 edges: {
                     left: true, right: true, bottom: true, top: true,
@@ -83,14 +96,7 @@ export default {
                     },
                 },
                 modifiers: [
-                    interact.modifiers.aspectRatio({
-                        ratio: 'preserve',
-                        modifiers: [
-                            interact.modifiers.restrictEdges({
-                                outer: 'parent',
-                            }),
-                        ],
-                    }),
+                    modifiers,
                     interact.modifiers.restrictSize({
                         min: { width: 50, height: 50 },
                     }),
