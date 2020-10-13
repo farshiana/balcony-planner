@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import interact from 'interactjs';
+import Moveable from 'moveable';
 import { SHAPE_RECTANGLE, SHAPE_CIRCLE, colors } from '@/constants';
 
 export default {
@@ -57,52 +57,29 @@ export default {
         };
     },
     mounted() {
-        const modifiers = this.planter.shape === SHAPE_RECTANGLE
-            ? interact.modifiers.restrictEdges({
-                outer: 'parent',
-            }) : interact.modifiers.aspectRatio({
-                ratio: 'preserve',
-                modifiers: [
-                    interact.modifiers.restrictEdges({
-                        outer: 'parent',
-                    }),
-                ],
-            });
+        /* eslint-disable no-param-reassign */
+        const dropZone = document.getElementById('dropZone');
+        const frame = { translate: [0, 0] };
 
-        interact(document.getElementById(this._uid))
-            .resizable({
-                edges: {
-                    left: true, right: true, bottom: true, top: true,
-                },
-                listeners: {
-                    move(event) {
-                        const { target } = event;
-                        let x = (parseFloat(target.getAttribute('data-x')) || 0);
-                        let y = (parseFloat(target.getAttribute('data-y')) || 0);
-
-                        // update the element's style
-                        target.style.width = `${event.rect.width}px`;
-                        target.style.height = `${event.rect.height}px`;
-
-                        // translate when resizing from top or left edges
-                        x += event.deltaRect.left;
-                        y += event.deltaRect.top;
-
-                        target.style.webkitTransform = target.style.transform = `translate(${x}px,${y}px)`;
-
-                        target.setAttribute('data-x', x);
-                        target.setAttribute('data-y', y);
-                        // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
-                    },
-                },
-                modifiers: [
-                    modifiers,
-                    interact.modifiers.restrictSize({
-                        min: { width: 50, height: 50 },
-                    }),
-                ],
-                inertia: true,
-            });
+        new Moveable(document.body, {
+            target: document.getElementById(this._uid), // eslint-disable-line no-underscore-dangle
+            resizable: true,
+            keepRatio: this.planter.shape !== SHAPE_RECTANGLE,
+            origin: false,
+            snappable: true,
+            bounds: dropZone.getClientRects()[0],
+        }).on('resizeStart', ({ dragStart }) => {
+            if (dragStart) dragStart.set(frame.translate);
+        }).on('resize', ({
+            target, width, height, drag,
+        }) => {
+            const { beforeTranslate } = drag;
+            frame.translate = beforeTranslate;
+            target.style.width = `${width}px`;
+            target.style.height = `${height}px`;
+            target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
+        });
+        /* eslint-enable no-param-reassign */
     },
     computed: {
         color() {

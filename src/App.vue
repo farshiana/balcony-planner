@@ -81,4 +81,8 @@ export default {
 .disable-events {
     pointer-events: none
 }
+.moveable-control, .moveable-line {
+    background: transparent !important;
+    border: transparent !important;
+}
 </style>
