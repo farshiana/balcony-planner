@@ -25,6 +25,7 @@ export default {
         justify-content: center;
         background: #3f51b5;
         color: white;
+        cursor: move;
         &.rectangle {
             width: 75px;
             height: 40px;
