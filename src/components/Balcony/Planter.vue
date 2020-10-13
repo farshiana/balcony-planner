@@ -5,10 +5,10 @@
         :class="planter.shape"
         :style="{
             background: color,
-            left: `${planter.position.left}px`,
-            top: `${planter.position.top}px`,
-            width: `${planter.dimensions.width}px`,
-            height: `${planter.dimensions.height}px`,
+            left: planter.position.left,
+            top: planter.position.top,
+            width: planter.dimensions.width,
+            height: planter.dimensions.height,
             'border-radius': planter.shape === SHAPE_CIRCLE ? '50%' : 0,
         }"
         @mouseover="hover = true;"
@@ -41,6 +41,7 @@
 
 <script>
 import Moveable from 'moveable';
+import { mapActions } from 'vuex';
 import { SHAPE_RECTANGLE, SHAPE_CIRCLE, colors } from '@/constants';
 
 export default {
@@ -73,11 +74,19 @@ export default {
         }).on('resize', ({
             target, width, height, drag,
         }) => {
-            const { beforeTranslate } = drag;
-            frame.translate = beforeTranslate;
             target.style.width = `${width}px`;
             target.style.height = `${height}px`;
+
+            const { beforeTranslate } = drag;
+            frame.translate = beforeTranslate;
             target.style.transform = `translate(${beforeTranslate[0]}px, ${beforeTranslate[1]}px)`;
+        }).on('resizeEnd', ({ target }) => {
+            this.planter.dimensions.width = target.style.width;
+            this.planter.dimensions.height = target.style.height;
+            this.planter.position.left = `${parseInt(this.planter.position.left, 10) + frame.translate[0]}px`;
+            this.planter.position.top = `${parseInt(this.planter.position.top, 10) + frame.translate[1]}px`;
+            target.style.transform = '';
+            this.updatePlanter(this.planter);
         });
         /* eslint-enable no-param-reassign */
     },
@@ -87,6 +96,8 @@ export default {
         },
     },
     methods: {
+        ...mapActions('planters', ['updatePlanter']),
+
         onDelete() {
 
         },
