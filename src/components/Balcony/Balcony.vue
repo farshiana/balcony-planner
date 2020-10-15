@@ -28,7 +28,7 @@ export default {
         cursor: move;
         &.rectangle {
             width: 100px;
-            height: 80px;
+            height: 75px;
         }
         &.circle {
             width: 100px;
