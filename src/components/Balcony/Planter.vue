@@ -69,6 +69,7 @@ export default {
             origin: false,
             snappable: true,
             bounds: dropZone.getClientRects()[0],
+            draggable: true,
         }).on('resizeStart', ({ dragStart }) => {
             if (dragStart) dragStart.set(frame.translate);
         }).on('resize', ({
@@ -87,7 +88,16 @@ export default {
             this.planter.position.top = `${parseInt(this.planter.position.top, 10) + frame.translate[1]}px`;
             target.style.transform = '';
             this.updatePlanter(this.planter);
-        });
+        })
+            .on('drag', ({ target, left, top }) => {
+                target.style.left = `${left}px`;
+                target.style.top = `${top}px`;
+            })
+            .on('dragEnd', ({ target }) => {
+                this.planter.position.left = target.style.left;
+                this.planter.position.top = target.style.top;
+                this.updatePlanter(this.planter);
+            });
         /* eslint-enable no-param-reassign */
     },
     computed: {
