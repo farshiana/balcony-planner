@@ -1,5 +1,5 @@
 <template>
-    <div class="balcony d-flex" :style="{ height: '100%' }">
+    <div class="balcony d-flex" style="height: 100%">
         <panel />
         <zone />
     </div>

@@ -12,7 +12,7 @@
                 v-for="(month, index) in shortMonths"
                 v-slot:[`item.${month}`]="{ item }"
             >
-                <div :key="month" :style="{ height: '100%' }">
+                <div :key="month" style="height: 100%">
                     <v-tooltip
                         v-for="step in steps"
                         :key="step.value"

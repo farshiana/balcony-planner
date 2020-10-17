@@ -2,6 +2,7 @@
     "shared.title": "Balcony Planner",
     "shared.save": "Save",
     "shared.cancel": "Cancel",
+    "shared.upload": "Upload",
     "shared.confirm": "Confirm",
     "shared.deleteConfirmation": "Are you sure you want to delete {name}? It cannot be undone.",
     "shared.genera": "Genera",

@@ -10,7 +10,11 @@
                 <v-card-text>
                     <v-container>
                         <v-row>
-                            <v-col cols="12" sm="6" md="4">
+                            <v-col cols="12" sm="6" md="6">
+                                <v-img v-if="genus.imageUrl" src="https://picsum.photos/id/11/500/300" />
+                                <image-uploader v-else />
+                            </v-col>
+                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                     v-model="genus.category"
                                     :items="categories"
@@ -20,8 +24,6 @@
                                     required
                                     @blur="$v.genus.category.$touch()"
                                 />
-                            </v-col>
-                            <v-col cols="12" sm="6" md="4">
                                 <v-text-field
                                     v-model="genus.name"
                                     :error-messages="nameErrors"
@@ -51,14 +53,20 @@ import {
     CATEGORY_FRUITS,
     CATEGORY_HERBS,
     CATEGORY_VEGETABLES,
+    API_URL,
 } from '@/constants';
+import ImageUploader from './ImageUploader.vue';
 
 export default {
+    components: {
+        ImageUploader,
+    },
     mixins: [validationMixin],
     validations: {
         genus: {
             category: { required },
             name: { required, maxLength: maxLength(30) },
+            imageUrl: { required },
         },
     },
     props: {
@@ -73,6 +81,7 @@ export default {
     },
     data() {
         return {
+            API_URL,
             saving: false,
             categories: [
                 { value: CATEGORY_FRUITS, text: this.$t('shared.fruits') },

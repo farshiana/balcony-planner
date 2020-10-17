@@ -45,7 +45,7 @@
                         multiple
                         rounded
                         class="disable-events"
-                        :style="{ opacity: 0.8 }"
+                        style="opacity: 0.8"
                     >
                         <v-btn
                             v-for="(month, index) in shortMonths"
@@ -65,7 +65,7 @@
                         multiple
                         rounded
                         class="disable-events"
-                        :style="{ opacity: 0.8 }"
+                        style="opacity: 0.8"
                     >
                         <v-btn
                             v-for="(month, index) in shortMonths"
@@ -85,7 +85,7 @@
                         multiple
                         rounded
                         class="disable-events"
-                        :style="{ opacity: 0.8 }"
+                        style="opacity: 0.8"
                     >
                         <v-btn
                             v-for="(month, index) in shortMonths"

@@ -96,6 +96,7 @@ export default {
         getDefaultGenus: () => ({
             name: '',
             category: '',
+            imageUrl: '',
         }),
         onAdd() {
             this.genus = this.getDefaultGenus();
