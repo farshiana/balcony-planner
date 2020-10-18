@@ -1,16 +1,20 @@
-import { API_URL } from '@/constants';
+import {
+    API_URL,
+    EXPOSURE_SHADE,
+    EXPOSURE_SUN,
+    EXPOSURE_PARTIAL,
+} from '@/constants';
 import i18n from './i18n';
 
-export const shortMonths = [i18n.t('jan'), i18n.t('feb'), i18n.t('mar'), i18n.t('apr'), i18n.t('may'), i18n.t('jun'),
-    i18n.t('jul'), i18n.t('aug'), i18n.t('sept'), i18n.t('oct'), i18n.t('nov'), i18n.t('dec')];
+export const shortMonths = [i18n.t('shared.jan'), i18n.t('shared.feb'), i18n.t('shared.mar'),
+    i18n.t('shared.apr'), i18n.t('shared.may'), i18n.t('shared.jun'),
+    i18n.t('shared.jul'), i18n.t('shared.aug'), i18n.t('shared.sept'),
+    i18n.t('shared.oct'), i18n.t('shared.nov'), i18n.t('shared.dec'),
+];
 
 export const getShortMonth = (month) => shortMonths[month];
 
 export const get = (route) => fetch(`${API_URL}${route}`, {
-    // headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    // },
     credentials: 'include',
 });
 
@@ -34,30 +38,16 @@ export const put = (route, body) => fetch(`${API_URL}${route}`, {
     body: JSON.stringify(body),
 });
 
-// export const getColors = (months, color) => {
-//     const monthsCount = 12;
-//     let colors = '';
-
-//     const addColor = (color, month) => {
-//         colors += `, ${color} ${month / monthsCount* 100}%`;
-//     };
-
-//     months.forEach((month, index) => {
-//         if (index === 0) {
-//             addColor(month === 0 ? color : 'transparent', 0);
-//         } else if (month !== months[index - 1] + 1) {
-//             addColor(color, months[index - 1] + 1);
-//             addColor('transparent', months[index - 1] + 1);
-//             addColor('transparent', month);
-//             addColor(color, month);
-//         }
-//         if (index === months.length - 1) {
-//             addColor(color, month + 1);
-//             if (month !== monthsCount - 1) {
-//                 addColor('transparent', month + 1);
-//                 addColor('transparent', monthsCount);
-//             }
-//         }
-//     });
-//     return colors;
-// };
+export const getExposureIcon = (exposure) => {
+    switch (exposure) {
+    case EXPOSURE_SHADE:
+        return 'mdi-weather-cloudy';
+    case EXPOSURE_SUN:
+        return 'mdi-weather-sunny';
+    case EXPOSURE_PARTIAL:
+        return 'mdi-weather-partlycloudy';
+    default:
+        console.error(`[getExposureIcon] Unknown exposure ${exposure}`);
+        return 'mdi-bug';
+    }
+};

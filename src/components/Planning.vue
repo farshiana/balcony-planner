@@ -11,7 +11,7 @@
             <template v-slot:[`item.variety.name`]="{ item }">
                 <div class="d-flex align-center">
                     <div class="mr-1"><v-img :src="item.variety.imageUrl" width="12px" height="12px" /></div>
-                    <span>{{ item.variety.name }}</span>
+                    <span class="text-capitalize-first">{{ item.variety.name }}</span>
                 </div>
             </template>
             <template

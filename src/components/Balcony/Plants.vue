@@ -14,7 +14,7 @@
             >
                 <v-img :src="plant.variety.imageUrl" width="24px" height="24px" />
             </div>
-            <span>{{ plant.variety.name }}</span>
+            <span class="text-capitalize-first">{{ plant.variety.name }}</span>
         </div>
     </div>
 </template>

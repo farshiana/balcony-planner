@@ -16,6 +16,11 @@
                     </v-btn>
                 </v-row>
             </template>
+            <template v-slot:[`item.exposure`]="{ item }">
+                <div>
+                    <v-icon small>{{ getExposureIcon(item.exposure) }}</v-icon>
+                </div>
+            </template>
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">
                     <div
@@ -63,6 +68,7 @@
 import Vue from 'vue';
 import { mapActions } from 'vuex';
 import { shortMonths } from '@/constants';
+import { getExposureIcon } from '@/utils';
 import Timeline from '@/components/Timeline.vue';
 import VarietyForm from './VarietyForm.vue';
 
@@ -101,6 +107,7 @@ export default {
     },
     methods: {
         ...mapActions('genera', ['loadVarieties', 'deleteVariety']),
+        getExposureIcon,
 
         getDefaultVariety() {
             return {

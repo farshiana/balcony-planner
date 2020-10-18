@@ -22,7 +22,12 @@
             <template v-slot:[`item.variety.name`]="{ item }">
                 <div class="d-flex align-center">
                     <div class="mr-1"><v-img :src="item.variety.imageUrl" width="12px" height="12px" /></div>
-                    <span>{{ item.variety.name }}</span>
+                    <span class="text-capitalize-first">{{ item.variety.name }}</span>
+                </div>
+            </template>
+            <template v-slot:[`item.variety.exposure`]="{ item }">
+                <div>
+                    <v-icon small>{{ getExposureIcon(item.variety.exposure) }}</v-icon>
                 </div>
             </template>
             <template v-slot:[`header.timeline`]="">
@@ -94,6 +99,7 @@ import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
 import PlantForm from '@/components/Plants/PlantForm.vue';
 import { shortMonths } from '@/constants';
+import { getExposureIcon } from '@/utils';
 import Timeline from '@/components/Timeline.vue';
 
 export default {
@@ -135,6 +141,7 @@ export default {
     },
     methods: {
         ...mapActions('plants', ['loadPlants', 'deletePlant']),
+        getExposureIcon,
 
         getDefaultPlant: () => ({
             varietyId: null,

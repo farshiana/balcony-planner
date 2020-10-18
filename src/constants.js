@@ -29,7 +29,10 @@ export const EXPOSURES = [
     EXPOSURE_SHADE,
     EXPOSURE_SUN,
 ];
-export const exposures = EXPOSURES.map((exposure) => ({ value: exposure, text: i18n.t(exposure) }));
+export const exposures = EXPOSURES.map((exposure) => ({
+    value: exposure,
+    text: i18n.t(`shared.${exposure}`),
+}));
 
 // WATERINGS
 export const WATERING_LOW = 'low';
@@ -40,7 +43,10 @@ export const WATERINGS = [
     WATERING_MEDIUM,
     WATERING_HIGH,
 ];
-export const waterings = WATERINGS.map((watering) => ({ value: watering, text: i18n.t(watering) }));
+export const waterings = WATERINGS.map((watering) => ({
+    value: watering,
+    text: i18n.t('shared.watering'),
+}));
 
 // SHAPES
 export const SHAPE_RECTANGLE = 'rectangle';
@@ -51,7 +57,10 @@ export const SHAPES = [
     SHAPE_CIRCLE,
     SHAPE_SQUARE,
 ];
-export const shapes = SHAPES.map((shape) => ({ value: shape, text: i18n.t(shape) }));
+export const shapes = SHAPES.map((shape) => ({
+    value: shape,
+    text: i18n.t(`planters.${shape}`),
+}));
 
 // COLORS
 export const COLOR_BLUE = 'blue';
@@ -81,16 +90,16 @@ export const COLORS = [
     COLOR_YELLOW,
 ];
 export const colors = [
-    { value: COLOR_BLUE, text: i18n.t(COLOR_BLUE), hex: '#2196F3' },
-    { value: COLOR_BROWN, text: i18n.t(COLOR_BROWN), hex: '#795548' },
-    { value: COLOR_CYAN, text: i18n.t(COLOR_CYAN), hex: '#00BCD4' },
-    { value: COLOR_GREEN, text: i18n.t(COLOR_GREEN), hex: '#4CAF50' },
-    { value: COLOR_GREY, text: i18n.t(COLOR_GREY), hex: '#607D8B' },
-    { value: COLOR_INDIGO, text: i18n.t(COLOR_INDIGO), hex: '#3F51B5' },
-    { value: COLOR_ORANGE, text: i18n.t(COLOR_ORANGE), hex: '#FF9800' },
-    { value: COLOR_PINK, text: i18n.t(COLOR_PINK), hex: '#E91E63' },
-    { value: COLOR_PURPLE, text: i18n.t(COLOR_PURPLE), hex: '#673AB7' },
-    { value: COLOR_RED, text: i18n.t(COLOR_RED), hex: '#F44336' },
-    { value: COLOR_TEAL, text: i18n.t(COLOR_TEAL), hex: '#009688' },
-    { value: COLOR_YELLOW, text: i18n.t(COLOR_YELLOW), hex: '#FFEB3B' },
+    { value: COLOR_BLUE, text: i18n.t(`shared.${COLOR_BLUE}`), hex: '#2196F3' },
+    { value: COLOR_BROWN, text: i18n.t(`shared.${COLOR_BROWN}`), hex: '#795548' },
+    { value: COLOR_CYAN, text: i18n.t(`shared.${COLOR_CYAN}`), hex: '#00BCD4' },
+    { value: COLOR_GREEN, text: i18n.t(`shared.${COLOR_GREEN}`), hex: '#4CAF50' },
+    { value: COLOR_GREY, text: i18n.t(`shared.${COLOR_GREY}`), hex: '#607D8B' },
+    { value: COLOR_INDIGO, text: i18n.t(`shared.${COLOR_INDIGO}`), hex: '#3F51B5' },
+    { value: COLOR_ORANGE, text: i18n.t(`shared.${COLOR_ORANGE}`), hex: '#FF9800' },
+    { value: COLOR_PINK, text: i18n.t(`shared.${COLOR_PINK}`), hex: '#E91E63' },
+    { value: COLOR_PURPLE, text: i18n.t(`shared.${COLOR_PURPLE}`), hex: '#673AB7' },
+    { value: COLOR_RED, text: i18n.t(`shared.${COLOR_RED}`), hex: '#F44336' },
+    { value: COLOR_TEAL, text: i18n.t(`shared.${COLOR_TEAL}`), hex: '#009688' },
+    { value: COLOR_YELLOW, text: i18n.t(`shared.${COLOR_YELLOW}`), hex: '#FFEB3B' },
 ];

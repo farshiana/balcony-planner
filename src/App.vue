@@ -85,4 +85,9 @@ export default {
     background: transparent !important;
     border: transparent !important;
 }
+.text-capitalize-first {
+    &:first-letter {
+        text-transform: uppercase;
+    }
+}
 </style>
