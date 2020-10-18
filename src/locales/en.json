@@ -83,5 +83,8 @@
     "planters.shape": "Shape",
     "planters.shapeRequired": "Shape is required",
     "planters.color": "Color",
-    "planters.colorRequired": "Color is required"
+    "planters.colorRequired": "Color is required",
+    "plantings.addPlanting": "Add planting",
+    "plantings.newPlanting": "New planting",
+    "plantings.editPlanting": "Edit planting"
 }

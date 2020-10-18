@@ -8,7 +8,6 @@
             @dragenter.prevent="onDragEnter"
             @dragleave="onDragLeave"
         >
-            zone
             <planter
                 v-for="planter in planters"
                 :key="planter.id"
@@ -62,18 +61,26 @@ export default {
             this.planter = Vue.util.extend({}, planter);
             this.dialog = true;
         },
-        onDragEnter(event) {
+        isDraggingPlanter(event) {
             if (event.target.id !== 'dropZone') return;
+
+            const shape = event.dataTransfer.getData('shape');
+            return !!shape; // eslint-disable-line consistent-return
+        },
+        onDragEnter(event) {
+            if (!this.isDraggingPlanter(event)) return;
 
             event.target.classList.add('hover');
         },
         onDragLeave(event) {
-            if (event.target.id !== 'dropZone') return;
+            if (!this.isDraggingPlanter(event)) return;
 
             event.target.classList.remove('hover');
         },
         onDrop(event) {
-            if (event.target.id !== 'dropZone') return;
+            if (!this.isDraggingPlanter(event)) return;
+
+            event.target.classList.remove('hover');
 
             const shape = event.dataTransfer.getData('shape');
             const { width, height } = document.getElementById(shape).getBoundingClientRect();
@@ -81,8 +88,11 @@ export default {
 
             this.planter = this.getDefaultPlanter({
                 shape,
-                position: { left: event.clientX - left, top: event.clientY - top },
-                dimensions: { width, height },
+                position: {
+                    left: `${parseInt(event.clientX - left, 10)}px`,
+                    top: `${parseInt(event.clientY - top, 10)}px`,
+                },
+                dimensions: { width: `${width}`, height: `${height}px` },
             });
             this.dialog = true;
         },
@@ -99,15 +109,16 @@ export default {
         overflow: auto;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        border: thin dashed transparent;
         &::-webkit-scrollbar {
             display: none;
         }
         .shape {
             position: absolute;
         }
-    }
-    &.hover {
-        background: #ECEFF1;
+        &.hover {
+            border: thin dashed #CFD8DC;
+        }
     }
 }
 </style>

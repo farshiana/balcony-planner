@@ -1,7 +1,7 @@
 <template>
     <div
-        :id="_uid"
-        class="shape"
+        :id="planter.id"
+        class="planter shape"
         :class="planter.shape"
         :style="{
             background: color,
@@ -13,9 +13,17 @@
         }"
         @mouseover="hover = true;"
         @mouseleave="hover = false;"
+        @drop="onDrop"
+        @dragover.prevent
+        @dragenter.prevent="onDragEnter"
+        @dragleave="onDragLeave"
     >
-        {{ planter.name }}
-
+        <planting
+            v-for="planting in planter.plantings"
+            :key="planting.id"
+            :planting="planting"
+            @edit="onEdit(planting)"
+        />
         <div
             v-if="hover"
             class="actions"
@@ -36,15 +44,27 @@
                 <v-icon small color="white">mdi-delete</v-icon>
             </v-btn>
         </div>
+        <planting-form
+            :visible="dialog"
+            :planting="planting"
+            @toggle="(visible) => { dialog = visible; }"
+        />
     </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import Moveable from 'moveable';
 import { mapActions } from 'vuex';
 import { SHAPE_RECTANGLE, SHAPE_CIRCLE, colors } from '@/constants';
+import PlantingForm from './PlantingForm.vue';
+import Planting from './Planting.vue';
 
 export default {
+    components: {
+        PlantingForm,
+        Planting,
+    },
     props: {
         planter: {
             type: Object,
@@ -55,6 +75,8 @@ export default {
         return {
             SHAPE_CIRCLE,
             hover: false,
+            dialog: false,
+            planting: this.getDefaultPlanting(),
         };
     },
     mounted() {
@@ -63,7 +85,7 @@ export default {
         const frame = { translate: [0, 0] };
 
         new Moveable(document.body, {
-            target: document.getElementById(this._uid), // eslint-disable-line no-underscore-dangle
+            target: document.getElementById(this.planter.id),
             resizable: true,
             keepRatio: this.planter.shape !== SHAPE_RECTANGLE,
             origin: false,
@@ -108,19 +130,65 @@ export default {
     methods: {
         ...mapActions('planters', ['updatePlanter']),
 
+        getDefaultPlanting: (props) => ({
+            ...props,
+        }),
+        isDraggingPlant(event) {
+            if (event.target.id !== this.planter.id) return;
+
+            const varietyId = event.dataTransfer.getData('varietyId');
+            return !!varietyId; // eslint-disable-line consistent-return
+        },
+        onDragEnter(event) {
+            if (!this.isDraggingPlant(event)) return;
+
+            event.target.classList.add('hover');
+        },
+        onDragLeave(event) {
+            if (!this.isDraggingPlant(event)) return;
+
+            event.target.classList.remove('hover');
+        },
+        onDrop(event) {
+            if (!this.isDraggingPlant(event)) return;
+
+            event.target.classList.remove('hover');
+
+            const { left, top } = event.target.getBoundingClientRect();
+
+            const varietyId = event.dataTransfer.getData('varietyId');
+            this.planting = this.getDefaultPlanting({
+                planterId: this.planter.id,
+                varietyId,
+                position: {
+                    left: `${parseInt(event.clientX - left, 10)}px`,
+                    top: `${parseInt(event.clientY - top, 10)}px`,
+                },
+            });
+            this.dialog = true;
+        },
         onDelete() {
 
+        },
+        onEdit(planting) {
+            this.planting = Vue.util.extend({}, planting);
+            this.dialog = true;
         },
     },
 };
 </script>
 
 <style lang="scss" scoped>
-.shape {
+.planter {
+    box-sizing: border-box;
     .actions {
         position: absolute;
         top: 4px;
         right: 4px;
+    }
+    &.hover {
+        border: thin dashed #CFD8DC;
+        opacity: 0.8;
     }
 }
 </style>

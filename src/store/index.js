@@ -5,6 +5,7 @@ import genera from './genera';
 import plants from './plants';
 import varieties from './varieties';
 import planters from './planters';
+import plantings from './plantings';
 
 Vue.use(Vuex);
 
@@ -23,5 +24,6 @@ export default new Vuex.Store({
         plants,
         varieties,
         planters,
+        plantings,
     },
 });
