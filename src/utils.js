@@ -1,9 +1,4 @@
-import {
-    API_URL,
-    EXPOSURE_SHADE,
-    EXPOSURE_SUN,
-    EXPOSURE_PARTIAL,
-} from '@/constants';
+import { API_URL } from '@/constants';
 import i18n from './i18n';
 
 export const shortMonths = [i18n.t('shared.jan'), i18n.t('shared.feb'), i18n.t('shared.mar'),
@@ -37,17 +32,3 @@ export const put = (route, body) => fetch(`${API_URL}${route}`, {
     credentials: 'include',
     body: JSON.stringify(body),
 });
-
-export const getExposureIcon = (exposure) => {
-    switch (exposure) {
-    case EXPOSURE_SHADE:
-        return 'mdi-weather-cloudy';
-    case EXPOSURE_SUN:
-        return 'mdi-weather-sunny';
-    case EXPOSURE_PARTIAL:
-        return 'mdi-weather-partlycloudy';
-    default:
-        console.error(`[getExposureIcon] Unknown exposure ${exposure}`);
-        return 'mdi-bug';
-    }
-};

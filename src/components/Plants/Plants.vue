@@ -27,8 +27,11 @@
             </template>
             <template v-slot:[`item.variety.exposure`]="{ item }">
                 <div>
-                    <v-icon small>{{ getExposureIcon(item.variety.exposure) }}</v-icon>
+                    <exposure :exposure="item.variety.exposure" />
                 </div>
+            </template>
+            <template v-slot:[`item.variety.watering`]="{ item }">
+                <watering :watering="item.variety.watering" />
             </template>
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">
@@ -99,13 +102,16 @@ import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
 import PlantForm from '@/components/Plants/PlantForm.vue';
 import { shortMonths } from '@/constants';
-import { getExposureIcon } from '@/utils';
 import Timeline from '@/components/Timeline.vue';
+import Exposure from '@/components/Exposure.vue';
+import Watering from '@/components/Watering.vue';
 
 export default {
     components: {
         PlantForm,
         Timeline,
+        Exposure,
+        Watering,
     },
     data() {
         return {
@@ -141,7 +147,6 @@ export default {
     },
     methods: {
         ...mapActions('plants', ['loadPlants', 'deletePlant']),
-        getExposureIcon,
 
         getDefaultPlant: () => ({
             varietyId: null,
