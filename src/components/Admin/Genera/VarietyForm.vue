@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="600px" content-class="variety-form">
         <v-card>
             <v-card-title>
                 <span class="headline">
@@ -9,7 +9,17 @@
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
                     <v-container>
-                        <v-row>
+                        <v-row v-if="variety.imageUrl">
+                            <v-col class="image-col" cols="12" sm="6" md="6">
+                                <v-img :src="variety.imageUrl" />
+                                <v-btn
+                                    icon
+                                    small
+                                    @click="variety.imageUrl = '';"
+                                >
+                                    <v-icon small>mdi-pencil</v-icon>
+                                </v-btn>
+                            </v-col>
                             <v-col cols="12" sm="6" md="6">
                                 <v-autocomplete
                                     v-model="variety.genusId"
@@ -22,8 +32,6 @@
                                     required
                                     @blur="$v.variety.genusId.$touch()"
                                 />
-                            </v-col>
-                            <v-col cols="12" sm="6" md="6">
                                 <v-text-field
                                     v-model="variety.name"
                                     :error-messages="nameErrors"
@@ -31,8 +39,6 @@
                                     required
                                     @blur="$v.variety.name.$touch()"
                                 />
-                            </v-col>
-                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                     v-model="variety.exposure"
                                     :error-messages="exposureErrors"
@@ -41,8 +47,6 @@
                                     required
                                     @blur="$v.variety.exposure.$touch()"
                                 />
-                            </v-col>
-                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                     v-model="variety.watering"
                                     :error-messages="wateringErrors"
@@ -110,6 +114,9 @@
                                 </v-btn-toggle>
                             </v-col>
                         </v-row>
+                        <v-row v-else>
+                            <image-uploader ref="imageUploader" />
+                        </v-row>
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
@@ -123,13 +130,19 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import {
+    mapState, mapGetters, mapMutations, mapActions,
+} from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import { exposures, waterings } from '@/constants';
-import { shortMonths } from '@/utils';
+import { shortMonths, post } from '@/utils';
+import ImageUploader from './ImageUploader.vue';
 
 export default {
+    components: {
+        ImageUploader,
+    },
     mixins: [validationMixin],
     validations: {
         variety: {
@@ -196,9 +209,26 @@ export default {
         },
     },
     methods: {
+        ...mapMutations(['setAlert']),
         ...mapActions('genera', ['addVariety', 'updateVariety']),
 
+        async onUpload() {
+            const file = await this.$refs.imageUploader.getResult();
+
+            this.saving = true;
+            const response = await post('/images', { file });
+            const body = await response.json();
+            if (response.ok) {
+                this.variety.imageUrl = body.url;
+            } else {
+                this.setAlert(body);
+            }
+            this.saving = false;
+        },
+        /* eslint-disable consistent-return */
         async onSubmit() {
+            if (!this.variety.imageUrl) return this.onUpload();
+
             this.$v.variety.$touch();
             if (this.$v.variety.$invalid || this.saving) return;
 
@@ -213,6 +243,25 @@ export default {
             this.dialog = false;
             this.$v.variety.$reset();
         },
+        /* eslint-enable consistent-return */
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.variety-form {
+    .image-col {
+        position: relative;
+        button {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+        }
+        &:not(:hover) {
+            button {
+                display: none;
+            }
+        }
+    }
+}
+</style>

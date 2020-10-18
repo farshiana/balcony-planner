@@ -1,46 +1,38 @@
 <template>
-    <div :loading="loadingPlants || loadingGenera" class="plants pa-2">
+    <div :loading="loadingPlants" class="plants pa-2">
         <div
             v-for="plant in plants"
             :key="plant.id"
             :id="plant.id"
             class="plant d-flex flex-column align-center pa-2"
             draggable
-            @dragstart="onDragStart($event, plant.variety.id)"
+            @dragstart="onDragStart($event, plant.id)"
             @dragend="onDragEnd"
         >
-            <div class="mr-1"><v-img :src="getImageUrl(plant)" width="12px" height="12px" /></div>
+            <div class="mr-1"><v-img :src="plant.variety.imageUrl" width="12px" height="12px" /></div>
             <span>{{ plant.variety.name }}</span>
         </div>
     </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
-        ...mapState('genera', ['loadingGenera']),
-        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
-        this.loadGenera();
     },
     methods: {
         ...mapActions('plants', ['loadPlants']),
-        ...mapActions('genera', ['loadGenera']),
 
-        getImageUrl(row) {
-            const genus = this.getGenusById(row.variety.genusId);
-            return genus && genus.imageUrl;
-        },
         /* eslint-disable no-param-reassign */
-        onDragStart(event, varietyId) {
+        onDragStart(event, plantId) {
             event.target.style.opacity = 0.6;
 
-            event.dataTransfer.setData('varietyId', varietyId);
+            event.dataTransfer.setData('plantId', plantId);
             event.dataTransfer.dropEffect = 'copy';
             event.dataTransfer.effectAllowed = 'copy';
         },

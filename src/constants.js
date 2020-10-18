@@ -54,43 +54,43 @@ export const SHAPES = [
 export const shapes = SHAPES.map((shape) => ({ value: shape, text: i18n.t(shape) }));
 
 // COLORS
-export const COLOR_RED = 'red';
+export const COLOR_BLUE = 'blue';
+export const COLOR_BROWN = 'brown';
+export const COLOR_CYAN = 'cyan';
+export const COLOR_GREEN = 'green';
+export const COLOR_GREY = 'grey';
+export const COLOR_INDIGO = 'indigo';
+export const COLOR_ORANGE = 'orange';
 export const COLOR_PINK = 'pink';
 export const COLOR_PURPLE = 'purple';
-export const COLOR_INDIGO = 'indigo';
-export const COLOR_BLUE = 'blue';
-export const COLOR_CYAN = 'cyan';
+export const COLOR_RED = 'red';
 export const COLOR_TEAL = 'teal';
-export const COLOR_GREEN = 'green';
 export const COLOR_YELLOW = 'yellow';
-export const COLOR_ORANGE = 'orange';
-export const COLOR_BROWN = 'brown';
-export const COLOR_GREY = 'grey';
 export const COLORS = [
-    COLOR_RED,
+    COLOR_BLUE,
+    COLOR_BROWN,
+    COLOR_CYAN,
+    COLOR_GREEN,
+    COLOR_GREY,
+    COLOR_INDIGO,
+    COLOR_ORANGE,
     COLOR_PINK,
     COLOR_PURPLE,
-    COLOR_INDIGO,
-    COLOR_BLUE,
-    COLOR_CYAN,
+    COLOR_RED,
     COLOR_TEAL,
-    COLOR_GREEN,
     COLOR_YELLOW,
-    COLOR_ORANGE,
-    COLOR_BROWN,
-    COLOR_GREY,
 ];
 export const colors = [
-    { value: COLOR_RED, text: i18n.t(COLOR_RED), hex: '#F44336' },
+    { value: COLOR_BLUE, text: i18n.t(COLOR_BLUE), hex: '#2196F3' },
+    { value: COLOR_BROWN, text: i18n.t(COLOR_BROWN), hex: '#795548' },
+    { value: COLOR_CYAN, text: i18n.t(COLOR_CYAN), hex: '#00BCD4' },
+    { value: COLOR_GREEN, text: i18n.t(COLOR_GREEN), hex: '#4CAF50' },
+    { value: COLOR_GREY, text: i18n.t(COLOR_GREY), hex: '#607D8B' },
+    { value: COLOR_INDIGO, text: i18n.t(COLOR_INDIGO), hex: '#3F51B5' },
+    { value: COLOR_ORANGE, text: i18n.t(COLOR_ORANGE), hex: '#FF9800' },
     { value: COLOR_PINK, text: i18n.t(COLOR_PINK), hex: '#E91E63' },
     { value: COLOR_PURPLE, text: i18n.t(COLOR_PURPLE), hex: '#673AB7' },
-    { value: COLOR_INDIGO, text: i18n.t(COLOR_INDIGO), hex: '#3F51B5' },
-    { value: COLOR_BLUE, text: i18n.t(COLOR_BLUE), hex: '#2196F3' },
-    { value: COLOR_CYAN, text: i18n.t(COLOR_CYAN), hex: '#00BCD4' },
+    { value: COLOR_RED, text: i18n.t(COLOR_RED), hex: '#F44336' },
     { value: COLOR_TEAL, text: i18n.t(COLOR_TEAL), hex: '#009688' },
-    { value: COLOR_GREEN, text: i18n.t(COLOR_GREEN), hex: '#4CAF50' },
     { value: COLOR_YELLOW, text: i18n.t(COLOR_YELLOW), hex: '#FFEB3B' },
-    { value: COLOR_ORANGE, text: i18n.t(COLOR_ORANGE), hex: '#FF9800' },
-    { value: COLOR_BROWN, text: i18n.t(COLOR_BROWN), hex: '#795548' },
-    { value: COLOR_GREY, text: i18n.t(COLOR_GREY), hex: '#607D8B' },
 ];

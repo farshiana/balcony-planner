@@ -136,8 +136,8 @@ export default {
         isDraggingPlant(event) {
             if (event.target.id !== this.planter.id) return;
 
-            const varietyId = event.dataTransfer.getData('varietyId');
-            return !!varietyId; // eslint-disable-line consistent-return
+            const plantId = event.dataTransfer.getData('plantId');
+            return !!plantId; // eslint-disable-line consistent-return
         },
         onDragEnter(event) {
             if (!this.isDraggingPlant(event)) return;
@@ -156,10 +156,10 @@ export default {
 
             const { left, top } = event.target.getBoundingClientRect();
 
-            const varietyId = event.dataTransfer.getData('varietyId');
+            const plantId = event.dataTransfer.getData('plantId');
             this.planting = this.getDefaultPlanting({
                 planterId: this.planter.id,
-                varietyId,
+                plantId,
                 position: {
                     left: `${parseInt(event.clientX - left, 10)}px`,
                     top: `${parseInt(event.clientY - top, 10)}px`,

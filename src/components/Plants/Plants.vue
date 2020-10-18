@@ -4,7 +4,7 @@
             :headers="headers"
             :items="plants"
             :items-per-page="12"
-            :loading="loadingPlants || loadingGenera"
+            :loading="loadingPlants"
             show-group-by
             dense
             class="elevation-1"
@@ -21,7 +21,7 @@
             </template>
             <template v-slot:[`item.variety.name`]="{ item }">
                 <div class="d-flex align-center">
-                    <div class="mr-1"><v-img :src="getImageUrl(item)" width="12px" height="12px" /></div>
+                    <div class="mr-1"><v-img :src="item.variety.imageUrl" width="12px" height="12px" /></div>
                     <span>{{ item.variety.name }}</span>
                 </div>
             </template>
@@ -91,7 +91,7 @@
 
 <script>
 import Vue from 'vue';
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import PlantForm from '@/components/Plants/PlantForm.vue';
 import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
@@ -129,16 +129,12 @@ export default {
     },
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
-        ...mapState('genera', ['loadingGenera']),
-        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
-        this.loadGenera();
     },
     methods: {
         ...mapActions('plants', ['loadPlants', 'deletePlant']),
-        ...mapActions('genera', ['loadGenera']),
 
         getDefaultPlant: () => ({
             varietyId: null,
@@ -164,10 +160,6 @@ export default {
         },
         onSelect(row) {
             this.$router.push({ name: 'plant', params: { plantId: row.id } });
-        },
-        getImageUrl(row) {
-            const genus = this.getGenusById(row.variety.genusId);
-            return genus && genus.imageUrl;
         },
     },
 };

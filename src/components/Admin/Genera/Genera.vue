@@ -19,12 +19,6 @@
                     </v-btn>
                 </v-row>
             </template>
-            <template v-slot:[`item.name`]="{ item }">
-                <div class="d-flex align-center">
-                    <div class="mr-1"><v-img :src="item.imageUrl" width="12px" height="12px" /></div>
-                    <span>{{ item.name }}</span>
-                </div>
-            </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-btn
                     icon
@@ -110,7 +104,6 @@ export default {
         getDefaultGenus: () => ({
             name: '',
             category: '',
-            imageUrl: '',
         }),
         onAdd() {
             this.genus = this.getDefaultGenus();

@@ -4,13 +4,13 @@
             :headers="headers"
             :items="plants"
             :items-per-page="12"
-            :loading="loadingPlants || loadingGenera"
+            :loading="loadingPlants"
             dense
             class="elevation-1"
         >
             <template v-slot:[`item.variety.name`]="{ item }">
                 <div class="d-flex align-center">
-                    <div class="mr-1"><v-img :src="getImageUrl(item)" width="12px" height="12px" /></div>
+                    <div class="mr-1"><v-img :src="item.variety.imageUrl" width="12px" height="12px" /></div>
                     <span>{{ item.variety.name }}</span>
                 </div>
             </template>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import { shortMonths } from '@/constants';
 
 export default {
@@ -72,21 +72,12 @@ export default {
     },
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
-        ...mapState('genera', ['loadingGenera']),
-        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
-        this.loadGenera();
     },
     methods: {
         ...mapActions('plants', ['loadPlants']),
-        ...mapActions('genera', ['loadGenera']),
-
-        getImageUrl(row) {
-            const genus = this.getGenusById(row.variety.genusId);
-            return genus && genus.imageUrl;
-        },
     },
 };
 </script>

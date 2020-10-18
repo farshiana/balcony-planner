@@ -23,7 +23,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #3f51b5;
+        background: #2196F3;
         color: white;
         cursor: move;
         &.rectangle {

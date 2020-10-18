@@ -106,6 +106,7 @@ export default {
             return {
                 genusId: this.genus.id,
                 name: '',
+                imageUrl: '',
                 exposure: '',
                 watering: '',
                 seed: [],
