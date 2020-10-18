@@ -27,17 +27,17 @@ export default {
         color: white;
         cursor: move;
         &.rectangle {
-            width: 100px;
-            height: 75px;
+            width: 125px;
+            height: 90px;
         }
         &.circle {
-            width: 100px;
-            height: 100px;
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
         }
         &.square {
-            width: 100px;
-            height: 100px;
+            width: 125px;
+            height: 125px;
         }
         &:not(:last-child) {
             margin-bottom: 16px;

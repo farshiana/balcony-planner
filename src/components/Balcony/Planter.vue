@@ -131,6 +131,9 @@ export default {
         ...mapActions('planters', ['updatePlanter']),
 
         getDefaultPlanting: (props) => ({
+            seed: [],
+            plant: [],
+            harvest: [],
             ...props,
         }),
         isDraggingPlant(event) {
@@ -180,7 +183,10 @@ export default {
 
 <style lang="scss" scoped>
 .planter {
-    box-sizing: border-box;
+    border: thin dashed transparent;
+    .plant {
+        position: absolute;
+    }
     .actions {
         position: absolute;
         top: 4px;

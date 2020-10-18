@@ -1,7 +1,15 @@
 <template>
-    <div>
-        <v-img :src="imageUrl" width="12px" height="12px" />
-    </div>
+    <v-img
+        class="planting plant"
+        :style="{
+            left: planting.position.left,
+            top: planting.position.top,
+        }"
+        :src="imageUrl"
+        width="24px"
+        height="24px"
+        @click="$emit('edit')"
+    />
 </template>
 
 <script>
@@ -24,3 +32,9 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.planting {
+    cursor: pointer;
+}
+</style>

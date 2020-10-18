@@ -3,13 +3,17 @@
         <div
             v-for="plant in plants"
             :key="plant.id"
-            :id="plant.id"
-            class="plant d-flex flex-column align-center pa-2"
-            draggable
-            @dragstart="onDragStart($event, plant.id)"
-            @dragend="onDragEnd"
+            class="d-flex flex-column align-center pa-2"
         >
-            <div class="mr-1"><v-img :src="plant.variety.imageUrl" width="12px" height="12px" /></div>
+            <div
+                :id="plant.id"
+                draggable
+                @dragstart="onDragStart($event, plant.id)"
+                @dragend="onDragEnd"
+                class="plant mr-1"
+            >
+                <v-img :src="plant.variety.imageUrl" width="24px" height="24px" />
+            </div>
             <span>{{ plant.variety.name }}</span>
         </div>
     </div>

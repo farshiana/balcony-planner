@@ -19,6 +19,16 @@ export default {
                 state.planters.push(planter);
             }
         },
+        setPlanting: (state, planting) => {
+            const planter = getPlanterById(state)(planting.planterId);
+            const current = planter.plantings.find((item) => item.id === planting.id);
+
+            if (current) {
+                Object.assign(current, planting);
+            } else {
+                planter.plantings.push(planting);
+            }
+        },
     },
     actions: {
         async loadPlanters({ commit }) {

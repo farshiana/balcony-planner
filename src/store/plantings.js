@@ -6,8 +6,8 @@ export default {
         async addPlanting({ commit }, planting) {
             const response = await post('/plantings', planting);
             const body = await response.json();
-            if (!response.ok) {
-                // TODO: add to planter
+            if (response.ok) {
+                commit('planters/setPlanting', body, { root: true });
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });
@@ -17,7 +17,7 @@ export default {
             const response = await put(`/plantings/${planting.id}`, planting);
             const body = await response.json();
             if (response.ok) {
-                // TODO: add to planter
+                commit('planters/setPlanting', body, { root: true });
             } else {
                 console.error(response, body);
                 commit('setAlert', body, { root: true });
