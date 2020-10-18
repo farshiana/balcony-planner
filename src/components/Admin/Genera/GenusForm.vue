@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="600px" content-class="genus-form">
         <v-card>
             <v-card-title>
                 <span class="headline">
@@ -10,8 +10,15 @@
                 <v-card-text>
                     <v-container>
                         <v-row v-if="genus.imageUrl">
-                            <v-col cols="12" sm="6" md="6">
+                            <v-col class="image-col" cols="12" sm="6" md="6">
                                 <v-img :src="genus.imageUrl" />
+                                <v-btn
+                                    icon
+                                    small
+                                    @click="genus.imageUrl = '';"
+                                >
+                                    <v-icon small>mdi-pencil</v-icon>
+                                </v-btn>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
                                 <v-select
@@ -155,3 +162,21 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.genus-form {
+    .image-col {
+        position: relative;
+        button {
+            position: absolute;
+            right: 24px;
+            bottom: 24px;
+        }
+        &:not(:hover) {
+            button {
+                display: none;
+            }
+        }
+    }
+}
+</style>

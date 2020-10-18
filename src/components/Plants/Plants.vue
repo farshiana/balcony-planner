@@ -37,19 +37,21 @@
                 />
             </template>
             <template v-slot:[`item.actions`]="{ item }">
-                <v-icon
+                <v-btn
                     small
+                    icon
                     class="mr-2"
                     @click.stop="onEdit(item)"
                 >
-                    mdi-pencil
-                </v-icon>
-                <v-icon
+                    <v-icon small>mdi-pencil</v-icon>
+                </v-btn>
+                <v-btn
                     small
+                    icon
                     @click.stop="onDelete(item)"
                 >
-                    mdi-delete
-                </v-icon>
+                    <v-icon small>mdi-delete</v-icon>
+                </v-btn>
             </template>
         </v-data-table>
         <plant-form

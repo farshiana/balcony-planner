@@ -20,21 +20,21 @@
             v-if="hover"
             class="actions"
         >
-            <v-icon
+            <v-btn
+                icon
                 small
-                color="white"
                 class="mr-2"
                 @click.stop="$emit('edit')"
             >
-                mdi-pencil
-            </v-icon>
-            <v-icon
+                <v-icon small color="white">mdi-pencil</v-icon>
+            </v-btn>
+            <v-btn
+                icon
                 small
-                color="white"
                 @click.stop="onDelete"
             >
-                mdi-delete
-            </v-icon>
+                <v-icon small color="white">mdi-delete</v-icon>
+            </v-btn>
         </div>
     </div>
 </template>
