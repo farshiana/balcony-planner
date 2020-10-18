@@ -4,7 +4,7 @@
             :headers="headers"
             :items="plants"
             :items-per-page="12"
-            :loading="loadingPlants"
+            :loading="loadingPlants || loadingGenera"
             show-group-by
             dense
             class="elevation-1"
@@ -18,6 +18,12 @@
                         {{ $t('plants.addPlant') }}
                     </v-btn>
                 </v-row>
+            </template>
+            <template v-slot:[`item.variety.name`]="{ item }">
+                <div class="d-flex align-center">
+                    <div class="mr-1"><v-img :src="getImageUrl(item)" width="12px" height="12px" /></div>
+                    <span>{{ item.variety.name }}</span>
+                </div>
             </template>
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">
@@ -85,7 +91,7 @@
 
 <script>
 import Vue from 'vue';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import PlantForm from '@/components/Plants/PlantForm.vue';
 import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
@@ -103,9 +109,15 @@ export default {
             deleting: false,
             plant: this.getDefaultPlant(),
             headers: [
-                { value: 'variety.name', text: this.$t('shared.name'), groupable: false },
-                { value: 'variety.exposure', text: this.$t('shared.exposure') },
-                { value: 'variety.watering', text: this.$t('shared.watering') },
+                {
+                    value: 'variety.name', text: this.$t('shared.name'), sortable: true, groupable: false,
+                },
+                {
+                    value: 'variety.exposure', text: this.$t('shared.exposure'), sortable: true, groupable: true,
+                },
+                {
+                    value: 'variety.watering', text: this.$t('shared.watering'), sortable: true, groupable: true,
+                },
                 {
                     value: 'timeline', text: '', sortable: false, groupable: false,
                 },
@@ -117,12 +129,16 @@ export default {
     },
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
+        ...mapState('genera', ['loadingGenera']),
+        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
+        this.loadGenera();
     },
     methods: {
         ...mapActions('plants', ['loadPlants', 'deletePlant']),
+        ...mapActions('genera', ['loadGenera']),
 
         getDefaultPlant: () => ({
             varietyId: null,
@@ -148,6 +164,10 @@ export default {
         },
         onSelect(row) {
             this.$router.push({ name: 'plant', params: { plantId: row.id } });
+        },
+        getImageUrl(row) {
+            const genus = this.getGenusById(row.variety.genusId);
+            return genus && genus.imageUrl;
         },
     },
 };

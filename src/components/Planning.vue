@@ -4,10 +4,16 @@
             :headers="headers"
             :items="plants"
             :items-per-page="12"
-            :loading="loadingPlants"
+            :loading="loadingPlants || loadingGenera"
             dense
             class="elevation-1"
         >
+            <template v-slot:[`item.variety.name`]="{ item }">
+                <div class="d-flex align-center">
+                    <div class="mr-1"><v-img :src="getImageUrl(item)" width="12px" height="12px" /></div>
+                    <span>{{ item.variety.name }}</span>
+                </div>
+            </template>
             <template
                 v-for="(month, index) in shortMonths"
                 v-slot:[`item.${month}`]="{ item }"
@@ -39,7 +45,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 import { shortMonths } from '@/constants';
 
 export default {
@@ -53,11 +59,11 @@ export default {
                 { value: 'harvest', text: this.$t('shared.harvest') },
             ],
             headers: [
-                { value: 'variety.name', text: this.$t('shared.name') },
+                { value: 'variety.name', text: this.$t('shared.name'), sortable: true },
                 ...shortMonths.map((month, index) => ({
                     value: month,
                     text: month,
-                    sortable: false,
+                    sortable: true,
                     class: index === currentMonth ? 'selected' : '',
                 })),
             ],
@@ -66,12 +72,21 @@ export default {
     },
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
+        ...mapState('genera', ['loadingGenera']),
+        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
+        this.loadGenera();
     },
     methods: {
         ...mapActions('plants', ['loadPlants']),
+        ...mapActions('genera', ['loadGenera']),
+
+        getImageUrl(row) {
+            const genus = this.getGenusById(row.variety.genusId);
+            return genus && genus.imageUrl;
+        },
     },
 };
 </script>
