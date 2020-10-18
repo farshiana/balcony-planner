@@ -9,10 +9,9 @@
             <v-form lazy-validation @submit.prevent="onSubmit">
                 <v-card-text>
                     <v-container>
-                        <v-row>
+                        <v-row v-if="genus.imageUrl">
                             <v-col cols="12" sm="6" md="6">
-                                <v-img v-if="genus.imageUrl" src="https://picsum.photos/id/11/500/300" />
-                                <image-uploader v-else />
+                                <v-img :src="genus.imageUrl" />
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
                                 <v-select
@@ -33,6 +32,9 @@
                                 />
                             </v-col>
                         </v-row>
+                        <v-row v-else>
+                            <image-uploader ref="imageUploader" />
+                        </v-row>
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import {
@@ -55,6 +57,7 @@ import {
     CATEGORY_VEGETABLES,
     API_URL,
 } from '@/constants';
+import { post } from '@/utils';
 import ImageUploader from './ImageUploader.vue';
 
 export default {
@@ -66,7 +69,6 @@ export default {
         genus: {
             category: { required },
             name: { required, maxLength: maxLength(30) },
-            imageUrl: { required },
         },
     },
     props: {
@@ -114,9 +116,27 @@ export default {
         },
     },
     methods: {
+        ...mapMutations(['setAlert']),
         ...mapActions('genera', ['addGenus', 'updateGenus']),
 
+        async onUpload() {
+            const file = await this.$refs.imageUploader.getResult();
+
+            this.saving = true;
+            const response = await post('/images', { file });
+            const body = await response.json();
+            if (response.ok) {
+                this.genus.imageUrl = body.url;
+            } else {
+                this.setAlert(body);
+            }
+            this.saving = false;
+        },
+
+        /* eslint-disable consistent-return */
         async onSubmit() {
+            if (!this.genus.imageUrl) return this.onUpload();
+
             this.$v.genus.$touch();
             if (this.$v.genus.$invalid || this.saving) return;
 
@@ -131,6 +151,7 @@ export default {
             this.dialog = false;
             this.$v.genus.$reset();
         },
+        /* eslint-enable consistent-return */
     },
 };
 </script>

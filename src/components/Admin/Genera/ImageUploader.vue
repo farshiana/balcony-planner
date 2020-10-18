@@ -13,7 +13,7 @@
             <input
                 ref="imageInput"
                 type="file"
-                accept="image/jpeg"
+                accept="image/jpeg, image/png, image/jpg"
                 style="display: none"
                 @change="onImageChange"
             >
@@ -29,6 +29,7 @@ export default {
     data() {
         return {
             file: null,
+            croppie: null,
         };
     },
     methods: {
@@ -37,14 +38,16 @@ export default {
 
             const reader = new FileReader();
             reader.onload = (loadEvent) => {
-                new Croppie(this.$refs.croppie, { // eslint-disable-line no-new
+                this.croppie = new Croppie(this.$refs.croppie, { // eslint-disable-line no-new
                     viewport: { width: 128, height: 128 },
-                    showZoomer: false,
                     url: loadEvent.target.result,
                 });
             };
 
             reader.readAsDataURL(event.target.files[0]);
+        },
+        getResult() {
+            return this.croppie.result({ type: 'base64' });
         },
     },
 };
@@ -52,7 +55,8 @@ export default {
 
 <style lang="scss" scoped>
 .image-uploader {
-    height: 100%;
+    width: 100%;
+    height: 400px;
     .upload-area {
         height: 100%;
         border: thin dashed #CFD8DC;
