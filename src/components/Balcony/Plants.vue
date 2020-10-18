@@ -1,20 +1,21 @@
 <template>
-    <v-list>
-        <v-list-item
+    <div class="pa-2">
+        <div
             v-for="plant in plants"
             :key="plant.id"
             :loading="loadingPlants"
+            class="d-flex align-center justify-center pa-2"
             @click="selectPlant"
         >
-            <v-list-item-content>
-                <v-list-item-title v-text="plant.variety.name" />
-            </v-list-item-content>
-        </v-list-item>
-    </v-list>
+
+            <div class="mr-1"><v-img :src="getImageUrl(plant)" width="12px" height="12px" /></div>
+            <span>{{ plant.variety.name }}</span>
+        </div>
+    </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from 'vuex';
 
 export default {
     data() {
@@ -23,15 +24,23 @@ export default {
     },
     computed: {
         ...mapState('plants', ['plants', 'loadingPlants']),
+        ...mapState('genera', ['loadingGenera']),
+        ...mapGetters('genera', ['getGenusById']),
     },
     created() {
         this.loadPlants();
+        this.loadGenera();
     },
     methods: {
-        ...mapActions('plants', ['loadPlants']),
+        ...mapActions('plants', ['loadPlants', 'deletePlant']),
+        ...mapActions('genera', ['loadGenera']),
 
         selectPlant() {
             // TODO: implement
+        },
+        getImageUrl(row) {
+            const genus = this.getGenusById(row.variety.genusId);
+            return genus && genus.imageUrl;
         },
     },
 };
