@@ -169,8 +169,8 @@ export default {
         position: relative;
         button {
             position: absolute;
+            top: 24px;
             right: 24px;
-            bottom: 24px;
         }
         &:not(:hover) {
             button {

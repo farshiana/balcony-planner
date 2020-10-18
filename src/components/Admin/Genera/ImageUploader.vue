@@ -13,7 +13,7 @@
             <input
                 ref="imageInput"
                 type="file"
-                accept="image/jpeg, image/png, image/jpg"
+                accept="image/*"
                 style="display: none"
                 @change="onImageChange"
             >

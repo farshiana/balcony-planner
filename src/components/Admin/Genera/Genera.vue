@@ -7,7 +7,7 @@
             :loading="loadingGenera"
             show-group-by
             dense
-            class="elevation-1"
+            class="genera elevation-1"
             :item-class="() => 'clickable'"
             @click:row="onSelect"
         >
@@ -18,6 +18,12 @@
                         {{ $t('admin.genera.addGenus') }}
                     </v-btn>
                 </v-row>
+            </template>
+            <template v-slot:[`item.name`]="{ item }">
+                <div class="d-flex align-center">
+                    <div class="mr-1"><v-img :src="item.imageUrl" width="12px" height="12px" /></div>
+                    <span>{{ item.name }}</span>
+                </div>
             </template>
             <template v-slot:[`item.actions`]="{ item }">
                 <v-btn
@@ -80,9 +86,15 @@ export default {
             deleting: false,
             genus: this.getDefaultGenus(),
             headers: [
-                { value: 'name', text: this.$t('shared.name'), groupable: false },
-                { value: 'category', text: this.$t('admin.genera.category'), groupable: true },
-                { value: 'actions', text: '', groupable: false },
+                {
+                    value: 'name', text: this.$t('shared.genus'), sortable: true, groupable: false,
+                },
+                {
+                    value: 'category', text: this.$t('admin.genera.category'), sortable: true, groupable: true,
+                },
+                {
+                    value: 'actions', text: '', sortable: false, groupable: false,
+                },
             ],
         };
     },
@@ -124,3 +136,10 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped>
+.genera {
+    ::v-deep .name-col {
+    }
+}
+</style>
