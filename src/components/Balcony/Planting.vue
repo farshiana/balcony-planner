@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-img :src="plant.variety.imageUrl" width="12px" height="12px" />
+        <v-img :src="imageUrl" width="12px" height="12px" />
     </div>
 </template>
 
@@ -17,8 +17,9 @@ export default {
     computed: {
         ...mapGetters('plants', ['getPlantById']),
 
-        plant() {
-            return this.getPlantById(this.planting.plantId);
+        imageUrl() {
+            const plant = this.getPlantById(this.planting.plantId);
+            return plant && plant.variety.imageUrl;
         },
     },
 };
