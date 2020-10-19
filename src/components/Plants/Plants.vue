@@ -26,12 +26,14 @@
                 </div>
             </template>
             <template v-slot:[`item.variety.exposure`]="{ item }">
-                <div>
+                <div class="d-flex align-center">
                     <exposure :exposure="item.variety.exposure" />
                 </div>
             </template>
             <template v-slot:[`item.variety.watering`]="{ item }">
-                <watering :watering="item.variety.watering" />
+                <div class="d-flex align-center">
+                    <watering :watering="item.variety.watering" />
+                </div>
             </template>
             <template v-slot:[`header.timeline`]="">
                 <div class="d-flex flex-row justify-space-around">

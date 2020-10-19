@@ -39,6 +39,7 @@
                                     required
                                     @blur="$v.variety.name.$touch()"
                                 />
+                                <v-icon>weather-partlycloudy</v-icon>
                                 <v-select
                                     v-model="variety.exposure"
                                     :error-messages="exposureErrors"
@@ -46,7 +47,16 @@
                                     :label="$t('shared.exposure')"
                                     required
                                     @blur="$v.variety.exposure.$touch()"
-                                />
+                                >
+                                    <template v-slot:selection="{ item }">
+                                        <exposure :exposure="item.value" class="mr-1" />
+                                        <span>{{ item.text }}</span>
+                                    </template>
+                                    <template v-slot:item="{ item }">
+                                        <exposure :exposure="item.value" class="mr-1" />
+                                        <span>{{ item.text }}</span>
+                                    </template>
+                                </v-select>
                                 <v-select
                                     v-model="variety.watering"
                                     :error-messages="wateringErrors"
@@ -54,7 +64,16 @@
                                     :label="$t('shared.watering')"
                                     required
                                     @blur="$v.variety.watering.$touch()"
-                                />
+                                >
+                                    <template v-slot:selection="{ item }">
+                                        <watering :watering="item.value" class="mr-1" />
+                                        <span>{{ item.text }}</span>
+                                    </template>
+                                    <template v-slot:item="{ item }">
+                                        <watering :watering="item.value" class="mr-1" />
+                                        <span>{{ item.text }}</span>
+                                    </template>
+                                </v-select>
                             </v-col>
                             <v-col cols="12" class="overflow-auto">
                                 <p>{{ $t('shared.seed') }}</p>
@@ -137,11 +156,15 @@ import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
 import { exposures, waterings } from '@/constants';
 import { shortMonths, post } from '@/utils';
+import Exposure from '@/components/Exposure.vue';
+import Watering from '@/components/Watering.vue';
 import ImageUploader from './ImageUploader.vue';
 
 export default {
     components: {
         ImageUploader,
+        Exposure,
+        Watering,
     },
     mixins: [validationMixin],
     validations: {
