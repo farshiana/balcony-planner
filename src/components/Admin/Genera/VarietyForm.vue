@@ -39,7 +39,6 @@
                                     required
                                     @blur="$v.variety.name.$touch()"
                                 />
-                                <v-icon>weather-partlycloudy</v-icon>
                                 <v-select
                                     v-model="variety.exposure"
                                     :error-messages="exposureErrors"
