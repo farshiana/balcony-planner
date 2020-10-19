@@ -63,7 +63,7 @@ export default {
                 ...shortMonths.map((month, index) => ({
                     value: month,
                     text: month,
-                    sortable: true,
+                    sortable: false,
                     class: index === currentMonth ? 'selected' : '',
                 })),
             ],
