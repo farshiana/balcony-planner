@@ -32,3 +32,8 @@ export const put = (route, body) => fetch(`${API_URL}${route}`, {
     credentials: 'include',
     body: JSON.stringify(body),
 });
+
+export const remove = (route) => fetch(`${API_URL}${route}`, {
+    method: 'DELETE',
+    credentials: 'include',
+});

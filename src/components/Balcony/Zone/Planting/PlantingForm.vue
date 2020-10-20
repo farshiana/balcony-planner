@@ -71,7 +71,7 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn icon color="info" text @click="deleteDialog = true;">
+                    <v-btn v-if="planting.id" icon color="info" text @click="deleteDialog = true;">
                         <v-icon>mdi-delete</v-icon>
                     </v-btn>
                     <v-spacer />
@@ -143,7 +143,7 @@ export default {
         },
         async onConfirmDelete() {
             this.deleting = true;
-            await this.deletePlanting(this.planting.id); // TODO: implement action
+            await this.deletePlanting(this.planting);
             this.deleting = false;
             this.deleteDialog = false;
         },

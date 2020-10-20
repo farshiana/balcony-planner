@@ -157,7 +157,7 @@ export default {
         },
         async onConfirmDelete() {
             this.deleting = true;
-            await this.deletePlant(this.plant.id); // TODO: implement action
+            await this.deletePlant(this.plant);
             this.deleting = false;
             this.deleteDialog = false;
         },

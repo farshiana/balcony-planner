@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { put, post } from '@/utils';
+import { put, post, remove } from '@/utils';
 
 export default {
     namespaced: true,
@@ -18,6 +18,15 @@ export default {
             const body = await response.json();
             if (response.ok) {
                 commit('planters/setPlanting', body, { root: true });
+            } else {
+                Vue.prototype.$error(body);
+            }
+        },
+        async deletePlanting({ commit }, planting) {
+            const response = await remove(`/genera/${planting.id}`, planting);
+            const body = await response.json();
+            if (response.ok) {
+                commit('planters/removePlanting', body, { root: true });
             } else {
                 Vue.prototype.$error(body);
             }

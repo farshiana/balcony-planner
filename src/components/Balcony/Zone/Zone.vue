@@ -13,13 +13,21 @@
                 :key="planter.id"
                 :planter="planter"
                 @edit="onEdit(planter)"
-            />
-            <planter-form
-                :visible="dialog"
-                :planter="planter"
-                @toggle="(visible) => { dialog = visible; }"
+                @delete="onDelete(planter)"
             />
         </div>
+        <planter-form
+            :visible="dialog"
+            :planter="planter"
+            @toggle="(visible) => { dialog = visible; }"
+        />
+        <delete-dialog
+            :visible.sync="deleteDialog"
+            :title="$t('planters.deletePlanter')"
+            :name="planter.name"
+            :deleting="deleting"
+            @delete="onConfirmDelete"
+        />
     </div>
 </template>
 
@@ -27,6 +35,7 @@
 import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
 import { COLORS } from '@/constants';
+import DeleteDialog from '@/components/DeleteDialog.vue';
 import Planter from './Planter/Planter.vue';
 import PlanterForm from './Planter/PlanterForm.vue';
 
@@ -34,10 +43,13 @@ export default {
     components: {
         Planter,
         PlanterForm,
+        DeleteDialog,
     },
     data() {
         return {
             dialog: false,
+            deleteDialog: false,
+            deleting: false,
             planter: this.getDefaultPlanter(),
         };
     },
@@ -50,7 +62,7 @@ export default {
         this.loading = false;
     },
     methods: {
-        ...mapActions('planters', ['loadPlanters']),
+        ...mapActions('planters', ['loadPlanters', 'deletePlanter']),
 
         getDefaultPlanter: (props) => ({
             name: '',
@@ -60,6 +72,16 @@ export default {
         onEdit(planter) {
             this.planter = Vue.util.extend({}, planter);
             this.dialog = true;
+        },
+        onDelete(planter) {
+            this.planter = planter;
+            this.deleteDialog = true;
+        },
+        async onConfirmDelete() {
+            this.deleting = true;
+            await this.deletePlanter(this.planter);
+            this.deleting = false;
+            this.deleteDialog = false;
         },
         isDraggingPlanter(event) {
             if (event.target.id !== 'dropZone') return;

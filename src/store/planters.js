@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import { get, put, post } from '@/utils';
+import {
+    get, put, post, remove,
+} from '@/utils';
 
 const getPlanterById = (state) => (id) => state.planters.find((planter) => planter.id === id);
 
@@ -20,6 +22,10 @@ export default {
                 state.planters.push(planter);
             }
         },
+        removePlanter: (state, planter) => {
+            const index = state.planters.findIndex((item) => item.id === planter.id);
+            state.planters.splice(index, 1);
+        },
         setPlanting: (state, planting) => {
             const planter = getPlanterById(state)(planting.planterId);
             const current = planter.plantings.find((item) => item.id === planting.id);
@@ -29,6 +35,11 @@ export default {
             } else {
                 planter.plantings.push(planting);
             }
+        },
+        removePlanting: (state, planting) => {
+            const planter = getPlanterById(state)(planting.planterId);
+            const index = planter.plantings.findIndex((item) => item.id === planting.id);
+            planter.plantings.splice(index, 1);
         },
     },
     actions: {
@@ -57,6 +68,15 @@ export default {
             const body = await response.json();
             if (response.ok) {
                 commit('setPlanter', body);
+            } else {
+                Vue.prototype.$error(body);
+            }
+        },
+        async deletePlanter({ commit }, planter) {
+            const response = await remove(`/planters/${planter.id}`, planter);
+            const body = await response.json();
+            if (response.ok) {
+                commit('removePlanter', body, { root: true });
             } else {
                 Vue.prototype.$error(body);
             }

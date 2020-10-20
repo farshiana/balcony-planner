@@ -66,6 +66,13 @@
             :variety="variety"
             @toggle="(visible) => { dialog = visible; }"
         />
+        <delete-dialog
+            :visible.sync="deleteDialog"
+            :title="$t('admin.varieties.deleteVariety')"
+            :name="variety.name"
+            :deleting="deleting"
+            @delete="onConfirmDelete"
+        />
     </v-container>
 </template>
 
@@ -76,6 +83,7 @@ import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
 import Exposure from '@/components/Exposure.vue';
 import Watering from '@/components/Watering.vue';
+import DeleteDialog from '@/components/DeleteDialog.vue';
 import VarietyForm from './VarietyForm.vue';
 
 export default {
@@ -84,6 +92,7 @@ export default {
         VarietyForm,
         Exposure,
         Watering,
+        DeleteDialog,
     },
     props: {
         genus: {
@@ -142,7 +151,7 @@ export default {
         },
         async onConfirmDelete() {
             this.deleting = true;
-            await this.deleteVariety(this.variety.id);
+            await this.deleteVariety(this.variety);
             this.deleting = false;
             this.deleteDialog = false;
         },

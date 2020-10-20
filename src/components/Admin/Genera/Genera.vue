@@ -110,7 +110,7 @@ export default {
         },
         async onConfirmDelete() {
             this.deleting = true;
-            await this.deleteGenus(this.genus.id); // TODO: implement action
+            await this.deleteGenus(this.genus);
             this.deleting = false;
             this.deleteDialog = false;
         },

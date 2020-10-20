@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import router from '@/router/index';
-import { get, post, put } from '@/utils';
+import {
+    get, post, put, remove,
+} from '@/utils';
 
 export default {
     namespaced: true,
@@ -43,12 +45,15 @@ export default {
                 Vue.prototype.$error(body);
             }
         },
-        async logout() {
-            // TODO: logout
-            // await auth.signOut();
-            // commit('setUser', null);
-            // router.push('login');
-            // Vue.prototype.$error(body);
+        async logout({ commit }) {
+            const response = await remove('/auth/logout');
+            const body = await response.json();
+            if (response.ok) {
+                commit('setUser', null);
+                router.push('login');
+            } else {
+                Vue.prototype.$error(body);
+            }
         },
     },
 };

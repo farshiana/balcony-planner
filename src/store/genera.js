@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import { get, put, post } from '@/utils';
+import {
+    get, put, post, remove,
+} from '@/utils';
 
 const getGenusById = (state) => (id) => state.genera.find((genus) => genus.id === id);
 
@@ -23,6 +25,10 @@ export default {
                 state.genera.push(genus);
             }
         },
+        removeGenus: (state, genus) => {
+            const index = state.genera.findIndex((item) => item.id === genus.id);
+            state.genera.splice(index, 1);
+        },
         setVariety: (state, variety) => {
             const genus = getGenusById(state)(variety.genusId);
             const current = genus.varieties.find((item) => item.id === variety.id);
@@ -35,6 +41,11 @@ export default {
         setVarieties: (state, { genus, varieties }) => {
             const current = getGenusById(state)(genus.id);
             current.varieties = varieties;
+        },
+        removeVariety: (state, variety) => {
+            const genus = getGenusById(state)(variety.genusId);
+            const index = genus.varieties.findIndex((item) => item.id === variety.id);
+            genus.varieties.splice(index, 1);
         },
     },
     actions: {
@@ -67,6 +78,15 @@ export default {
                 Vue.prototype.$error(body);
             }
         },
+        async deleteGenus({ commit }, genus) {
+            const response = await remove(`/genera/${genus.id}`, genus);
+            const body = await response.json();
+            if (response.ok) {
+                commit('removeGenus', body);
+            } else {
+                Vue.prototype.$error(body);
+            }
+        },
         async loadVarieties({ commit }, genus) {
             const response = await get(`/varieties?genusId=${genus.id}`);
             const body = await response.json();
@@ -90,6 +110,15 @@ export default {
             const body = await response.json();
             if (response.ok) {
                 commit('setVariety', body);
+            } else {
+                Vue.prototype.$error(body);
+            }
+        },
+        async deleteVariety({ commit }, variety) {
+            const response = await remove(`/varieties/${variety.id}`, variety);
+            const body = await response.json();
+            if (response.ok) {
+                commit('removeVariety', body);
             } else {
                 Vue.prototype.$error(body);
             }

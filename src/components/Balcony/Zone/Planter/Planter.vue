@@ -39,7 +39,7 @@
             <v-btn
                 icon
                 small
-                @click.stop="onDelete"
+                @click.stop="$emit('delete')"
             >
                 <v-icon small color="white">mdi-delete</v-icon>
             </v-btn>
@@ -169,9 +169,6 @@ export default {
                 },
             });
             this.dialog = true;
-        },
-        onDelete() {
-
         },
         onEdit(planting) {
             this.planting = Vue.util.extend({}, planting);
