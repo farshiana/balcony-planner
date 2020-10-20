@@ -71,6 +71,9 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
+                    <v-btn icon color="info" text @click="dialog = false;">
+                        <v-icon>mdi-delete</v-icon>
+                    </v-btn>
                     <v-spacer />
                     <v-btn color="info" text @click="dialog = false;">{{ $t('shared.cancel') }}</v-btn>
                     <v-btn color="primary" text type="submit" :loading="saving">{{ $t('shared.save') }}</v-btn>

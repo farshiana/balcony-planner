@@ -57,8 +57,8 @@ import Vue from 'vue';
 import Moveable from 'moveable';
 import { mapActions } from 'vuex';
 import { SHAPE_RECTANGLE, SHAPE_CIRCLE, colors } from '@/constants';
-import PlantingForm from './PlantingForm.vue';
-import Planting from './Planting.vue';
+import PlantingForm from '../Planting/PlantingForm.vue';
+import Planting from '../Planting/Planting.vue';
 
 export default {
     components: {

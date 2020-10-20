@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Panel from './Panel.vue';
-import Zone from './Zone.vue';
+import Panel from './Panel/Panel.vue';
+import Zone from './Zone/Zone.vue';
 
 export default {
     components: {

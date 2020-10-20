@@ -27,8 +27,8 @@
 import Vue from 'vue';
 import { mapState, mapActions } from 'vuex';
 import { COLORS } from '@/constants';
-import Planter from './Planter.vue';
-import PlanterForm from './PlanterForm.vue';
+import Planter from './Planter/Planter.vue';
+import PlanterForm from './Planter/PlanterForm.vue';
 
 export default {
     components: {
