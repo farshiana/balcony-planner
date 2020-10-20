@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { get, put, post } from '@/utils';
 
 const getPlanterById = (state) => (id) => state.planters.find((planter) => planter.id === id);
@@ -38,8 +39,7 @@ export default {
             if (response.ok) {
                 commit('setPlanters', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
             commit('setLoadingPlanters', false);
         },
@@ -49,8 +49,7 @@ export default {
             if (response.ok) {
                 commit('setPlanter', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async updatePlanter({ commit }, planter) {
@@ -59,8 +58,7 @@ export default {
             if (response.ok) {
                 commit('setPlanter', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
     },

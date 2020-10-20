@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import router from '@/router/index';
 import { get, post, put } from '@/utils';
 
@@ -29,8 +30,7 @@ export default {
                 commit('setUser', body);
                 router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async login({ commit }, user) {
@@ -40,19 +40,15 @@ export default {
                 commit('setUser', body);
                 router.push(router.currentRoute.query.redirect || { name: 'planning' });
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
-        async logout({ commit }) {
-            try {
-                // await auth.signOut();
-                commit('setUser', null);
-                router.push('login');
-            } catch (error) {
-                console.error(error.message);
-                commit('setAlert', error, { root: true });
-            }
+        async logout() {
+            // TODO: logout
+            // await auth.signOut();
+            // commit('setUser', null);
+            // router.push('login');
+            // Vue.prototype.$error(body);
         },
     },
 };

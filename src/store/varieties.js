@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { get } from '@/utils';
 
 export default {
@@ -18,8 +19,7 @@ export default {
             if (response.ok) {
                 commit('setVarieties', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
             commit('setLoadingVarieties', false);
         },

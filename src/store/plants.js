@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { get, put, post } from '@/utils';
 
 const getPlantById = (state) => (id) => state.plants.find((plant) => plant.id === id);
@@ -23,29 +24,26 @@ export default {
             if (response.ok) {
                 commit('setPlants', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
             commit('setLoadingPlants', false);
         },
-        async addPlant({ commit, dispatch }, plant) {
+        async addPlant({ dispatch }, plant) {
             const response = await post('/plants', plant);
             const body = await response.json();
             if (response.ok) {
                 dispatch('loadPlants'); // will fetch associated variety
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
-        async updatePlant({ commit, dispatch }, plant) {
+        async updatePlant({ dispatch }, plant) {
             const response = await put(`/plants/${plant.id}`, plant);
             const body = await response.json();
             if (response.ok) {
                 dispatch('loadPlants'); // will fetch associated variety
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
     },

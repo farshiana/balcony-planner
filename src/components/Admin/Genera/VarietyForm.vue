@@ -149,7 +149,7 @@
 
 <script>
 import {
-    mapState, mapGetters, mapMutations, mapActions,
+    mapState, mapGetters, mapActions,
 } from 'vuex';
 import { validationMixin } from 'vuelidate';
 import { required, maxLength } from 'vuelidate/lib/validators';
@@ -231,7 +231,6 @@ export default {
         },
     },
     methods: {
-        ...mapMutations(['setAlert']),
         ...mapActions('genera', ['addVariety', 'updateVariety']),
 
         async onUpload() {
@@ -243,7 +242,7 @@ export default {
             if (response.ok) {
                 this.variety.imageUrl = body.url;
             } else {
-                this.setAlert(body);
+                this.$error(body);
             }
             this.saving = false;
         },

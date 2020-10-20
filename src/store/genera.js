@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { get, put, post } from '@/utils';
 
 const getGenusById = (state) => (id) => state.genera.find((genus) => genus.id === id);
@@ -44,8 +45,7 @@ export default {
             if (response.ok) {
                 commit('setGenera', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
             commit('setLoadingGenera', false);
         },
@@ -55,8 +55,7 @@ export default {
             if (response.ok) {
                 commit('setGenus', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async updateGenus({ commit }, genus) {
@@ -65,8 +64,7 @@ export default {
             if (response.ok) {
                 commit('setGenus', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async loadVarieties({ commit }, genus) {
@@ -75,8 +73,7 @@ export default {
             if (response.ok) {
                 commit('setVarieties', { genus, varieties: body });
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async addVariety({ commit }, variety) {
@@ -85,8 +82,7 @@ export default {
             if (response.ok) {
                 commit('setVariety', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async updateVariety({ commit }, variety) {
@@ -95,8 +91,7 @@ export default {
             if (response.ok) {
                 commit('setVariety', body);
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
     },

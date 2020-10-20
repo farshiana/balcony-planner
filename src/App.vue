@@ -37,23 +37,15 @@
             </template>
         </v-app-bar>
         <v-main>
-            <app-alert />
-            <v-overlay :value="overlay">
-                <v-progress-circular indeterminate size="64" />
-            </v-overlay>
             <router-view />
         </v-main>
     </v-app>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
-import AppAlert from '@/components/AppAlert.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-    components: {
-        AppAlert,
-    },
     data() {
         return {
             items: [
@@ -65,7 +57,6 @@ export default {
         };
     },
     computed: {
-        ...mapState(['overlay']),
         ...mapGetters('auth', ['isAuthenticated']),
     },
     methods: {

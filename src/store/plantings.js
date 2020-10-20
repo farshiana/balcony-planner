@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { put, post } from '@/utils';
 
 export default {
@@ -9,8 +10,7 @@ export default {
             if (response.ok) {
                 commit('planters/setPlanting', body, { root: true });
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
         async updatePlanting({ commit }, planting) {
@@ -19,8 +19,7 @@ export default {
             if (response.ok) {
                 commit('planters/setPlanting', body, { root: true });
             } else {
-                console.error(response, body);
-                commit('setAlert', body, { root: true });
+                Vue.prototype.$error(body);
             }
         },
     },

@@ -75,26 +75,13 @@
             :plant="plant"
             @toggle="(visible) => { dialog = visible; }"
         />
-        <v-dialog v-model="deleteDialog" max-width="290">
-            <v-card>
-                <v-card-title class="headline">{{ $t('plants.deletePlant') }}</v-card-title>
-                <v-card-text>
-                    {{ $t('shared.deleteConfirmation', { name: plant.variety && plant.variety.name }) }}
-                </v-card-text>
-                <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn text @click="deleteDialog = false;">{{ $t('shared.cancel') }}</v-btn>
-                    <v-btn
-                        color="error"
-                        text
-                        :loading="deleting"
-                        @click="onConfirmDelete"
-                    >
-                        {{ $t('shared.confirm') }}
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
+        <delete-dialog
+            :visible.sync="deleteDialog"
+            :title="$t('plants.deletePlant')"
+            :name="plant.variety && plant.variety.name"
+            :deleting="deleting"
+            @delete="onConfirmDelete"
+        />
         <router-view />
     </v-container>
 </template>
@@ -107,6 +94,7 @@ import { shortMonths } from '@/constants';
 import Timeline from '@/components/Timeline.vue';
 import Exposure from '@/components/Exposure.vue';
 import Watering from '@/components/Watering.vue';
+import DeleteDialog from '@/components/DeleteDialog.vue';
 
 export default {
     components: {
@@ -114,6 +102,7 @@ export default {
         Timeline,
         Exposure,
         Watering,
+        DeleteDialog,
     },
     data() {
         return {

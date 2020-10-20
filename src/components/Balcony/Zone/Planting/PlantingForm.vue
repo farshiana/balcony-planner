@@ -71,7 +71,7 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn icon color="info" text @click="dialog = false;">
+                    <v-btn icon color="info" text @click="deleteDialog = true;">
                         <v-icon>mdi-delete</v-icon>
                     </v-btn>
                     <v-spacer />
@@ -80,14 +80,25 @@
                 </v-card-actions>
             </v-form>
         </v-card>
+        <delete-dialog
+            :visible.sync="deleteDialog"
+            :title="$t('plantings.deletePlanting')"
+            :name="planting.name"
+            :deleting="deleting"
+            @delete="onConfirmDelete"
+        />
     </v-dialog>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import { shortMonths } from '@/utils';
+import DeleteDialog from '@/components/DeleteDialog.vue';
 
 export default {
+    components: {
+        DeleteDialog,
+    },
     props: {
         visible: {
             type: Boolean,
@@ -101,6 +112,8 @@ export default {
     data() {
         return {
             saving: false,
+            deleteDialog: false,
+            deleting: false,
             shortMonths,
         };
     },
@@ -115,7 +128,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions('plantings', ['addPlanting', 'updatePlanting']),
+        ...mapActions('plantings', ['addPlanting', 'updatePlanting', 'deletePlanting']),
 
         async onSubmit() {
             this.saving = true;
@@ -127,6 +140,12 @@ export default {
             this.saving = false;
 
             this.dialog = false;
+        },
+        async onConfirmDelete() {
+            this.deleting = true;
+            await this.deletePlanting(this.planting.id); // TODO: implement action
+            this.deleting = false;
+            this.deleteDialog = false;
         },
     },
 };
