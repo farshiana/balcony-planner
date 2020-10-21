@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import router from '@/router/index';
 import {
-    get, post, put, remove,
+    get, post, put,
 } from '@/utils';
 
 export default {
@@ -46,7 +46,7 @@ export default {
             }
         },
         async logout({ commit }) {
-            const response = await remove('/auth/logout');
+            const response = await post('/auth/logout');
             const body = await response.json();
             if (response.ok) {
                 commit('setUser', null);
