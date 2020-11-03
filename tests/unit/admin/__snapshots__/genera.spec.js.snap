@@ -1,0 +1,383 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Genera.vue lists genera 1`] = `
+<div>
+  <div
+    class="ma-3 v-card v-sheet theme--light"
+    style="position: initial;"
+  >
+    <div
+      class="v-card__title"
+    >
+      
+        Genera
+        
+      <div
+        class="spacer"
+      />
+       
+      <div
+        class="v-input v-input--hide-details theme--light v-text-field v-text-field--single-line"
+      >
+        <div
+          class="v-input__control"
+        >
+          <div
+            class="v-input__slot"
+          >
+            <div
+              class="v-text-field__slot"
+            >
+              <label
+                class="v-label theme--light"
+                for="input-9"
+                style="left: 0px; position: absolute;"
+              >
+                Search
+              </label>
+              <input
+                id="input-9"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-magnify theme--light"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-data-table genera v-data-table--dense theme--light"
+    >
+      <div
+        class="row mr-1"
+        fill-height=""
+      >
+        <div
+          class="spacer"
+        />
+         
+        <button
+          class="mt-1 v-btn v-btn--flat v-btn--text theme--light v-size--small accent--text"
+          type="button"
+        >
+          <span
+            class="v-btn__content"
+          >
+            
+                    Add genus
+                
+          </span>
+        </button>
+      </div>
+      <div
+        class="v-data-table__wrapper"
+      >
+        <table>
+          <colgroup>
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+          </colgroup>
+          <thead
+            class="v-data-table-header"
+          >
+            <tr>
+              <th
+                aria-label="Genus: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Genus
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Category: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Category
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+                <span>
+                  group
+                </span>
+              </th>
+              <th
+                aria-label=""
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class="clickable"
+            >
+              <td
+                class="text-start"
+              >
+                <div
+                  class="text-capitalize-first"
+                >
+                  genus1
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                fruits
+              </td>
+              <td
+                class="text-start"
+              >
+                <button
+                  class="mr-2 v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--small"
+                  type="button"
+                >
+                  <span
+                    class="v-btn__content"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="v-icon notranslate mdi mdi-pencil theme--light"
+                      style="font-size: 16px;"
+                    />
+                  </span>
+                </button>
+                 
+                <button
+                  class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--small"
+                  type="button"
+                >
+                  <span
+                    class="v-btn__content"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="v-icon notranslate mdi mdi-delete theme--light"
+                      style="font-size: 16px;"
+                    />
+                  </span>
+                </button>
+              </td>
+            </tr>
+            <tr
+              class="clickable"
+            >
+              <td
+                class="text-start"
+              >
+                <div
+                  class="text-capitalize-first"
+                >
+                  genus2
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                fruits
+              </td>
+              <td
+                class="text-start"
+              >
+                <button
+                  class="mr-2 v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--small"
+                  type="button"
+                >
+                  <span
+                    class="v-btn__content"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="v-icon notranslate mdi mdi-pencil theme--light"
+                      style="font-size: 16px;"
+                    />
+                  </span>
+                </button>
+                 
+                <button
+                  class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--small"
+                  type="button"
+                >
+                  <span
+                    class="v-btn__content"
+                  >
+                    <i
+                      aria-hidden="true"
+                      class="v-icon notranslate mdi mdi-delete theme--light"
+                      style="font-size: 16px;"
+                    />
+                  </span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="v-data-footer"
+      >
+        <div
+          class="v-data-footer__select"
+        >
+          Rows per page:
+          <div
+            class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select"
+          >
+            <div
+              class="v-input__control"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-21"
+                class="v-input__slot"
+                role="button"
+              >
+                <div
+                  class="v-select__slot"
+                >
+                  <div
+                    class="v-select__selections"
+                  >
+                    <div
+                      class="v-select__selection v-select__selection--comma"
+                    >
+                      5
+                    </div>
+                    <input
+                      aria-label="$vuetify.dataTable.itemsPerPageText"
+                      aria-readonly="false"
+                      autocomplete="off"
+                      id="input-21"
+                      readonly="readonly"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="v-icon notranslate mdi mdi-menu-down theme--light"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    value="[object Object]"
+                  />
+                </div>
+                <div
+                  class="v-menu"
+                >
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-data-footer__pagination"
+        >
+          1-2 of 2
+        </div>
+        <div
+          class="v-data-footer__icons-before"
+        >
+          <button
+            aria-label="Previous page"
+            class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-left theme--light"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          class="v-data-footer__icons-after"
+        >
+          <button
+            aria-label="Next page"
+            class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-right theme--light"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-dialog__container"
+      role="dialog"
+    >
+      <!---->
+    </div>
+     
+    <div
+      class="v-dialog__container"
+      role="dialog"
+    >
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+</div>
+`;

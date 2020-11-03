@@ -1,0 +1,79 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.1.1
+  aws-s3: circleci/aws-s3@2.0.0
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:12.18.3
+  working_directory: ~/repo
+
+commands:
+  install:
+    description: "Install and cache dependencies"
+    steps:
+      - run: sudo npm install -g -f yarn@1.22.4
+      - restore_cache:
+          key: dependencies-cache-v1-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: dependencies-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+jobs:
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - install
+      - run: yarn lint
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - install
+      - run: yarn test:unit --collect-coverage
+      - codecov/upload:
+        file: './coverage/clover.xml'
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - install
+      - run:
+          command: yarn build
+          environment:
+            VUE_APP_API_URL: https://balcony-planner-api.farshiana.com
+      - persist_to_workspace:
+          root: .
+          paths:
+            - dist
+  upload:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - aws-s3/sync:
+          from: dist
+          to: "s3://balcony-planner.farshiana.com"
+          arguments: |
+            --delete \
+            --acl public-read \
+            --cache-control "max-age=86400"
+
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - lint
+      - test
+      - build:
+        filters:
+          branches:
+            only: master
+      - upload:
+          requires:
+            - lint
+            - test
+            - build

@@ -1,0 +1,1428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Planning.vue lists plants 1`] = `
+<div>
+  <div
+    class="planning ma-3 v-card v-sheet theme--light"
+  >
+    <div
+      class="v-card__title"
+    >
+      
+        Planning
+        
+      <div
+        class="spacer"
+      />
+       
+      <div
+        class="v-input v-input--hide-details theme--light v-text-field v-text-field--single-line"
+      >
+        <div
+          class="v-input__control"
+        >
+          <div
+            class="v-input__slot"
+          >
+            <div
+              class="v-text-field__slot"
+            >
+              <label
+                class="v-label theme--light"
+                for="input-9"
+                style="left: 0px; position: absolute;"
+              >
+                Search
+              </label>
+              <input
+                id="input-9"
+                type="text"
+              />
+            </div>
+            <div
+              class="v-input__append-inner"
+            >
+              <div
+                class="v-input__icon v-input__icon--append"
+              >
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate mdi mdi-magnify theme--light"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="v-data-table v-data-table--dense theme--light"
+    >
+      <div
+        class="v-data-table__wrapper"
+      >
+        <table>
+          <colgroup>
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+            <col
+              class=""
+            />
+          </colgroup>
+          <thead
+            class="v-data-table-header"
+          >
+            <tr>
+              <th
+                aria-label="Name: Not sorted. Activate to sort ascending."
+                aria-sort="none"
+                class="text-start sortable"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Name
+                </span>
+                <i
+                  aria-hidden="true"
+                  class="v-icon notranslate v-data-table-header__icon mdi mdi-arrow-up theme--light"
+                  style="font-size: 18px;"
+                />
+              </th>
+              <th
+                aria-label="Jan"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Jan
+                </span>
+              </th>
+              <th
+                aria-label="Feb"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Feb
+                </span>
+              </th>
+              <th
+                aria-label="Mar"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Mar
+                </span>
+              </th>
+              <th
+                aria-label="Apr"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Apr
+                </span>
+              </th>
+              <th
+                aria-label="May"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  May
+                </span>
+              </th>
+              <th
+                aria-label="Jun"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Jun
+                </span>
+              </th>
+              <th
+                aria-label="Jul"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Jul
+                </span>
+              </th>
+              <th
+                aria-label="Aug"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Aug
+                </span>
+              </th>
+              <th
+                aria-label="Sept"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Sept
+                </span>
+              </th>
+              <th
+                aria-label="Oct"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Oct
+                </span>
+              </th>
+              <th
+                aria-label="Nov"
+                class="text-start selected"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Nov
+                </span>
+              </th>
+              <th
+                aria-label="Dec"
+                class="text-start"
+                role="columnheader"
+                scope="col"
+              >
+                <span>
+                  Dec
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              class=""
+            >
+              <td
+                class="text-start"
+              >
+                <div
+                  class="d-flex align-center"
+                >
+                  <div
+                    class="mr-1"
+                  >
+                    <div
+                      class="v-image v-responsive theme--light"
+                      style="height: 12px; width: 12px;"
+                    >
+                      <transition-stub
+                        mode="in-out"
+                        name="fade-transition"
+                      >
+                        <div
+                          class="v-image__image v-image__image--preload v-image__image--cover"
+                          style="background-position: center center;"
+                        />
+                      </transition-stub>
+                      <div
+                        class="v-responsive__content"
+                      />
+                    </div>
+                  </div>
+                   
+                  <span
+                    class="text-capitalize-first"
+                  >
+                    variety1
+                  </span>
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 seed"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 seed"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 plant"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 plant"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 harvest"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 harvest"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+            </tr>
+            <tr
+              class=""
+            >
+              <td
+                class="text-start"
+              >
+                <div
+                  class="d-flex align-center"
+                >
+                  <div
+                    class="mr-1"
+                  >
+                    <div
+                      class="v-image v-responsive theme--light"
+                      style="height: 12px; width: 12px;"
+                    >
+                      <transition-stub
+                        mode="in-out"
+                        name="fade-transition"
+                      >
+                        <div
+                          class="v-image__image v-image__image--preload v-image__image--cover"
+                          style="background-position: center center;"
+                        />
+                      </transition-stub>
+                      <div
+                        class="v-responsive__content"
+                      />
+                    </div>
+                  </div>
+                   
+                  <span
+                    class="text-capitalize-first"
+                  >
+                    variety2
+                  </span>
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 seed"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 seed"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 plant"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 plant"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 harvest"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 harvest"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1 selected"
+                    role="button"
+                  />
+                </div>
+              </td>
+              <td
+                class="text-start"
+              >
+                <div
+                  style="height: 100%;"
+                >
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                  <span
+                    class="v-tooltip v-tooltip--bottom"
+                  >
+                    <!---->
+                  </span>
+                  <div
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    class="month flex-grow-1"
+                    role="button"
+                  />
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="v-data-footer"
+      >
+        <div
+          class="v-data-footer__select"
+        >
+          Rows per page:
+          <div
+            class="v-input v-input--hide-details v-input--is-label-active v-input--is-dirty theme--light v-text-field v-select"
+          >
+            <div
+              class="v-input__control"
+            >
+              <div
+                aria-expanded="false"
+                aria-haspopup="listbox"
+                aria-owns="list-19"
+                class="v-input__slot"
+                role="button"
+              >
+                <div
+                  class="v-select__slot"
+                >
+                  <div
+                    class="v-select__selections"
+                  >
+                    <div
+                      class="v-select__selection v-select__selection--comma"
+                    >
+                      5
+                    </div>
+                    <input
+                      aria-label="$vuetify.dataTable.itemsPerPageText"
+                      aria-readonly="false"
+                      autocomplete="off"
+                      id="input-19"
+                      readonly="readonly"
+                      type="text"
+                    />
+                  </div>
+                  <div
+                    class="v-input__append-inner"
+                  >
+                    <div
+                      class="v-input__icon v-input__icon--append"
+                    >
+                      <i
+                        aria-hidden="true"
+                        class="v-icon notranslate mdi mdi-menu-down theme--light"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    value="[object Object]"
+                  />
+                </div>
+                <div
+                  class="v-menu"
+                >
+                  <!---->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="v-data-footer__pagination"
+        >
+          1-2 of 2
+        </div>
+        <div
+          class="v-data-footer__icons-before"
+        >
+          <button
+            aria-label="Previous page"
+            class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-left theme--light"
+              />
+            </span>
+          </button>
+        </div>
+        <div
+          class="v-data-footer__icons-after"
+        >
+          <button
+            aria-label="Next page"
+            class="v-btn v-btn--disabled v-btn--flat v-btn--icon v-btn--round v-btn--text theme--light v-size--default"
+            disabled="disabled"
+            type="button"
+          >
+            <span
+              class="v-btn__content"
+            >
+              <i
+                aria-hidden="true"
+                class="v-icon notranslate mdi mdi-chevron-right theme--light"
+              />
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
